@@ -1,0 +1,52 @@
+<Schema name="HyperSchema">
+    <Cube name="HyperCube@DirtBikes" cache="true" enabled="true">
+        <View alias="FACT_TABLE_1">
+            <SQL dialect="generic">
+                select * from DB_SCHULTZ.wi2_erp10v3_kundenstamm
+                join DB_SCHULTZ.wi2_erp10v3_dokkopf on ks_kunde = dk_kunde
+                join DB_SCHULTZ.wi2_erp10v3_dokpos on dk_belegnr = dp_belegnr
+                join DB_SCHULTZ.wi2_erp10v3_materialstamm on dp_produkt = ms_produkt
+                order by DK_BESTDATUM;
+            </SQL>
+        </View>
+
+        <Dimension name="TimeHierarchy">
+            <Hierarchy hasAll="true">
+                <Table name="WI2_ACS510_TIME" schema="ACS510"/>
+                    <Level name="YEAR" column="T_YEAR"/>
+                    <Level name="MONTH" column="T_MONTH"/>
+                    <Level name="DAY" column="T_DAY"/>
+                    <Level name="TIMEID" column="T_ID"/>
+            </Hierarchy>
+        </Dimension>
+
+        <Dimension name="CustomersHierarchy" foreignKey="CUSTOMER">
+            <Hierarchy primaryKey="C_ID" hasAll="true">
+                <Table name="WI2_ACS510_CUSTOMER" schema="ACS510"/>
+                <Level name="ONGOING" column="ONGOING"/>
+                <Level name="VALIDTO" column="VALIDTO"/>
+                <Level name="VALIDFROM" column="VALIDFROM"/>
+                <Level name="COUNTRY" column="C_LAND"/>
+                <Level name="SALESORGCURRENT" column="C_SALESORGCURRENT"/>
+                <Level name="SALESORGHISTORIC" column="C_SALESORGHISTORIC"/>
+                <Level name="CITY" column="C_CITY"/>
+                <Level name="CUSTOMER" column="C_ID" nameColumn="C_DES"/>
+            </Hierarchy>
+        </Dimension>
+
+        <Dimension name="ProductsHierarchy" foreignKey="PRODUCT">
+            <Hierarchy hasAll="true" primaryKey="P_ID">
+                <Table name="WI2_ACS510_PRODUCT" schema="ACS510"/>
+                <Level name="DIVISION" column="G3_DIVISION"/>
+                <Level name="PRODUCT_CATEGORY" column="G3_PRODKATEGORIE"/>
+                <Level name="PRODUCT" column="PID" nameColumn="P_DES"/>
+            </Hierarchy>
+        </Dimension>
+
+        <Measure name="REVENUE" column="REVENUE" aggregator="sum"/>
+        <Measure name="DISCOUNT" column="DISCOUNT" aggregator="sum"/>
+        <Measure name="COSTOFGOODSSOLD" column="COGS" aggregator="sum"/>
+        <Measure name="SALESQUANTITY" column="SALES_QUANTITY" aggregator="sum"/>
+    </Cube>
+</Schema>
+
