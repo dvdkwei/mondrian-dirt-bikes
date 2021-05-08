@@ -1,0 +1,7 @@
+2021-05-08 00:39:21,049 DEBUG [mondrian.sql] 0: Segment.load: executing sql [
+select
+    sum("WI2_ACU008_FACT_TABLE"."REVENUE") as "m0"
+from
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"]
+2021-05-08 00:39:21,093 DEBUG [mondrian.sql] 0: , exec 38 ms
+2021-05-08 00:39:21,110 DEBUG [mondrian.sql] 0: , exec+fetch 59 ms, 1 rows

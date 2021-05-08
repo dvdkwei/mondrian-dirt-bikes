@@ -1,0 +1,6 @@
+2021-05-08 00:39:20,961 DEBUG [mondrian.mdx] 64: with set [~ROWS] as '{[CustomersHierarchy].[All CustomersHierarchys]}'
+select NON EMPTY {[Measures].[REVENUE]} ON COLUMNS,
+  NON EMPTY [~ROWS] ON ROWS
+from [HyperCube@DirtBikes]
+
+2021-05-08 00:39:21,120 DEBUG [mondrian.mdx] 64: exec: 159 ms

@@ -1,28 +1,35 @@
 <Schema name="HyperSchema">
     <Cube name="HyperCube@DirtBikes" cache="true" enabled="true">
-        <View alias="FACT_TABLE_1">
-            <SQL dialect="generic">
-                select * from DB_SCHULTZ.wi2_erp10v3_kundenstamm
-                join DB_SCHULTZ.wi2_erp10v3_dokkopf on ks_kunde = dk_kunde
-                join DB_SCHULTZ.wi2_erp10v3_dokpos on dk_belegnr = dp_belegnr
-                join DB_SCHULTZ.wi2_erp10v3_materialstamm on dp_produkt = ms_produkt
-                order by DK_BESTDATUM;
-            </SQL>
-        </View>
+        <Table name="WI2_ACU008_FACT_TABLE"/>
 
-        <Dimension name="TimeHierarchy">
-            <Hierarchy hasAll="true">
-                <Table name="WI2_ACS510_TIME" schema="ACS510"/>
-                    <Level name="YEAR" column="T_YEAR"/>
-                    <Level name="MONTH" column="T_MONTH"/>
-                    <Level name="DAY" column="T_DAY"/>
-                    <Level name="TIMEID" column="T_ID"/>
+        <AggName name="AGG_SALES_ORG_PRIOR">
+            <AggFactCount column="ROW_COUNT"/>
+            <AggMeasure name="[MEASURES].[REVENUE]" column="REVENUE"/>
+            <AggMeasure name="[MEASURES].[DISCOUNT]" column="DISCOUNT"/>
+            <AggMeasure name="[MEASURES].[COSTOFGOODSSOLD]" column="COGS"/>
+            <AggMeasure name="[MEASURES].[SALESQUANTITY]" column="SALESQUANTITY"/>
+            <AggMeasure name="[MEASURES].[NOOFSALESORDERS]" column="NOOFSALESORDERS"/>
+            <AggLevel name="[TIMEHIERARCHY].[YEAR]" column="YEAR"/>
+            <AggLevel name="[TIMEHIERARCHY].[MONTH]" column="MONTH"/>
+            <AggForeignKey name="[PRODUCTSHIERARCHY].[PRODUCT_CATEGORY]"  column="P_CATEGORYID"/>
+            <AggLevel name="[PRODUCTSHIERARCHY].[P_CATEGORY]" column="P_CATEGORY"/>
+            <AggLevel name="[CUSTOMERSHIERARCHY].[CITY]" column="C_CITY"/>
+            <AggLevel name="[CUSTOMERSHIERARCHY].[COUNTRY]" column="C_LAND"/>
+        </AggName>
+
+        <Dimension name="TIMEHIERARCHY" foreignKey="FACT_T_ID">
+            <Hierarchy primaryKey="T_ID" hasAll="true">
+                <Table name="WI2_ACU008_TIME" schema="ACU008"/>
+                <Level name="YEAR" column="T_YEAR"/>
+                <Level name="MONTH" column="T_MONTH"/>
+                <Level name="DAY" column="T_DAY"/>
+                <Level name="TIMEID" column="T_ID"/>
             </Hierarchy>
         </Dimension>
 
-        <Dimension name="CustomersHierarchy" foreignKey="CUSTOMER">
+        <Dimension name="CUSTOMERSHIERARCHY" foreignKey="FACT_C_ID">
             <Hierarchy primaryKey="C_ID" hasAll="true">
-                <Table name="WI2_ACS510_CUSTOMER" schema="ACS510"/>
+                <Table name="WI2_ACU008_CUSTOMER" schema="ACU008"/>
                 <Level name="ONGOING" column="ONGOING"/>
                 <Level name="VALIDTO" column="VALIDTO"/>
                 <Level name="VALIDFROM" column="VALIDFROM"/>
@@ -34,19 +41,22 @@
             </Hierarchy>
         </Dimension>
 
-        <Dimension name="ProductsHierarchy" foreignKey="PRODUCT">
+        <Dimension name="PRODUCTSHIERARCHY" foreignKey="FACT_P_ID">
             <Hierarchy hasAll="true" primaryKey="P_ID">
                 <Table name="WI2_ACS510_PRODUCT" schema="ACS510"/>
-                <Level name="DIVISION" column="G3_DIVISION"/>
-                <Level name="PRODUCT_CATEGORY" column="G3_PRODKATEGORIE"/>
-                <Level name="PRODUCT" column="PID" nameColumn="P_DES"/>
+                <Level name="PRODUCTIONPRICE" column="P_PRODUCTIONPRICE"/>
+                <Level name="SALESPRICE" column="P_SALESPRICE"/>
+                <Level name="DIVISION" column="P_DIVISION"/>
+                <Level name="PRODUCT_CATEGORY" column="P_CATEGORYID" nameColumn="P_CATEGORY"/>
+                <Level name="PRODUCT" column="PID" nameColumn="P_DESC"/>
             </Hierarchy>
         </Dimension>
 
         <Measure name="REVENUE" column="REVENUE" aggregator="sum"/>
         <Measure name="DISCOUNT" column="DISCOUNT" aggregator="sum"/>
         <Measure name="COSTOFGOODSSOLD" column="COGS" aggregator="sum"/>
-        <Measure name="SALESQUANTITY" column="SALES_QUANTITY" aggregator="sum"/>
+        <Measure name="SALESQUANTITY" column="SALESQUANTITY" aggregator="sum"/>
+        <Measure name="NOOFSALESORDERS" column="NOOFSALESORDERS" aggregator="sum"/>
     </Cube>
 </Schema>
 
