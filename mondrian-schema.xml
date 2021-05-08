@@ -37,7 +37,7 @@
                 <Level name="SALESORGCURRENT" column="C_SALESORGCURRENT"/>
                 <Level name="SALESORGHISTORIC" column="C_SALESORGHISTORIC"/>
                 <Level name="CITY" column="C_CITY"/>
-                <Level name="CUSTOMER" column="C_ID" nameColumn="C_DES"/>
+                <Level name="CUSTOMER" column="C_ID" nameColumn="C_DESC"/>
             </Hierarchy>
         </Dimension>
 
