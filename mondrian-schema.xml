@@ -1,21 +1,28 @@
 <Schema name="HyperSchema">
     <Cube name="HyperCube@DirtBikes" cache="true" enabled="true">
-        <Table name="WI2_ACU008_FACT_TABLE"/>
+        <View alias="JOINS1">
+            <SQL dialect="generic">
+                select * from wi2_acu008_fact_table
+                join wi2_acu008_customer w2a008c on wi2_acu008_fact_table.FACT_C_ID = w2a008c.C_ID
+                join wi2_acu008_product w2a008p on wi2_acu008_fact_table.FACT_P_ID = w2a008p.P_ID
+                join wi2_acu008_time on FACT_T_ID = T_ID
+            </SQL>
+        </View>
 
-        <AggName name="AGG_SALES_ORG_PRIOR">
-            <AggFactCount column="ROW_COUNT"/>
-            <AggMeasure name="[MEASURES].[REVENUE]" column="REVENUE"/>
-            <AggMeasure name="[MEASURES].[DISCOUNT]" column="DISCOUNT"/>
-            <AggMeasure name="[MEASURES].[COSTOFGOODSSOLD]" column="COGS"/>
-            <AggMeasure name="[MEASURES].[SALESQUANTITY]" column="SALESQUANTITY"/>
-            <AggMeasure name="[MEASURES].[NOOFSALESORDERS]" column="NOOFSALESORDERS"/>
-            <AggLevel name="[TIMEHIERARCHY].[YEAR]" column="YEAR"/>
-            <AggLevel name="[TIMEHIERARCHY].[MONTH]" column="MONTH"/>
-            <AggForeignKey name="[PRODUCTSHIERARCHY].[PRODUCT_CATEGORY]"  column="P_CATEGORYID"/>
-            <AggLevel name="[PRODUCTSHIERARCHY].[P_CATEGORY]" column="P_CATEGORY"/>
-            <AggLevel name="[CUSTOMERSHIERARCHY].[CITY]" column="C_CITY"/>
-            <AggLevel name="[CUSTOMERSHIERARCHY].[COUNTRY]" column="C_LAND"/>
-        </AggName>
+<!--        <Table name="WI2_ACU008_FACT_TABLE">-->
+<!--            <AggName name="AGG_SALES_ORG_PRIOR">-->
+<!--                <AggFactCount column="ROW_COUNT"/>-->
+<!--                <AggMeasure name="[MEASURES].[REVENUE]" column="REVENUE"/>-->
+<!--                <AggMeasure name="[MEASURES].[DISCOUNT]" column="DISCOUNT"/>-->
+<!--                <AggMeasure name="[MEASURES].[COSTOFGOODSSOLD]" column="COGS"/>-->
+<!--                <AggMeasure name="[MEASURES].[SALESQUANTITY]" column="SALESQUANTITY"/>-->
+<!--                <AggMeasure name="[MEASURES].[NOOFSALESORDERS]" column="NOOFSALESORDERS"/>-->
+<!--                <AggLevel name="[TIMEHIERARCHY].[YEAR]" column="ORG_PRIOR_YEAR_ID"/>-->
+<!--                <AggLevel name="[TIMEHIERARCHY].[MONTH]" column="ORG_PRIOR_MONTH_ID"/>-->
+<!--                <AggLevel name="[CUSTOMERSHIERARCHY].[CUSTOMER]" column="ORG_PRIOR_C_ID"/>-->
+<!--                <AggLevel name="[PRODUCTSHIERARCHY].[PRODUCT_CATEGORY]"  column="ORG_PRIOR_PCAT_ID"/>-->
+<!--            </AggName>-->
+<!--        </Table>-->
 
         <Dimension name="TIMEHIERARCHY" foreignKey="FACT_T_ID">
             <Hierarchy primaryKey="T_ID" hasAll="true">
@@ -46,9 +53,9 @@
                 <Table name="WI2_ACS510_PRODUCT" schema="ACS510"/>
                 <Level name="PRODUCTIONPRICE" column="P_PRODUCTIONPRICE"/>
                 <Level name="SALESPRICE" column="P_SALESPRICE"/>
-                <Level name="DIVISION" column="P_DIVISION"/>
                 <Level name="PRODUCT_CATEGORY" column="P_CATEGORYID" nameColumn="P_CATEGORY"/>
-                <Level name="PRODUCT" column="PID" nameColumn="P_DESC"/>
+                <Level name="DIVISION" column="P_DIVISION"/>
+                <Level name="PRODUCT" column="P_ID" nameColumn="P_DESC"/>
             </Hierarchy>
         </Dimension>
 
