@@ -1,61 +1,54 @@
 <Schema name="HyperSchema">
     <Cube name="HyperCube@DirtBikes" cache="true" enabled="true">
-        <View alias="JOINS1">
-            <SQL dialect="generic">
-                select * from wi2_acu008_fact_table
-                join wi2_acu008_customer w2a008c on wi2_acu008_fact_table.FACT_C_ID = w2a008c.C_ID
-                join wi2_acu008_product w2a008p on wi2_acu008_fact_table.FACT_P_ID = w2a008p.P_ID
-                join wi2_acu008_time on FACT_T_ID = T_ID
-            </SQL>
-        </View>
 
-<!--        <Table name="WI2_ACU008_FACT_TABLE">-->
-<!--            <AggName name="AGG_SALES_ORG_PRIOR">-->
-<!--                <AggFactCount column="ROW_COUNT"/>-->
-<!--                <AggMeasure name="[MEASURES].[REVENUE]" column="REVENUE"/>-->
-<!--                <AggMeasure name="[MEASURES].[DISCOUNT]" column="DISCOUNT"/>-->
-<!--                <AggMeasure name="[MEASURES].[COSTOFGOODSSOLD]" column="COGS"/>-->
-<!--                <AggMeasure name="[MEASURES].[SALESQUANTITY]" column="SALESQUANTITY"/>-->
-<!--                <AggMeasure name="[MEASURES].[NOOFSALESORDERS]" column="NOOFSALESORDERS"/>-->
-<!--                <AggLevel name="[TIMEHIERARCHY].[YEAR]" column="ORG_PRIOR_YEAR_ID"/>-->
-<!--                <AggLevel name="[TIMEHIERARCHY].[MONTH]" column="ORG_PRIOR_MONTH_ID"/>-->
-<!--                <AggLevel name="[CUSTOMERSHIERARCHY].[CUSTOMER]" column="ORG_PRIOR_C_ID"/>-->
-<!--                <AggLevel name="[PRODUCTSHIERARCHY].[PRODUCT_CATEGORY]"  column="ORG_PRIOR_PCAT_ID"/>-->
-<!--            </AggName>-->
-<!--        </Table>-->
+        <Table name="WI2_ACU008_FACT_TABLE">
+                <AggName name="AGG_2_WI2_ACU008_FACT_TABLE" ChooseByVolume="true">
+                <AggFactCount column="FACT_COUNT"/>
+                <AggMeasure name="[Measures].[REVENUE]" column="sum_revenue"/>
+                <AggMeasure name="[Measures].[DISCOUNT]" column="sum_discount"/>
+                <AggMeasure name="[Measures].[COSTOFGOODSSOLD]" column="sum_cogs"/>
+                <AggMeasure name="[Measures].[SALESQUANTITY]" column="sum_salesquantity"/>
+                <AggMeasure name="[Measures].[NOOFSALESORDERS]" column="sum_noofsalesorders"/>
+                <AggLevel name="[TIME].[YEAR]" column="time_year"/>
+                <AggLevel name="[TIME].[MONTH]" column="time_month"/>
+                <AggLevel name="[PRODUCT].[PRODUCT_CATEGORY]" column="product_p_categoryid"/>
+            </AggName>
+        </Table>
 
-        <Dimension name="TIMEHIERARCHY" foreignKey="FACT_T_ID">
+        <Dimension name="TIME" foreignKey="FACT_T_ID">
             <Hierarchy primaryKey="T_ID" hasAll="true">
                 <Table name="WI2_ACU008_TIME" schema="ACU008"/>
                 <Level name="YEAR" column="T_YEAR"/>
                 <Level name="MONTH" column="T_MONTH"/>
                 <Level name="DAY" column="T_DAY"/>
-                <Level name="TIMEID" column="T_ID"/>
+                <Level name="TIME" column="T_ID"/>
             </Hierarchy>
         </Dimension>
 
-        <Dimension name="CUSTOMERSHIERARCHY" foreignKey="FACT_C_ID">
-            <Hierarchy primaryKey="C_ID" hasAll="true">
+        <Dimension name="CUSTOMER" foreignKey="FACT_C_ID">
+            <Hierarchy primaryKey="C_ID" hasAll="false">
                 <Table name="WI2_ACU008_CUSTOMER" schema="ACU008"/>
-                <Level name="ONGOING" column="ONGOING"/>
-                <Level name="VALIDTO" column="VALIDTO"/>
-                <Level name="VALIDFROM" column="VALIDFROM"/>
                 <Level name="COUNTRY" column="C_LAND"/>
                 <Level name="SALESORGCURRENT" column="C_SALESORGCURRENT"/>
                 <Level name="SALESORGHISTORIC" column="C_SALESORGHISTORIC"/>
                 <Level name="CITY" column="C_CITY"/>
-                <Level name="CUSTOMER" column="C_ID" nameColumn="C_DESC"/>
+                <Level name="CUSTOMER" column="C_ID" nameColumn="C_DESC">
+                    <Property name="VALID_FROM" column="VALIDFROM"/>
+                    <Property name="VALID_TO" column="VALIDTO"/>
+                    <Property name="ONGOING" column="ONGOING"/>
+                </Level>
             </Hierarchy>
         </Dimension>
 
-        <Dimension name="PRODUCTSHIERARCHY" foreignKey="FACT_P_ID">
-            <Hierarchy hasAll="true" primaryKey="P_ID">
-                <Table name="WI2_ACS510_PRODUCT" schema="ACS510"/>
-                <Level name="PRODUCTIONPRICE" column="P_PRODUCTIONPRICE"/>
-                <Level name="SALESPRICE" column="P_SALESPRICE"/>
+        <Dimension name="PRODUCT" foreignKey="FACT_P_ID">
+            <Hierarchy primaryKey="P_ID" hasAll="false">
+                <Table name="WI2_ACU008_PRODUCT" schema="ACU008"/>
                 <Level name="PRODUCT_CATEGORY" column="P_CATEGORYID" nameColumn="P_CATEGORY"/>
                 <Level name="DIVISION" column="P_DIVISION"/>
-                <Level name="PRODUCT" column="P_ID" nameColumn="P_DESC"/>
+                <Level name="PRODUCT" column="P_ID" nameColumn="P_DESC">
+                    <Property name="SALES_PRICE" column="P_SALESPRICE"/>
+                    <Property name="PRODUCTION_PRICE" column="P_PRODUCTIONPRICE"/>
+                </Level>
             </Hierarchy>
         </Dimension>
 
