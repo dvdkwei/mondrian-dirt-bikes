@@ -1,28 +1,30 @@
 <Schema name="HyperSchema">
     <Cube name="HyperCube@DirtBikes" cache="true" enabled="true">
-        <View alias="JOINS1">
-            <SQL dialect="generic">
-                select * from wi2_acu008_fact_table
-                join wi2_acu008_customer w2a008c on wi2_acu008_fact_table.FACT_C_ID = w2a008c.C_ID
-                join wi2_acu008_product w2a008p on wi2_acu008_fact_table.FACT_P_ID = w2a008p.P_ID
-                join wi2_acu008_time on FACT_T_ID = T_ID
-            </SQL>
-        </View>
+<!--        <View alias="JOINS1">-->
+<!--            <SQL dialect="generic">-->
+<!--                select * from wi2_acu008_fact_table-->
+<!--                join wi2_acu008_customer w2a008c on wi2_acu008_fact_table.FACT_C_ID = w2a008c.C_ID-->
+<!--                join wi2_acu008_product w2a008p on wi2_acu008_fact_table.FACT_P_ID = w2a008p.P_ID-->
+<!--                join wi2_acu008_time on FACT_T_ID = T_ID-->
+<!--            </SQL>-->
+<!--        </View>-->
 
-<!--        <Table name="WI2_ACU008_FACT_TABLE">-->
-<!--            <AggName name="AGG_SALES_ORG_PRIOR">-->
-<!--                <AggFactCount column="ROW_COUNT"/>-->
-<!--                <AggMeasure name="[MEASURES].[REVENUE]" column="REVENUE"/>-->
-<!--                <AggMeasure name="[MEASURES].[DISCOUNT]" column="DISCOUNT"/>-->
-<!--                <AggMeasure name="[MEASURES].[COSTOFGOODSSOLD]" column="COGS"/>-->
-<!--                <AggMeasure name="[MEASURES].[SALESQUANTITY]" column="SALESQUANTITY"/>-->
-<!--                <AggMeasure name="[MEASURES].[NOOFSALESORDERS]" column="NOOFSALESORDERS"/>-->
-<!--                <AggLevel name="[TIMEHIERARCHY].[YEAR]" column="ORG_PRIOR_YEAR_ID"/>-->
-<!--                <AggLevel name="[TIMEHIERARCHY].[MONTH]" column="ORG_PRIOR_MONTH_ID"/>-->
-<!--                <AggLevel name="[CUSTOMERSHIERARCHY].[CUSTOMER]" column="ORG_PRIOR_C_ID"/>-->
-<!--                <AggLevel name="[PRODUCTSHIERARCHY].[PRODUCT_CATEGORY]"  column="ORG_PRIOR_PCAT_ID"/>-->
-<!--            </AggName>-->
-<!--        </Table>-->
+        <Table name="WI2_ACU008_FACT_TABLE">
+            <AggName name="AGG_SALES">
+                <AggFactCount column="FACT_COUNT"/>
+                <AggForeignKey factColumn="FACT_P_ID" aggColumn="PCAT_ID"/>
+                <AggForeignKey factColumn="FACT_C_ID" aggColumn="C_ID"/>
+                <AggMeasure name="[Measures].[REVENUE]" column="REVENUE"/>
+                <AggMeasure name="[Measures].[DISCOUNT]" column="DISCOUNT"/>
+                <AggMeasure name="[Measures].[COSTOFGOODSSOLD]" column="COGS"/>
+                <AggMeasure name="[Measures].[SALESQUANTITY]" column="SALESQUANTITY"/>
+                <AggMeasure name="[Measures].[NOOFSALESORDERS]" column="NOOFSALESORDERS"/>
+                <AggLevel name="[TIMEHIERARCHY].[YEAR]" column="TIME_YEAR"/>
+                <AggLevel name="[TIMEHIERARCHY].[MONTH]" column="TIME_MONTH"/>
+<!--                <AggLevel name="[CUSTOMERSHIERARCHY].[CUSTOMER]" column="C_ID"/>-->
+<!--                <AggLevel name="[PRODUCTSHIERARCHY].[PRODUCT_CATEGORY]"  column="PCAT_ID"/>-->
+            </AggName>
+        </Table>
 
         <Dimension name="TIMEHIERARCHY" foreignKey="FACT_T_ID">
             <Hierarchy primaryKey="T_ID" hasAll="true">
@@ -44,13 +46,14 @@
                 <Level name="SALESORGCURRENT" column="C_SALESORGCURRENT"/>
                 <Level name="SALESORGHISTORIC" column="C_SALESORGHISTORIC"/>
                 <Level name="CITY" column="C_CITY"/>
-                <Level name="CUSTOMER" column="C_ID" nameColumn="C_DESC"/>
+<!--                <Level name="CUSTOMER" column="C_ID" nameColumn="C_DESC"/>-->
+                <Level name="CUSTOMER" column="C_ID"/>
             </Hierarchy>
         </Dimension>
 
         <Dimension name="PRODUCTSHIERARCHY" foreignKey="FACT_P_ID">
             <Hierarchy hasAll="true" primaryKey="P_ID">
-                <Table name="WI2_ACS510_PRODUCT" schema="ACS510"/>
+                <Table name="WI2_ACU008_PRODUCT" schema="ACU008"/>
                 <Level name="PRODUCTIONPRICE" column="P_PRODUCTIONPRICE"/>
                 <Level name="SALESPRICE" column="P_SALESPRICE"/>
                 <Level name="PRODUCT_CATEGORY" column="P_CATEGORYID" nameColumn="P_CATEGORY"/>
