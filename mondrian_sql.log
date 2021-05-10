@@ -1,652 +1,228 @@
-2021-05-09 21:51:00,119 DEBUG [mondrian.sql] 0: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_1_WI2_ACU008_FACT_TABLE"]
-2021-05-09 21:51:00,155 DEBUG [mondrian.sql] 0: , exec 31 ms
-2021-05-09 21:51:00,156 DEBUG [mondrian.sql] 0: , exec+fetch 36 ms, 1 rows
-2021-05-09 21:51:00,160 DEBUG [mondrian.sql] 1: AggStar.FactTable.makeNumberOfRows: executing sql [
-select
-    count(*) as "c0"
-from
-    "AGG_1_WI2_ACU008_FACT_TABLE" "AGG_1_WI2_ACU008_FACT_TABLE"]
-2021-05-09 21:51:00,188 DEBUG [mondrian.sql] 1: , exec 27 ms
-2021-05-09 21:51:00,188 DEBUG [mondrian.sql] 1: , exec+fetch 28 ms, 1 rows
-2021-05-09 21:54:52,374 DEBUG [mondrian.sql] 2: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_1_WI2_ACU008_FACT_TABLE"]
-2021-05-09 21:54:52,402 DEBUG [mondrian.sql] 2: , exec 27 ms
-2021-05-09 21:54:52,402 DEBUG [mondrian.sql] 2: , exec+fetch 27 ms, 1 rows
-2021-05-09 21:54:52,403 DEBUG [mondrian.sql] 3: AggStar.FactTable.makeNumberOfRows: executing sql [
-select
-    count(*) as "c0"
-from
-    "AGG_1_WI2_ACU008_FACT_TABLE" "AGG_1_WI2_ACU008_FACT_TABLE"]
-2021-05-09 21:54:52,429 DEBUG [mondrian.sql] 3: , exec 26 ms
-2021-05-09 21:54:52,430 DEBUG [mondrian.sql] 3: , exec+fetch 27 ms, 1 rows
-2021-05-09 21:54:52,509 DEBUG [mondrian.sql] 4: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_SALES"]
-2021-05-09 21:54:52,540 DEBUG [mondrian.sql] 4: , exec 30 ms
-2021-05-09 21:54:52,540 DEBUG [mondrian.sql] 4: , exec+fetch 31 ms, 1 rows
-2021-05-09 21:54:52,540 DEBUG [mondrian.sql] 5: AggStar.FactTable.makeNumberOfRows: executing sql [
+2021-05-10 08:51:23,723 DEBUG [mondrian.sql] 0: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_SALES"]
+2021-05-10 08:51:23,769 DEBUG [mondrian.sql] 0: , exec 38 ms
+2021-05-10 08:51:23,769 DEBUG [mondrian.sql] 0: , exec+fetch 45 ms, 1 rows
+2021-05-10 08:51:23,772 DEBUG [mondrian.sql] 1: AggStar.FactTable.makeNumberOfRows: executing sql [
 select
     count(*) as "c0"
 from
     "AGG_SALES" "AGG_SALES"]
-2021-05-09 21:54:52,570 DEBUG [mondrian.sql] 5: , exec 29 ms
-2021-05-09 21:54:52,570 DEBUG [mondrian.sql] 5: , exec+fetch 29 ms, 1 rows
-2021-05-09 21:54:59,571 DEBUG [mondrian.sql] 6: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_1_WI2_ACU008_FACT_TABLE"]
-2021-05-09 21:54:59,597 DEBUG [mondrian.sql] 6: , exec 26 ms
-2021-05-09 21:54:59,598 DEBUG [mondrian.sql] 6: , exec+fetch 26 ms, 1 rows
-2021-05-09 21:54:59,598 DEBUG [mondrian.sql] 7: AggStar.FactTable.makeNumberOfRows: executing sql [
+2021-05-10 08:51:23,800 DEBUG [mondrian.sql] 1: , exec 27 ms
+2021-05-10 08:51:23,800 DEBUG [mondrian.sql] 1: , exec+fetch 28 ms, 1 rows
+2021-05-10 08:51:24,413 DEBUG [mondrian.sql] 2: SqlTupleReader.readTuples [[CUSTOMER].[COUNTRY]]: executing sql [
 select
-    count(*) as "c0"
-from
-    "AGG_1_WI2_ACU008_FACT_TABLE" "AGG_1_WI2_ACU008_FACT_TABLE"]
-2021-05-09 21:54:59,628 DEBUG [mondrian.sql] 7: , exec 29 ms
-2021-05-09 21:54:59,628 DEBUG [mondrian.sql] 7: , exec+fetch 30 ms, 1 rows
-2021-05-09 21:54:59,629 DEBUG [mondrian.sql] 8: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_SALES"]
-2021-05-09 21:54:59,658 DEBUG [mondrian.sql] 8: , exec 28 ms
-2021-05-09 21:54:59,658 DEBUG [mondrian.sql] 8: , exec+fetch 29 ms, 1 rows
-2021-05-09 21:54:59,658 DEBUG [mondrian.sql] 9: AggStar.FactTable.makeNumberOfRows: executing sql [
-select
-    count(*) as "c0"
-from
-    "AGG_SALES" "AGG_SALES"]
-2021-05-09 21:54:59,688 DEBUG [mondrian.sql] 9: , exec 29 ms
-2021-05-09 21:54:59,689 DEBUG [mondrian.sql] 9: , exec+fetch 31 ms, 1 rows
-2021-05-09 21:57:00,008 DEBUG [mondrian.sql] 10: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_1_WI2_ACU008_FACT_TABLE"]
-2021-05-09 21:57:00,034 DEBUG [mondrian.sql] 10: , exec 26 ms
-2021-05-09 21:57:00,035 DEBUG [mondrian.sql] 10: , exec+fetch 27 ms, 1 rows
-2021-05-09 21:57:00,035 DEBUG [mondrian.sql] 11: AggStar.FactTable.makeNumberOfRows: executing sql [
-select
-    count(*) as "c0"
-from
-    "AGG_1_WI2_ACU008_FACT_TABLE" "AGG_1_WI2_ACU008_FACT_TABLE"]
-2021-05-09 21:57:00,108 DEBUG [mondrian.sql] 11: , exec 72 ms
-2021-05-09 21:57:00,108 DEBUG [mondrian.sql] 11: , exec+fetch 73 ms, 1 rows
-2021-05-09 21:57:00,109 DEBUG [mondrian.sql] 12: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_SALES"]
-2021-05-09 21:57:00,162 DEBUG [mondrian.sql] 12: , exec 52 ms
-2021-05-09 21:57:00,162 DEBUG [mondrian.sql] 12: , exec+fetch 53 ms, 1 rows
-2021-05-09 21:57:00,162 DEBUG [mondrian.sql] 13: AggStar.FactTable.makeNumberOfRows: executing sql [
-select
-    count(*) as "c0"
-from
-    "AGG_SALES" "AGG_SALES"]
-2021-05-09 21:57:00,191 DEBUG [mondrian.sql] 13: , exec 28 ms
-2021-05-09 21:57:00,191 DEBUG [mondrian.sql] 13: , exec+fetch 28 ms, 1 rows
-2021-05-09 21:57:01,795 DEBUG [mondrian.sql] 14: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_1_WI2_ACU008_FACT_TABLE"]
-2021-05-09 21:57:01,826 DEBUG [mondrian.sql] 14: , exec 30 ms
-2021-05-09 21:57:01,826 DEBUG [mondrian.sql] 14: , exec+fetch 31 ms, 1 rows
-2021-05-09 21:57:01,826 DEBUG [mondrian.sql] 15: AggStar.FactTable.makeNumberOfRows: executing sql [
-select
-    count(*) as "c0"
-from
-    "AGG_1_WI2_ACU008_FACT_TABLE" "AGG_1_WI2_ACU008_FACT_TABLE"]
-2021-05-09 21:57:01,859 DEBUG [mondrian.sql] 15: , exec 32 ms
-2021-05-09 21:57:01,860 DEBUG [mondrian.sql] 15: , exec+fetch 34 ms, 1 rows
-2021-05-09 21:57:01,861 DEBUG [mondrian.sql] 16: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_SALES"]
-2021-05-09 21:57:01,910 DEBUG [mondrian.sql] 16: , exec 49 ms
-2021-05-09 21:57:01,910 DEBUG [mondrian.sql] 16: , exec+fetch 49 ms, 1 rows
-2021-05-09 21:57:01,910 DEBUG [mondrian.sql] 17: AggStar.FactTable.makeNumberOfRows: executing sql [
-select
-    count(*) as "c0"
-from
-    "AGG_SALES" "AGG_SALES"]
-2021-05-09 21:57:01,943 DEBUG [mondrian.sql] 17: , exec 32 ms
-2021-05-09 21:57:01,943 DEBUG [mondrian.sql] 17: , exec+fetch 33 ms, 1 rows
-2021-05-09 22:09:35,176 DEBUG [mondrian.sql] 18: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_1_WI2_ACU008_FACT_TABLE"]
-2021-05-09 22:09:35,228 DEBUG [mondrian.sql] 18: , exec+fetch 52 ms, 0 rows
-2021-05-09 22:09:35,228 DEBUG [mondrian.sql] 18: , failed (java.sql.SQLSyntaxErrorException: ORA-00942: Tabelle oder View nicht vorhanden
-)
-2021-05-09 22:09:37,759 DEBUG [mondrian.sql] 19: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_1_WI2_ACU008_FACT_TABLE"]
-2021-05-09 22:09:37,813 DEBUG [mondrian.sql] 19: , exec+fetch 54 ms, 0 rows
-2021-05-09 22:09:37,813 DEBUG [mondrian.sql] 19: , failed (java.sql.SQLSyntaxErrorException: ORA-00942: Tabelle oder View nicht vorhanden
-)
-2021-05-09 22:10:44,668 DEBUG [mondrian.sql] 20: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_1_WI2_ACU008_FACT_TABLE"]
-2021-05-09 22:10:44,725 DEBUG [mondrian.sql] 20: , exec+fetch 57 ms, 0 rows
-2021-05-09 22:10:44,726 DEBUG [mondrian.sql] 20: , failed (java.sql.SQLSyntaxErrorException: ORA-00942: Tabelle oder View nicht vorhanden
-)
-2021-05-09 22:10:57,988 DEBUG [mondrian.sql] 21: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_SALES"]
-2021-05-09 22:10:58,018 DEBUG [mondrian.sql] 21: , exec 30 ms
-2021-05-09 22:10:58,022 DEBUG [mondrian.sql] 21: , exec+fetch 33 ms, 1 rows
-2021-05-09 22:10:58,022 DEBUG [mondrian.sql] 22: AggStar.FactTable.makeNumberOfRows: executing sql [
-select
-    count(*) as "c0"
-from
-    "AGG_SALES" "AGG_SALES"]
-2021-05-09 22:10:58,052 DEBUG [mondrian.sql] 22: , exec 28 ms
-2021-05-09 22:10:58,052 DEBUG [mondrian.sql] 22: , exec+fetch 30 ms, 1 rows
-2021-05-09 22:14:23,518 DEBUG [mondrian.sql] 23: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_SALES"]
-2021-05-09 22:14:23,546 DEBUG [mondrian.sql] 23: , exec 27 ms
-2021-05-09 22:14:23,546 DEBUG [mondrian.sql] 23: , exec+fetch 28 ms, 1 rows
-2021-05-09 22:14:23,546 DEBUG [mondrian.sql] 24: AggStar.FactTable.makeNumberOfRows: executing sql [
-select
-    count(*) as "c0"
-from
-    "AGG_SALES" "AGG_SALES"]
-2021-05-09 22:14:23,573 DEBUG [mondrian.sql] 24: , exec 27 ms
-2021-05-09 22:14:23,574 DEBUG [mondrian.sql] 24: , exec+fetch 28 ms, 1 rows
-2021-05-09 22:17:47,950 DEBUG [mondrian.sql] 25: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_SALES"]
-2021-05-09 22:17:47,980 DEBUG [mondrian.sql] 25: , exec 28 ms
-2021-05-09 22:17:47,980 DEBUG [mondrian.sql] 25: , exec+fetch 30 ms, 1 rows
-2021-05-09 22:17:47,980 DEBUG [mondrian.sql] 26: AggStar.FactTable.makeNumberOfRows: executing sql [
-select
-    count(*) as "c0"
-from
-    "AGG_SALES" "AGG_SALES"]
-2021-05-09 22:17:48,011 DEBUG [mondrian.sql] 26: , exec 31 ms
-2021-05-09 22:17:48,012 DEBUG [mondrian.sql] 26: , exec+fetch 32 ms, 1 rows
-2021-05-09 22:18:20,965 DEBUG [mondrian.sql] 27: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_SALES"]
-2021-05-09 22:18:21,017 DEBUG [mondrian.sql] 27: , exec 52 ms
-2021-05-09 22:18:21,017 DEBUG [mondrian.sql] 27: , exec+fetch 52 ms, 1 rows
-2021-05-09 22:18:21,018 DEBUG [mondrian.sql] 28: AggStar.FactTable.makeNumberOfRows: executing sql [
-select
-    count(*) as "c0"
-from
-    "AGG_SALES" "AGG_SALES"]
-2021-05-09 22:18:21,046 DEBUG [mondrian.sql] 28: , exec 27 ms
-2021-05-09 22:18:21,046 DEBUG [mondrian.sql] 28: , exec+fetch 28 ms, 1 rows
-2021-05-09 22:18:58,989 DEBUG [mondrian.sql] 29: SqlTupleReader.readTuples [[CUSTOMERSHIERARCHY].[CUSTOMER]]: executing sql [
-select
-    "WI2_ACU008_CUSTOMER"."ONGOING" as "c0",
-    "WI2_ACU008_CUSTOMER"."VALIDTO" as "c1",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM" as "c2",
-    "WI2_ACU008_CUSTOMER"."C_LAND" as "c3",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" as "c4",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" as "c5",
-    "WI2_ACU008_CUSTOMER"."C_CITY" as "c6",
-    "WI2_ACU008_CUSTOMER"."C_ID" as "c7",
-    "WI2_ACU008_CUSTOMER"."C_DESC" as "c8"
+    "WI2_ACU008_CUSTOMER"."C_LAND" as "c0"
 from
     "ACU008"."WI2_ACU008_CUSTOMER" "WI2_ACU008_CUSTOMER"
 group by
-    "WI2_ACU008_CUSTOMER"."ONGOING",
-    "WI2_ACU008_CUSTOMER"."VALIDTO",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM",
-    "WI2_ACU008_CUSTOMER"."C_LAND",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC",
-    "WI2_ACU008_CUSTOMER"."C_CITY",
-    "WI2_ACU008_CUSTOMER"."C_ID",
-    "WI2_ACU008_CUSTOMER"."C_DESC"
+    "WI2_ACU008_CUSTOMER"."C_LAND"
 order by
-    "WI2_ACU008_CUSTOMER"."ONGOING" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."VALIDTO" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."VALIDFROM" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_LAND" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_CITY" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_ID" ASC NULLS LAST]
-2021-05-09 22:18:59,032 DEBUG [mondrian.sql] 29: , exec 42 ms
-2021-05-09 22:18:59,039 DEBUG [mondrian.sql] 29: , exec+fetch 49 ms, 2 rows
-2021-05-09 22:18:59,069 DEBUG [mondrian.sql] 30: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "ONGOING") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:18:59,098 DEBUG [mondrian.sql] 30: , exec 28 ms
-2021-05-09 22:18:59,098 DEBUG [mondrian.sql] 30: , exec+fetch 28 ms, 1 rows
-2021-05-09 22:18:59,099 DEBUG [mondrian.sql] 31: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "VALIDTO") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:18:59,128 DEBUG [mondrian.sql] 31: , exec 28 ms
-2021-05-09 22:18:59,128 DEBUG [mondrian.sql] 31: , exec+fetch 29 ms, 1 rows
-2021-05-09 22:18:59,129 DEBUG [mondrian.sql] 32: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "VALIDFROM") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:18:59,158 DEBUG [mondrian.sql] 32: , exec 30 ms
-2021-05-09 22:18:59,159 DEBUG [mondrian.sql] 32: , exec+fetch 30 ms, 1 rows
-2021-05-09 22:18:59,159 DEBUG [mondrian.sql] 33: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_LAND") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:18:59,191 DEBUG [mondrian.sql] 33: , exec 32 ms
-2021-05-09 22:18:59,192 DEBUG [mondrian.sql] 33: , exec+fetch 33 ms, 1 rows
-2021-05-09 22:18:59,192 DEBUG [mondrian.sql] 34: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_SALESORGCURRENT") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:18:59,221 DEBUG [mondrian.sql] 34: , exec 29 ms
-2021-05-09 22:18:59,222 DEBUG [mondrian.sql] 34: , exec+fetch 30 ms, 1 rows
-2021-05-09 22:18:59,222 DEBUG [mondrian.sql] 35: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_SALESORGHISTORIC") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:18:59,249 DEBUG [mondrian.sql] 35: , exec 26 ms
-2021-05-09 22:18:59,249 DEBUG [mondrian.sql] 35: , exec+fetch 27 ms, 1 rows
-2021-05-09 22:18:59,249 DEBUG [mondrian.sql] 36: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_CITY") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:18:59,286 DEBUG [mondrian.sql] 36: , exec 36 ms
-2021-05-09 22:18:59,286 DEBUG [mondrian.sql] 36: , exec+fetch 37 ms, 1 rows
-2021-05-09 22:18:59,287 DEBUG [mondrian.sql] 37: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_ID") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:18:59,314 DEBUG [mondrian.sql] 37: , exec 27 ms
-2021-05-09 22:18:59,314 DEBUG [mondrian.sql] 37: , exec+fetch 27 ms, 1 rows
-2021-05-09 22:18:59,367 DEBUG [mondrian.sql] 38: Segment.load: executing sql [
+    "WI2_ACU008_CUSTOMER"."C_LAND" ASC NULLS LAST]
+2021-05-10 08:51:24,461 DEBUG [mondrian.sql] 2: , exec 45 ms
+2021-05-10 08:51:24,469 DEBUG [mondrian.sql] 2: , exec+fetch 56 ms, 2 rows
+2021-05-10 08:51:24,476 DEBUG [mondrian.sql] 3: SqlTupleReader.readTuples [[PRODUCT].[PRODUCT_CATEGORY]]: executing sql [
 select
-    "WI2_ACU008_CUSTOMER"."ONGOING" as "c0",
-    "WI2_ACU008_CUSTOMER"."VALIDTO" as "c1",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM" as "c2",
-    "WI2_ACU008_CUSTOMER"."C_LAND" as "c3",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" as "c4",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" as "c5",
-    "WI2_ACU008_CUSTOMER"."C_CITY" as "c6",
-    "WI2_ACU008_CUSTOMER"."C_ID" as "c7",
-    sum("WI2_ACU008_FACT_TABLE"."REVENUE") as "m0"
-from
-    "ACU008"."WI2_ACU008_CUSTOMER" "WI2_ACU008_CUSTOMER",
-    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
-where
-    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "WI2_ACU008_CUSTOMER"."C_ID"
-and
-    "WI2_ACU008_CUSTOMER"."ONGOING" = 'YES'
-and
-    "WI2_ACU008_CUSTOMER"."VALIDTO" = '2999-01-01 00:00:00.0'
-group by
-    "WI2_ACU008_CUSTOMER"."ONGOING",
-    "WI2_ACU008_CUSTOMER"."VALIDTO",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM",
-    "WI2_ACU008_CUSTOMER"."C_LAND",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC",
-    "WI2_ACU008_CUSTOMER"."C_CITY",
-    "WI2_ACU008_CUSTOMER"."C_ID"]
-2021-05-09 22:18:59,446 DEBUG [mondrian.sql] 38: , exec+fetch 77 ms, 0 rows
-2021-05-09 22:18:59,446 DEBUG [mondrian.sql] 38: , failed (java.sql.SQLDataException: ORA-01861: Literal stimmt nicht mit Formatzeichenfolge überein
-)
-2021-05-09 22:29:59,836 DEBUG [mondrian.sql] 39: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_SALES"]
-2021-05-09 22:29:59,870 DEBUG [mondrian.sql] 39: , exec 33 ms
-2021-05-09 22:29:59,870 DEBUG [mondrian.sql] 39: , exec+fetch 33 ms, 1 rows
-2021-05-09 22:29:59,871 DEBUG [mondrian.sql] 40: AggStar.FactTable.makeNumberOfRows: executing sql [
-select
-    count(*) as "c0"
-from
-    "AGG_SALES" "AGG_SALES"]
-2021-05-09 22:29:59,903 DEBUG [mondrian.sql] 40: , exec 32 ms
-2021-05-09 22:29:59,903 DEBUG [mondrian.sql] 40: , exec+fetch 32 ms, 1 rows
-2021-05-09 22:30:09,478 DEBUG [mondrian.sql] 41: SqlTupleReader.readTuples [[CUSTOMERSHIERARCHY].[CUSTOMER]]: executing sql [
-select
-    "WI2_ACU008_CUSTOMER"."ONGOING" as "c0",
-    "WI2_ACU008_CUSTOMER"."VALIDTO" as "c1",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM" as "c2",
-    "WI2_ACU008_CUSTOMER"."C_LAND" as "c3",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" as "c4",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" as "c5",
-    "WI2_ACU008_CUSTOMER"."C_CITY" as "c6",
-    "WI2_ACU008_CUSTOMER"."C_ID" as "c7",
-    "WI2_ACU008_CUSTOMER"."C_DESC" as "c8"
-from
-    "ACU008"."WI2_ACU008_CUSTOMER" "WI2_ACU008_CUSTOMER"
-group by
-    "WI2_ACU008_CUSTOMER"."ONGOING",
-    "WI2_ACU008_CUSTOMER"."VALIDTO",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM",
-    "WI2_ACU008_CUSTOMER"."C_LAND",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC",
-    "WI2_ACU008_CUSTOMER"."C_CITY",
-    "WI2_ACU008_CUSTOMER"."C_ID",
-    "WI2_ACU008_CUSTOMER"."C_DESC"
-order by
-    "WI2_ACU008_CUSTOMER"."ONGOING" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."VALIDTO" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."VALIDFROM" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_LAND" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_CITY" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_ID" ASC NULLS LAST]
-2021-05-09 22:30:09,507 DEBUG [mondrian.sql] 41: , exec 28 ms
-2021-05-09 22:30:09,509 DEBUG [mondrian.sql] 41: , exec+fetch 31 ms, 2 rows
-2021-05-09 22:30:09,512 DEBUG [mondrian.sql] 42: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "ONGOING") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:30:09,540 DEBUG [mondrian.sql] 42: , exec 28 ms
-2021-05-09 22:30:09,541 DEBUG [mondrian.sql] 42: , exec+fetch 29 ms, 1 rows
-2021-05-09 22:30:09,541 DEBUG [mondrian.sql] 43: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "VALIDTO") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:30:09,568 DEBUG [mondrian.sql] 43: , exec 25 ms
-2021-05-09 22:30:09,568 DEBUG [mondrian.sql] 43: , exec+fetch 27 ms, 1 rows
-2021-05-09 22:30:09,568 DEBUG [mondrian.sql] 44: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "VALIDFROM") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:30:09,595 DEBUG [mondrian.sql] 44: , exec 26 ms
-2021-05-09 22:30:09,595 DEBUG [mondrian.sql] 44: , exec+fetch 27 ms, 1 rows
-2021-05-09 22:30:09,595 DEBUG [mondrian.sql] 45: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_LAND") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:30:09,627 DEBUG [mondrian.sql] 45: , exec 31 ms
-2021-05-09 22:30:09,627 DEBUG [mondrian.sql] 45: , exec+fetch 31 ms, 1 rows
-2021-05-09 22:30:09,628 DEBUG [mondrian.sql] 46: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_SALESORGCURRENT") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:30:09,654 DEBUG [mondrian.sql] 46: , exec 26 ms
-2021-05-09 22:30:09,655 DEBUG [mondrian.sql] 46: , exec+fetch 27 ms, 1 rows
-2021-05-09 22:30:09,655 DEBUG [mondrian.sql] 47: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_SALESORGHISTORIC") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:30:09,680 DEBUG [mondrian.sql] 47: , exec 25 ms
-2021-05-09 22:30:09,680 DEBUG [mondrian.sql] 47: , exec+fetch 25 ms, 1 rows
-2021-05-09 22:30:09,681 DEBUG [mondrian.sql] 48: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_CITY") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:30:09,716 DEBUG [mondrian.sql] 48: , exec 35 ms
-2021-05-09 22:30:09,716 DEBUG [mondrian.sql] 48: , exec+fetch 35 ms, 1 rows
-2021-05-09 22:30:09,716 DEBUG [mondrian.sql] 49: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_ID") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:30:09,743 DEBUG [mondrian.sql] 49: , exec 26 ms
-2021-05-09 22:30:09,744 DEBUG [mondrian.sql] 49: , exec+fetch 28 ms, 1 rows
-2021-05-09 22:30:09,748 DEBUG [mondrian.sql] 50: Segment.load: executing sql [
-select
-    "WI2_ACU008_CUSTOMER"."ONGOING" as "c0",
-    "WI2_ACU008_CUSTOMER"."VALIDTO" as "c1",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM" as "c2",
-    "WI2_ACU008_CUSTOMER"."C_LAND" as "c3",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" as "c4",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" as "c5",
-    "WI2_ACU008_CUSTOMER"."C_CITY" as "c6",
-    "WI2_ACU008_CUSTOMER"."C_ID" as "c7",
-    sum("WI2_ACU008_FACT_TABLE"."REVENUE") as "m0"
-from
-    "ACU008"."WI2_ACU008_CUSTOMER" "WI2_ACU008_CUSTOMER",
-    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
-where
-    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "WI2_ACU008_CUSTOMER"."C_ID"
-and
-    "WI2_ACU008_CUSTOMER"."ONGOING" = 'YES'
-and
-    "WI2_ACU008_CUSTOMER"."VALIDTO" = '2999-01-01 00:00:00.0'
-group by
-    "WI2_ACU008_CUSTOMER"."ONGOING",
-    "WI2_ACU008_CUSTOMER"."VALIDTO",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM",
-    "WI2_ACU008_CUSTOMER"."C_LAND",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC",
-    "WI2_ACU008_CUSTOMER"."C_CITY",
-    "WI2_ACU008_CUSTOMER"."C_ID"]
-2021-05-09 22:30:09,801 DEBUG [mondrian.sql] 50: , exec+fetch 53 ms, 0 rows
-2021-05-09 22:30:09,802 DEBUG [mondrian.sql] 50: , failed (java.sql.SQLDataException: ORA-01861: Literal stimmt nicht mit Formatzeichenfolge überein
-)
-2021-05-09 22:31:24,742 DEBUG [mondrian.sql] 51: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_SALES"]
-2021-05-09 22:31:24,769 DEBUG [mondrian.sql] 51: , exec 26 ms
-2021-05-09 22:31:24,769 DEBUG [mondrian.sql] 51: , exec+fetch 27 ms, 1 rows
-2021-05-09 22:31:24,770 DEBUG [mondrian.sql] 52: AggStar.FactTable.makeNumberOfRows: executing sql [
-select
-    count(*) as "c0"
-from
-    "AGG_SALES" "AGG_SALES"]
-2021-05-09 22:31:24,796 DEBUG [mondrian.sql] 52: , exec 26 ms
-2021-05-09 22:31:24,797 DEBUG [mondrian.sql] 52: , exec+fetch 27 ms, 1 rows
-2021-05-09 22:31:35,972 DEBUG [mondrian.sql] 53: SqlTupleReader.readTuples [[CUSTOMERSHIERARCHY].[CUSTOMER]]: executing sql [
-select
-    "WI2_ACU008_CUSTOMER"."ONGOING" as "c0",
-    "WI2_ACU008_CUSTOMER"."VALIDTO" as "c1",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM" as "c2",
-    "WI2_ACU008_CUSTOMER"."C_LAND" as "c3",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" as "c4",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" as "c5",
-    "WI2_ACU008_CUSTOMER"."C_CITY" as "c6",
-    "WI2_ACU008_CUSTOMER"."C_ID" as "c7"
-from
-    "ACU008"."WI2_ACU008_CUSTOMER" "WI2_ACU008_CUSTOMER"
-group by
-    "WI2_ACU008_CUSTOMER"."ONGOING",
-    "WI2_ACU008_CUSTOMER"."VALIDTO",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM",
-    "WI2_ACU008_CUSTOMER"."C_LAND",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC",
-    "WI2_ACU008_CUSTOMER"."C_CITY",
-    "WI2_ACU008_CUSTOMER"."C_ID"
-order by
-    "WI2_ACU008_CUSTOMER"."ONGOING" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."VALIDTO" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."VALIDFROM" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_LAND" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_CITY" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_ID" ASC NULLS LAST]
-2021-05-09 22:31:36,012 DEBUG [mondrian.sql] 53: , exec 39 ms
-2021-05-09 22:31:36,014 DEBUG [mondrian.sql] 53: , exec+fetch 42 ms, 2 rows
-2021-05-09 22:31:36,016 DEBUG [mondrian.sql] 54: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "ONGOING") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:31:36,048 DEBUG [mondrian.sql] 54: , exec 31 ms
-2021-05-09 22:31:36,048 DEBUG [mondrian.sql] 54: , exec+fetch 31 ms, 1 rows
-2021-05-09 22:31:36,049 DEBUG [mondrian.sql] 55: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "VALIDTO") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:31:36,075 DEBUG [mondrian.sql] 55: , exec 26 ms
-2021-05-09 22:31:36,075 DEBUG [mondrian.sql] 55: , exec+fetch 26 ms, 1 rows
-2021-05-09 22:31:36,076 DEBUG [mondrian.sql] 56: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "VALIDFROM") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:31:36,102 DEBUG [mondrian.sql] 56: , exec 26 ms
-2021-05-09 22:31:36,102 DEBUG [mondrian.sql] 56: , exec+fetch 26 ms, 1 rows
-2021-05-09 22:31:36,103 DEBUG [mondrian.sql] 57: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_LAND") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:31:36,140 DEBUG [mondrian.sql] 57: , exec 36 ms
-2021-05-09 22:31:36,140 DEBUG [mondrian.sql] 57: , exec+fetch 37 ms, 1 rows
-2021-05-09 22:31:36,140 DEBUG [mondrian.sql] 58: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_SALESORGCURRENT") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:31:36,168 DEBUG [mondrian.sql] 58: , exec 27 ms
-2021-05-09 22:31:36,168 DEBUG [mondrian.sql] 58: , exec+fetch 27 ms, 1 rows
-2021-05-09 22:31:36,169 DEBUG [mondrian.sql] 59: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_SALESORGHISTORIC") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:31:36,197 DEBUG [mondrian.sql] 59: , exec 28 ms
-2021-05-09 22:31:36,198 DEBUG [mondrian.sql] 59: , exec+fetch 29 ms, 1 rows
-2021-05-09 22:31:36,198 DEBUG [mondrian.sql] 60: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_CITY") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:31:36,225 DEBUG [mondrian.sql] 60: , exec 27 ms
-2021-05-09 22:31:36,225 DEBUG [mondrian.sql] 60: , exec+fetch 27 ms, 1 rows
-2021-05-09 22:31:36,225 DEBUG [mondrian.sql] 61: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_ID") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:31:36,256 DEBUG [mondrian.sql] 61: , exec 29 ms
-2021-05-09 22:31:36,256 DEBUG [mondrian.sql] 61: , exec+fetch 31 ms, 1 rows
-2021-05-09 22:31:36,259 DEBUG [mondrian.sql] 62: Segment.load: executing sql [
-select
-    "WI2_ACU008_CUSTOMER"."ONGOING" as "c0",
-    "WI2_ACU008_CUSTOMER"."VALIDTO" as "c1",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM" as "c2",
-    "WI2_ACU008_CUSTOMER"."C_LAND" as "c3",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" as "c4",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" as "c5",
-    "WI2_ACU008_CUSTOMER"."C_CITY" as "c6",
-    "WI2_ACU008_CUSTOMER"."C_ID" as "c7",
-    sum("WI2_ACU008_FACT_TABLE"."REVENUE") as "m0"
-from
-    "ACU008"."WI2_ACU008_CUSTOMER" "WI2_ACU008_CUSTOMER",
-    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
-where
-    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "WI2_ACU008_CUSTOMER"."C_ID"
-and
-    "WI2_ACU008_CUSTOMER"."ONGOING" = 'YES'
-and
-    "WI2_ACU008_CUSTOMER"."VALIDTO" = '2999-01-01 00:00:00.0'
-group by
-    "WI2_ACU008_CUSTOMER"."ONGOING",
-    "WI2_ACU008_CUSTOMER"."VALIDTO",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM",
-    "WI2_ACU008_CUSTOMER"."C_LAND",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC",
-    "WI2_ACU008_CUSTOMER"."C_CITY",
-    "WI2_ACU008_CUSTOMER"."C_ID"]
-2021-05-09 22:31:36,325 DEBUG [mondrian.sql] 62: , exec+fetch 65 ms, 0 rows
-2021-05-09 22:31:36,325 DEBUG [mondrian.sql] 62: , failed (java.sql.SQLDataException: ORA-01861: Literal stimmt nicht mit Formatzeichenfolge überein
-)
-2021-05-09 22:33:22,130 DEBUG [mondrian.sql] 63: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_SALES"]
-2021-05-09 22:33:22,160 DEBUG [mondrian.sql] 63: , exec 29 ms
-2021-05-09 22:33:22,161 DEBUG [mondrian.sql] 63: , exec+fetch 30 ms, 1 rows
-2021-05-09 22:33:22,161 DEBUG [mondrian.sql] 64: AggStar.FactTable.makeNumberOfRows: executing sql [
-select
-    count(*) as "c0"
-from
-    "AGG_SALES" "AGG_SALES"]
-2021-05-09 22:33:22,189 DEBUG [mondrian.sql] 64: , exec 28 ms
-2021-05-09 22:33:22,190 DEBUG [mondrian.sql] 64: , exec+fetch 29 ms, 1 rows
-2021-05-09 22:33:37,661 DEBUG [mondrian.sql] 65: SqlTupleReader.readTuples [[CUSTOMERSHIERARCHY].[CUSTOMER]]: executing sql [
-select
-    "WI2_ACU008_CUSTOMER"."ONGOING" as "c0",
-    "WI2_ACU008_CUSTOMER"."VALIDTO" as "c1",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM" as "c2",
-    "WI2_ACU008_CUSTOMER"."C_LAND" as "c3",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" as "c4",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" as "c5",
-    "WI2_ACU008_CUSTOMER"."C_CITY" as "c6",
-    "WI2_ACU008_CUSTOMER"."C_ID" as "c7"
-from
-    "ACU008"."WI2_ACU008_CUSTOMER" "WI2_ACU008_CUSTOMER"
-group by
-    "WI2_ACU008_CUSTOMER"."ONGOING",
-    "WI2_ACU008_CUSTOMER"."VALIDTO",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM",
-    "WI2_ACU008_CUSTOMER"."C_LAND",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC",
-    "WI2_ACU008_CUSTOMER"."C_CITY",
-    "WI2_ACU008_CUSTOMER"."C_ID"
-order by
-    "WI2_ACU008_CUSTOMER"."ONGOING" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."VALIDTO" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."VALIDFROM" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_LAND" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_CITY" ASC NULLS LAST,
-    "WI2_ACU008_CUSTOMER"."C_ID" ASC NULLS LAST]
-2021-05-09 22:33:37,691 DEBUG [mondrian.sql] 65: , exec 29 ms
-2021-05-09 22:33:37,692 DEBUG [mondrian.sql] 65: , exec+fetch 31 ms, 2 rows
-2021-05-09 22:33:37,694 DEBUG [mondrian.sql] 66: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "ONGOING") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:33:37,722 DEBUG [mondrian.sql] 66: , exec 27 ms
-2021-05-09 22:33:37,723 DEBUG [mondrian.sql] 66: , exec+fetch 28 ms, 1 rows
-2021-05-09 22:33:37,723 DEBUG [mondrian.sql] 67: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "VALIDTO") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:33:37,763 DEBUG [mondrian.sql] 67: , exec 39 ms
-2021-05-09 22:33:37,763 DEBUG [mondrian.sql] 67: , exec+fetch 40 ms, 1 rows
-2021-05-09 22:33:37,764 DEBUG [mondrian.sql] 68: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "VALIDFROM") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:33:37,804 DEBUG [mondrian.sql] 68: , exec 40 ms
-2021-05-09 22:33:37,804 DEBUG [mondrian.sql] 68: , exec+fetch 40 ms, 1 rows
-2021-05-09 22:33:37,805 DEBUG [mondrian.sql] 69: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_LAND") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:33:37,837 DEBUG [mondrian.sql] 69: , exec 32 ms
-2021-05-09 22:33:37,838 DEBUG [mondrian.sql] 69: , exec+fetch 33 ms, 1 rows
-2021-05-09 22:33:37,838 DEBUG [mondrian.sql] 70: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_SALESORGCURRENT") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:33:37,902 DEBUG [mondrian.sql] 70: , exec 63 ms
-2021-05-09 22:33:37,902 DEBUG [mondrian.sql] 70: , exec+fetch 64 ms, 1 rows
-2021-05-09 22:33:37,902 DEBUG [mondrian.sql] 71: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_SALESORGHISTORIC") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:33:37,930 DEBUG [mondrian.sql] 71: , exec 27 ms
-2021-05-09 22:33:37,930 DEBUG [mondrian.sql] 71: , exec+fetch 27 ms, 1 rows
-2021-05-09 22:33:37,930 DEBUG [mondrian.sql] 72: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_CITY") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:33:37,957 DEBUG [mondrian.sql] 72: , exec 26 ms
-2021-05-09 22:33:37,958 DEBUG [mondrian.sql] 72: , exec+fetch 28 ms, 1 rows
-2021-05-09 22:33:37,958 DEBUG [mondrian.sql] 73: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_ID") from "ACU008"."WI2_ACU008_CUSTOMER"]
-2021-05-09 22:33:37,989 DEBUG [mondrian.sql] 73: , exec 29 ms
-2021-05-09 22:33:37,989 DEBUG [mondrian.sql] 73: , exec+fetch 31 ms, 1 rows
-2021-05-09 22:33:37,993 DEBUG [mondrian.sql] 74: Segment.load: executing sql [
-select
-    "WI2_ACU008_CUSTOMER"."ONGOING" as "c0",
-    "WI2_ACU008_CUSTOMER"."VALIDTO" as "c1",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM" as "c2",
-    "WI2_ACU008_CUSTOMER"."C_LAND" as "c3",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" as "c4",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" as "c5",
-    "WI2_ACU008_CUSTOMER"."C_CITY" as "c6",
-    "WI2_ACU008_CUSTOMER"."C_ID" as "c7",
-    sum("WI2_ACU008_FACT_TABLE"."REVENUE") as "m0"
-from
-    "ACU008"."WI2_ACU008_CUSTOMER" "WI2_ACU008_CUSTOMER",
-    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
-where
-    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "WI2_ACU008_CUSTOMER"."C_ID"
-and
-    "WI2_ACU008_CUSTOMER"."ONGOING" = 'YES'
-and
-    "WI2_ACU008_CUSTOMER"."VALIDTO" = '2999-01-01 00:00:00.0'
-group by
-    "WI2_ACU008_CUSTOMER"."ONGOING",
-    "WI2_ACU008_CUSTOMER"."VALIDTO",
-    "WI2_ACU008_CUSTOMER"."VALIDFROM",
-    "WI2_ACU008_CUSTOMER"."C_LAND",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT",
-    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC",
-    "WI2_ACU008_CUSTOMER"."C_CITY",
-    "WI2_ACU008_CUSTOMER"."C_ID"]
-2021-05-09 22:33:38,049 DEBUG [mondrian.sql] 74: , exec+fetch 56 ms, 0 rows
-2021-05-09 22:33:38,050 DEBUG [mondrian.sql] 74: , failed (java.sql.SQLDataException: ORA-01861: Literal stimmt nicht mit Formatzeichenfolge überein
-)
-2021-05-09 22:33:44,889 DEBUG [mondrian.sql] 75: SqlTupleReader.readTuples [[PRODUCTSHIERARCHY].[PRODUCT]]: executing sql [
-select
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE" as "c0",
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE" as "c1",
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID" as "c2",
-    "WI2_ACU008_PRODUCT"."P_CATEGORY" as "c3",
-    "WI2_ACU008_PRODUCT"."P_DIVISION" as "c4",
-    "WI2_ACU008_PRODUCT"."P_ID" as "c5",
-    "WI2_ACU008_PRODUCT"."P_DESC" as "c6"
+    "WI2_ACU008_PRODUCT"."P_CATEGORYID" as "c0",
+    "WI2_ACU008_PRODUCT"."P_CATEGORY" as "c1"
 from
     "ACU008"."WI2_ACU008_PRODUCT" "WI2_ACU008_PRODUCT"
 group by
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE",
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE",
     "WI2_ACU008_PRODUCT"."P_CATEGORYID",
-    "WI2_ACU008_PRODUCT"."P_CATEGORY",
-    "WI2_ACU008_PRODUCT"."P_DIVISION",
-    "WI2_ACU008_PRODUCT"."P_ID",
-    "WI2_ACU008_PRODUCT"."P_DESC"
+    "WI2_ACU008_PRODUCT"."P_CATEGORY"
 order by
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE" ASC NULLS LAST,
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE" ASC NULLS LAST,
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID" ASC NULLS LAST,
-    "WI2_ACU008_PRODUCT"."P_DIVISION" ASC NULLS LAST,
-    "WI2_ACU008_PRODUCT"."P_ID" ASC NULLS LAST]
-2021-05-09 22:33:44,924 DEBUG [mondrian.sql] 75: , exec 34 ms
-2021-05-09 22:33:44,925 DEBUG [mondrian.sql] 75: , exec+fetch 36 ms, 2 rows
-2021-05-09 22:33:44,940 DEBUG [mondrian.sql] 76: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "P_PRODUCTIONPRICE") from "ACU008"."WI2_ACU008_PRODUCT"]
-2021-05-09 22:33:44,972 DEBUG [mondrian.sql] 76: , exec 31 ms
-2021-05-09 22:33:44,972 DEBUG [mondrian.sql] 76: , exec+fetch 32 ms, 1 rows
-2021-05-09 22:33:44,972 DEBUG [mondrian.sql] 77: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "P_SALESPRICE") from "ACU008"."WI2_ACU008_PRODUCT"]
-2021-05-09 22:33:45,001 DEBUG [mondrian.sql] 77: , exec 29 ms
-2021-05-09 22:33:45,001 DEBUG [mondrian.sql] 77: , exec+fetch 29 ms, 1 rows
-2021-05-09 22:33:45,002 DEBUG [mondrian.sql] 78: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "P_CATEGORYID") from "ACU008"."WI2_ACU008_PRODUCT"]
-2021-05-09 22:33:45,027 DEBUG [mondrian.sql] 78: , exec 26 ms
-2021-05-09 22:33:45,028 DEBUG [mondrian.sql] 78: , exec+fetch 26 ms, 1 rows
-2021-05-09 22:33:45,028 DEBUG [mondrian.sql] 79: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "P_DIVISION") from "ACU008"."WI2_ACU008_PRODUCT"]
-2021-05-09 22:33:45,057 DEBUG [mondrian.sql] 79: , exec 28 ms
-2021-05-09 22:33:45,058 DEBUG [mondrian.sql] 79: , exec+fetch 30 ms, 1 rows
-2021-05-09 22:33:45,058 DEBUG [mondrian.sql] 80: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "P_ID") from "ACU008"."WI2_ACU008_PRODUCT"]
-2021-05-09 22:33:45,085 DEBUG [mondrian.sql] 80: , exec 27 ms
-2021-05-09 22:33:45,086 DEBUG [mondrian.sql] 80: , exec+fetch 28 ms, 1 rows
-2021-05-09 22:33:45,088 DEBUG [mondrian.sql] 81: Segment.load: executing sql [
+    "WI2_ACU008_PRODUCT"."P_CATEGORYID" ASC NULLS LAST]
+2021-05-10 08:51:24,506 DEBUG [mondrian.sql] 3: , exec 29 ms
+2021-05-10 08:51:24,507 DEBUG [mondrian.sql] 3: , exec+fetch 31 ms, 1 rows
+2021-05-10 08:51:41,999 DEBUG [mondrian.sql] 4: SqlTupleReader.readTuples [[CUSTOMER].[COUNTRY]]: executing sql [
 select
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE" as "c0",
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE" as "c1",
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID" as "c2",
-    "WI2_ACU008_PRODUCT"."P_DIVISION" as "c3",
-    "WI2_ACU008_PRODUCT"."P_ID" as "c4",
+    "WI2_ACU008_CUSTOMER"."C_LAND" as "c0"
+from
+    "ACU008"."WI2_ACU008_CUSTOMER" "WI2_ACU008_CUSTOMER"
+group by
+    "WI2_ACU008_CUSTOMER"."C_LAND"
+order by
+    "WI2_ACU008_CUSTOMER"."C_LAND" ASC NULLS LAST]
+2021-05-10 08:51:42,027 DEBUG [mondrian.sql] 4: , exec 27 ms
+2021-05-10 08:51:42,028 DEBUG [mondrian.sql] 4: , exec+fetch 29 ms, 2 rows
+2021-05-10 08:51:42,028 DEBUG [mondrian.sql] 5: SqlTupleReader.readTuples [[PRODUCT].[PRODUCT_CATEGORY]]: executing sql [
+select
+    "WI2_ACU008_PRODUCT"."P_CATEGORYID" as "c0",
+    "WI2_ACU008_PRODUCT"."P_CATEGORY" as "c1"
+from
+    "ACU008"."WI2_ACU008_PRODUCT" "WI2_ACU008_PRODUCT"
+group by
+    "WI2_ACU008_PRODUCT"."P_CATEGORYID",
+    "WI2_ACU008_PRODUCT"."P_CATEGORY"
+order by
+    "WI2_ACU008_PRODUCT"."P_CATEGORYID" ASC NULLS LAST]
+2021-05-10 08:51:42,063 DEBUG [mondrian.sql] 5: , exec 34 ms
+2021-05-10 08:51:42,064 DEBUG [mondrian.sql] 5: , exec+fetch 36 ms, 1 rows
+2021-05-10 08:51:42,163 DEBUG [mondrian.sql] 6: SqlTupleReader.readTuples [[CUSTOMER].[CUSTOMER]]: executing sql [
+select
+    "WI2_ACU008_CUSTOMER"."C_LAND" as "c0",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" as "c1",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" as "c2",
+    "WI2_ACU008_CUSTOMER"."C_CITY" as "c3",
+    "WI2_ACU008_CUSTOMER"."C_ID" as "c4",
+    "WI2_ACU008_CUSTOMER"."C_DESC" as "c5",
+    "WI2_ACU008_CUSTOMER"."VALIDFROM" as "c6",
+    "WI2_ACU008_CUSTOMER"."VALIDTO" as "c7",
+    "WI2_ACU008_CUSTOMER"."ONGOING" as "c8"
+from
+    "ACU008"."WI2_ACU008_CUSTOMER" "WI2_ACU008_CUSTOMER"
+group by
+    "WI2_ACU008_CUSTOMER"."C_LAND",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC",
+    "WI2_ACU008_CUSTOMER"."C_CITY",
+    "WI2_ACU008_CUSTOMER"."C_ID",
+    "WI2_ACU008_CUSTOMER"."C_DESC",
+    "WI2_ACU008_CUSTOMER"."VALIDFROM",
+    "WI2_ACU008_CUSTOMER"."VALIDTO",
+    "WI2_ACU008_CUSTOMER"."ONGOING"
+order by
+    "WI2_ACU008_CUSTOMER"."C_LAND" ASC NULLS LAST,
+    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" ASC NULLS LAST,
+    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" ASC NULLS LAST,
+    "WI2_ACU008_CUSTOMER"."C_CITY" ASC NULLS LAST,
+    "WI2_ACU008_CUSTOMER"."C_ID" ASC NULLS LAST]
+2021-05-10 08:51:42,196 DEBUG [mondrian.sql] 6: , exec 32 ms
+2021-05-10 08:51:42,211 DEBUG [mondrian.sql] 6: , exec+fetch 47 ms, 2 rows
+2021-05-10 08:51:42,261 DEBUG [mondrian.sql] 7: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_LAND") from "ACU008"."WI2_ACU008_CUSTOMER"]
+2021-05-10 08:51:42,298 DEBUG [mondrian.sql] 7: , exec 36 ms
+2021-05-10 08:51:42,299 DEBUG [mondrian.sql] 7: , exec+fetch 37 ms, 1 rows
+2021-05-10 08:51:42,299 DEBUG [mondrian.sql] 8: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_SALESORGCURRENT") from "ACU008"."WI2_ACU008_CUSTOMER"]
+2021-05-10 08:51:42,326 DEBUG [mondrian.sql] 8: , exec 26 ms
+2021-05-10 08:51:42,327 DEBUG [mondrian.sql] 8: , exec+fetch 28 ms, 1 rows
+2021-05-10 08:51:42,327 DEBUG [mondrian.sql] 9: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_SALESORGHISTORIC") from "ACU008"."WI2_ACU008_CUSTOMER"]
+2021-05-10 08:51:42,357 DEBUG [mondrian.sql] 9: , exec 30 ms
+2021-05-10 08:51:42,358 DEBUG [mondrian.sql] 9: , exec+fetch 31 ms, 1 rows
+2021-05-10 08:51:42,358 DEBUG [mondrian.sql] 10: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_CITY") from "ACU008"."WI2_ACU008_CUSTOMER"]
+2021-05-10 08:51:42,385 DEBUG [mondrian.sql] 10: , exec 27 ms
+2021-05-10 08:51:42,385 DEBUG [mondrian.sql] 10: , exec+fetch 27 ms, 1 rows
+2021-05-10 08:51:42,386 DEBUG [mondrian.sql] 11: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "C_ID") from "ACU008"."WI2_ACU008_CUSTOMER"]
+2021-05-10 08:51:42,416 DEBUG [mondrian.sql] 11: , exec 29 ms
+2021-05-10 08:51:42,417 DEBUG [mondrian.sql] 11: , exec+fetch 31 ms, 1 rows
+2021-05-10 08:51:42,417 DEBUG [mondrian.sql] 12: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "P_CATEGORYID") from "ACU008"."WI2_ACU008_PRODUCT"]
+2021-05-10 08:51:42,443 DEBUG [mondrian.sql] 12: , exec 26 ms
+2021-05-10 08:51:42,444 DEBUG [mondrian.sql] 12: , exec+fetch 27 ms, 1 rows
+2021-05-10 08:51:42,500 DEBUG [mondrian.sql] 13: Segment.load: executing sql [
+select
+    "WI2_ACU008_CUSTOMER"."C_LAND" as "c0",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" as "c1",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" as "c2",
+    "WI2_ACU008_CUSTOMER"."C_CITY" as "c3",
+    "WI2_ACU008_CUSTOMER"."C_ID" as "c4",
+    "WI2_ACU008_PRODUCT"."P_CATEGORYID" as "c5",
     sum("WI2_ACU008_FACT_TABLE"."REVENUE") as "m0"
 from
-    "ACU008"."WI2_ACU008_PRODUCT" "WI2_ACU008_PRODUCT",
-    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
+    "ACU008"."WI2_ACU008_CUSTOMER" "WI2_ACU008_CUSTOMER",
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE",
+    "ACU008"."WI2_ACU008_PRODUCT" "WI2_ACU008_PRODUCT"
 where
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "WI2_ACU008_CUSTOMER"."C_ID"
+and
     "WI2_ACU008_FACT_TABLE"."FACT_P_ID" = "WI2_ACU008_PRODUCT"."P_ID"
 and
     "WI2_ACU008_PRODUCT"."P_CATEGORYID" = '11'
-and
-    "WI2_ACU008_PRODUCT"."P_DIVISION" = 'BI'
 group by
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE",
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE",
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID",
-    "WI2_ACU008_PRODUCT"."P_DIVISION",
-    "WI2_ACU008_PRODUCT"."P_ID"]
-2021-05-09 22:33:45,123 DEBUG [mondrian.sql] 81: , exec 35 ms
-2021-05-09 22:33:45,134 DEBUG [mondrian.sql] 81: , exec+fetch 46 ms, 2 rows
-2021-05-09 22:33:54,352 DEBUG [mondrian.sql] 82: SqlTupleReader.readTuples [[PRODUCTSHIERARCHY].[PRODUCT], [TIMEHIERARCHY].[YEAR]]: executing sql [
+    "WI2_ACU008_CUSTOMER"."C_LAND",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC",
+    "WI2_ACU008_CUSTOMER"."C_CITY",
+    "WI2_ACU008_CUSTOMER"."C_ID",
+    "WI2_ACU008_PRODUCT"."P_CATEGORYID"]
+2021-05-10 08:51:42,534 DEBUG [mondrian.sql] 13: , exec 31 ms
+2021-05-10 08:51:42,557 DEBUG [mondrian.sql] 13: , exec+fetch 56 ms, 2 rows
+2021-05-10 08:54:40,268 DEBUG [mondrian.sql] 14: SqlTupleReader.readTuples [[CUSTOMER].[CUSTOMER], [PRODUCT].[PRODUCT_CATEGORY]]: executing sql [
 select
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE" as "c0",
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE" as "c1",
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID" as "c2",
-    "WI2_ACU008_PRODUCT"."P_CATEGORY" as "c3",
-    "WI2_ACU008_PRODUCT"."P_DIVISION" as "c4",
-    "WI2_ACU008_PRODUCT"."P_ID" as "c5",
-    "WI2_ACU008_PRODUCT"."P_DESC" as "c6",
-    "WI2_ACU008_TIME"."T_YEAR" as "c7"
+    "WI2_ACU008_CUSTOMER"."C_LAND" as "c0",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" as "c1",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" as "c2",
+    "WI2_ACU008_CUSTOMER"."C_CITY" as "c3",
+    "WI2_ACU008_CUSTOMER"."C_ID" as "c4",
+    "WI2_ACU008_CUSTOMER"."C_DESC" as "c5",
+    "WI2_ACU008_CUSTOMER"."VALIDFROM" as "c6",
+    "WI2_ACU008_CUSTOMER"."VALIDTO" as "c7",
+    "WI2_ACU008_CUSTOMER"."ONGOING" as "c8",
+    "WI2_ACU008_PRODUCT"."P_CATEGORYID" as "c9",
+    "WI2_ACU008_PRODUCT"."P_CATEGORY" as "c10"
 from
-    "ACU008"."WI2_ACU008_PRODUCT" "WI2_ACU008_PRODUCT",
+    "ACU008"."WI2_ACU008_CUSTOMER" "WI2_ACU008_CUSTOMER",
     "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE",
-    "ACU008"."WI2_ACU008_TIME" "WI2_ACU008_TIME"
+    "ACU008"."WI2_ACU008_PRODUCT" "WI2_ACU008_PRODUCT"
 where
-    "WI2_ACU008_FACT_TABLE"."FACT_P_ID" = "WI2_ACU008_PRODUCT"."P_ID"
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "WI2_ACU008_CUSTOMER"."C_ID"
 and
-    "WI2_ACU008_FACT_TABLE"."FACT_T_ID" = "WI2_ACU008_TIME"."T_ID"
+    "WI2_ACU008_FACT_TABLE"."FACT_P_ID" = "WI2_ACU008_PRODUCT"."P_ID"
 group by
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE",
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE",
+    "WI2_ACU008_CUSTOMER"."C_LAND",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC",
+    "WI2_ACU008_CUSTOMER"."C_CITY",
+    "WI2_ACU008_CUSTOMER"."C_ID",
+    "WI2_ACU008_CUSTOMER"."C_DESC",
+    "WI2_ACU008_CUSTOMER"."VALIDFROM",
+    "WI2_ACU008_CUSTOMER"."VALIDTO",
+    "WI2_ACU008_CUSTOMER"."ONGOING",
+    "WI2_ACU008_PRODUCT"."P_CATEGORYID",
+    "WI2_ACU008_PRODUCT"."P_CATEGORY"
+order by
+    "WI2_ACU008_CUSTOMER"."C_LAND" ASC NULLS LAST,
+    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" ASC NULLS LAST,
+    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" ASC NULLS LAST,
+    "WI2_ACU008_CUSTOMER"."C_CITY" ASC NULLS LAST,
+    "WI2_ACU008_CUSTOMER"."C_ID" ASC NULLS LAST,
+    "WI2_ACU008_PRODUCT"."P_CATEGORYID" ASC NULLS LAST]
+2021-05-10 08:54:40,322 DEBUG [mondrian.sql] 14: , exec 52 ms
+2021-05-10 08:54:40,323 DEBUG [mondrian.sql] 14: , exec+fetch 54 ms, 2 rows
+2021-05-10 08:54:57,933 DEBUG [mondrian.sql] 15: SqlTupleReader.readTuples [[PRODUCT].[PRODUCT]]: executing sql [
+select
+    "WI2_ACU008_PRODUCT"."P_CATEGORYID" as "c0",
+    "WI2_ACU008_PRODUCT"."P_CATEGORY" as "c1",
+    "WI2_ACU008_PRODUCT"."P_DIVISION" as "c2",
+    "WI2_ACU008_PRODUCT"."P_ID" as "c3",
+    "WI2_ACU008_PRODUCT"."P_DESC" as "c4",
+    "WI2_ACU008_PRODUCT"."P_SALESPRICE" as "c5",
+    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE" as "c6"
+from
+    "ACU008"."WI2_ACU008_PRODUCT" "WI2_ACU008_PRODUCT"
+group by
     "WI2_ACU008_PRODUCT"."P_CATEGORYID",
     "WI2_ACU008_PRODUCT"."P_CATEGORY",
     "WI2_ACU008_PRODUCT"."P_DIVISION",
     "WI2_ACU008_PRODUCT"."P_ID",
     "WI2_ACU008_PRODUCT"."P_DESC",
-    "WI2_ACU008_TIME"."T_YEAR"
+    "WI2_ACU008_PRODUCT"."P_SALESPRICE",
+    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE"
 order by
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE" ASC NULLS LAST,
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE" ASC NULLS LAST,
     "WI2_ACU008_PRODUCT"."P_CATEGORYID" ASC NULLS LAST,
     "WI2_ACU008_PRODUCT"."P_DIVISION" ASC NULLS LAST,
-    "WI2_ACU008_PRODUCT"."P_ID" ASC NULLS LAST,
-    "WI2_ACU008_TIME"."T_YEAR" ASC NULLS LAST]
-2021-05-09 22:33:54,392 DEBUG [mondrian.sql] 82: , exec 40 ms
-2021-05-09 22:33:54,393 DEBUG [mondrian.sql] 82: , exec+fetch 41 ms, 2 rows
-2021-05-09 22:33:54,408 DEBUG [mondrian.sql] 83: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "T_YEAR") from "ACU008"."WI2_ACU008_TIME"]
-2021-05-09 22:33:54,436 DEBUG [mondrian.sql] 83: , exec 27 ms
-2021-05-09 22:33:54,436 DEBUG [mondrian.sql] 83: , exec+fetch 28 ms, 1 rows
-2021-05-09 22:33:54,438 DEBUG [mondrian.sql] 84: Segment.load: executing sql [
+    "WI2_ACU008_PRODUCT"."P_ID" ASC NULLS LAST]
+2021-05-10 08:54:57,961 DEBUG [mondrian.sql] 15: , exec 28 ms
+2021-05-10 08:54:57,963 DEBUG [mondrian.sql] 15: , exec+fetch 30 ms, 2 rows
+2021-05-10 08:54:57,978 DEBUG [mondrian.sql] 16: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "P_DIVISION") from "ACU008"."WI2_ACU008_PRODUCT"]
+2021-05-10 08:54:58,006 DEBUG [mondrian.sql] 16: , exec 26 ms
+2021-05-10 08:54:58,006 DEBUG [mondrian.sql] 16: , exec+fetch 27 ms, 1 rows
+2021-05-10 08:54:58,007 DEBUG [mondrian.sql] 17: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "P_ID") from "ACU008"."WI2_ACU008_PRODUCT"]
+2021-05-10 08:54:58,039 DEBUG [mondrian.sql] 17: , exec 31 ms
+2021-05-10 08:54:58,039 DEBUG [mondrian.sql] 17: , exec+fetch 32 ms, 1 rows
+2021-05-10 08:54:58,045 DEBUG [mondrian.sql] 18: Segment.load: executing sql [
 select
-    "WI2_ACU008_TIME"."T_YEAR" as "c0",
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE" as "c1",
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE" as "c2",
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID" as "c3",
-    "WI2_ACU008_PRODUCT"."P_DIVISION" as "c4",
-    "WI2_ACU008_PRODUCT"."P_ID" as "c5",
+    "WI2_ACU008_CUSTOMER"."C_LAND" as "c0",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT" as "c1",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC" as "c2",
+    "WI2_ACU008_CUSTOMER"."C_CITY" as "c3",
+    "WI2_ACU008_CUSTOMER"."C_ID" as "c4",
+    "WI2_ACU008_PRODUCT"."P_CATEGORYID" as "c5",
+    "WI2_ACU008_PRODUCT"."P_DIVISION" as "c6",
+    "WI2_ACU008_PRODUCT"."P_ID" as "c7",
     sum("WI2_ACU008_FACT_TABLE"."REVENUE") as "m0"
 from
-    "ACU008"."WI2_ACU008_TIME" "WI2_ACU008_TIME",
+    "ACU008"."WI2_ACU008_CUSTOMER" "WI2_ACU008_CUSTOMER",
     "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE",
     "ACU008"."WI2_ACU008_PRODUCT" "WI2_ACU008_PRODUCT"
 where
-    "WI2_ACU008_FACT_TABLE"."FACT_T_ID" = "WI2_ACU008_TIME"."T_ID"
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "WI2_ACU008_CUSTOMER"."C_ID"
 and
     "WI2_ACU008_FACT_TABLE"."FACT_P_ID" = "WI2_ACU008_PRODUCT"."P_ID"
 and
@@ -654,133 +230,13 @@ and
 and
     "WI2_ACU008_PRODUCT"."P_DIVISION" = 'BI'
 group by
-    "WI2_ACU008_TIME"."T_YEAR",
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE",
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE",
+    "WI2_ACU008_CUSTOMER"."C_LAND",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGCURRENT",
+    "WI2_ACU008_CUSTOMER"."C_SALESORGHISTORIC",
+    "WI2_ACU008_CUSTOMER"."C_CITY",
+    "WI2_ACU008_CUSTOMER"."C_ID",
     "WI2_ACU008_PRODUCT"."P_CATEGORYID",
     "WI2_ACU008_PRODUCT"."P_DIVISION",
     "WI2_ACU008_PRODUCT"."P_ID"]
-2021-05-09 22:33:54,473 DEBUG [mondrian.sql] 84: , exec 35 ms
-2021-05-09 22:33:54,474 DEBUG [mondrian.sql] 84: , exec+fetch 36 ms, 2 rows
-2021-05-09 22:34:02,099 DEBUG [mondrian.sql] 85: SqlTupleReader.readTuples [[TIMEHIERARCHY].[YEAR]]: executing sql [
-select
-    "WI2_ACU008_TIME"."T_YEAR" as "c0"
-from
-    "ACU008"."WI2_ACU008_TIME" "WI2_ACU008_TIME"
-group by
-    "WI2_ACU008_TIME"."T_YEAR"
-order by
-    "WI2_ACU008_TIME"."T_YEAR" ASC NULLS LAST]
-2021-05-09 22:34:02,125 DEBUG [mondrian.sql] 85: , exec 26 ms
-2021-05-09 22:34:02,126 DEBUG [mondrian.sql] 85: , exec+fetch 27 ms, 2 rows
-2021-05-09 22:34:02,126 DEBUG [mondrian.sql] 86: SqlTupleReader.readTuples [[TIMEHIERARCHY].[MONTH]]: executing sql [
-select
-    "WI2_ACU008_TIME"."T_YEAR" as "c0",
-    "WI2_ACU008_TIME"."T_MONTH" as "c1"
-from
-    "ACU008"."WI2_ACU008_TIME" "WI2_ACU008_TIME"
-group by
-    "WI2_ACU008_TIME"."T_YEAR",
-    "WI2_ACU008_TIME"."T_MONTH"
-order by
-    "WI2_ACU008_TIME"."T_YEAR" ASC NULLS LAST,
-    "WI2_ACU008_TIME"."T_MONTH" ASC NULLS LAST]
-2021-05-09 22:34:02,155 DEBUG [mondrian.sql] 86: , exec 27 ms
-2021-05-09 22:34:02,155 DEBUG [mondrian.sql] 86: , exec+fetch 29 ms, 2 rows
-2021-05-09 22:34:02,172 DEBUG [mondrian.sql] 87: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "T_MONTH") from "ACU008"."WI2_ACU008_TIME"]
-2021-05-09 22:34:02,201 DEBUG [mondrian.sql] 87: , exec 28 ms
-2021-05-09 22:34:02,202 DEBUG [mondrian.sql] 87: , exec+fetch 30 ms, 1 rows
-2021-05-09 22:34:02,204 DEBUG [mondrian.sql] 88: Segment.load: executing sql [
-select
-    "WI2_ACU008_TIME"."T_YEAR" as "c0",
-    "WI2_ACU008_TIME"."T_MONTH" as "c1",
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE" as "c2",
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE" as "c3",
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID" as "c4",
-    "WI2_ACU008_PRODUCT"."P_DIVISION" as "c5",
-    "WI2_ACU008_PRODUCT"."P_ID" as "c6",
-    sum("WI2_ACU008_FACT_TABLE"."REVENUE") as "m0"
-from
-    "ACU008"."WI2_ACU008_TIME" "WI2_ACU008_TIME",
-    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE",
-    "ACU008"."WI2_ACU008_PRODUCT" "WI2_ACU008_PRODUCT"
-where
-    "WI2_ACU008_FACT_TABLE"."FACT_T_ID" = "WI2_ACU008_TIME"."T_ID"
-and
-    "WI2_ACU008_FACT_TABLE"."FACT_P_ID" = "WI2_ACU008_PRODUCT"."P_ID"
-and
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID" = '11'
-and
-    "WI2_ACU008_PRODUCT"."P_DIVISION" = 'BI'
-group by
-    "WI2_ACU008_TIME"."T_YEAR",
-    "WI2_ACU008_TIME"."T_MONTH",
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE",
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE",
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID",
-    "WI2_ACU008_PRODUCT"."P_DIVISION",
-    "WI2_ACU008_PRODUCT"."P_ID"]
-2021-05-09 22:34:02,239 DEBUG [mondrian.sql] 88: , exec 34 ms
-2021-05-09 22:34:02,240 DEBUG [mondrian.sql] 88: , exec+fetch 36 ms, 2 rows
-2021-05-09 22:34:11,244 DEBUG [mondrian.sql] 89: Segment.load: executing sql [
-select
-    "WI2_ACU008_TIME"."T_YEAR" as "c0",
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE" as "c1",
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE" as "c2",
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID" as "c3",
-    "WI2_ACU008_PRODUCT"."P_DIVISION" as "c4",
-    "WI2_ACU008_PRODUCT"."P_ID" as "c5",
-    sum("WI2_ACU008_FACT_TABLE"."DISCOUNT") as "m0"
-from
-    "ACU008"."WI2_ACU008_TIME" "WI2_ACU008_TIME",
-    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE",
-    "ACU008"."WI2_ACU008_PRODUCT" "WI2_ACU008_PRODUCT"
-where
-    "WI2_ACU008_FACT_TABLE"."FACT_T_ID" = "WI2_ACU008_TIME"."T_ID"
-and
-    "WI2_ACU008_FACT_TABLE"."FACT_P_ID" = "WI2_ACU008_PRODUCT"."P_ID"
-and
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID" = '11'
-and
-    "WI2_ACU008_PRODUCT"."P_DIVISION" = 'BI'
-group by
-    "WI2_ACU008_TIME"."T_YEAR",
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE",
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE",
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID",
-    "WI2_ACU008_PRODUCT"."P_DIVISION",
-    "WI2_ACU008_PRODUCT"."P_ID"]
-2021-05-09 22:34:11,285 DEBUG [mondrian.sql] 89: , exec 41 ms
-2021-05-09 22:34:11,286 DEBUG [mondrian.sql] 89: , exec+fetch 42 ms, 2 rows
-2021-05-09 22:34:11,578 DEBUG [mondrian.sql] 90: Segment.load: executing sql [
-select
-    "WI2_ACU008_TIME"."T_YEAR" as "c0",
-    "WI2_ACU008_TIME"."T_MONTH" as "c1",
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE" as "c2",
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE" as "c3",
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID" as "c4",
-    "WI2_ACU008_PRODUCT"."P_DIVISION" as "c5",
-    "WI2_ACU008_PRODUCT"."P_ID" as "c6",
-    sum("WI2_ACU008_FACT_TABLE"."DISCOUNT") as "m0"
-from
-    "ACU008"."WI2_ACU008_TIME" "WI2_ACU008_TIME",
-    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE",
-    "ACU008"."WI2_ACU008_PRODUCT" "WI2_ACU008_PRODUCT"
-where
-    "WI2_ACU008_FACT_TABLE"."FACT_T_ID" = "WI2_ACU008_TIME"."T_ID"
-and
-    "WI2_ACU008_FACT_TABLE"."FACT_P_ID" = "WI2_ACU008_PRODUCT"."P_ID"
-and
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID" = '11'
-and
-    "WI2_ACU008_PRODUCT"."P_DIVISION" = 'BI'
-group by
-    "WI2_ACU008_TIME"."T_YEAR",
-    "WI2_ACU008_TIME"."T_MONTH",
-    "WI2_ACU008_PRODUCT"."P_PRODUCTIONPRICE",
-    "WI2_ACU008_PRODUCT"."P_SALESPRICE",
-    "WI2_ACU008_PRODUCT"."P_CATEGORYID",
-    "WI2_ACU008_PRODUCT"."P_DIVISION",
-    "WI2_ACU008_PRODUCT"."P_ID"]
-2021-05-09 22:34:11,621 DEBUG [mondrian.sql] 90: , exec 42 ms
-2021-05-09 22:34:11,622 DEBUG [mondrian.sql] 90: , exec+fetch 43 ms, 2 rows
+2021-05-10 08:54:58,079 DEBUG [mondrian.sql] 18: , exec 34 ms
+2021-05-10 08:54:58,081 DEBUG [mondrian.sql] 18: , exec+fetch 36 ms, 2 rows

@@ -36,31 +36,34 @@
             </Hierarchy>
         </Dimension>
 
-        <Dimension name="CUSTOMERSHIERARCHY" foreignKey="FACT_C_ID">
-            <Hierarchy primaryKey="C_ID" hasAll="true">
+        <Dimension name="CUSTOMER" foreignKey="FACT_C_ID">
+            <Hierarchy primaryKey="C_ID" hasAll="false">
                 <Table name="WI2_ACU008_CUSTOMER" schema="ACU008"/>
-                <Level name="ONGOING" column="ONGOING"/>
-                <Level name="VALIDTO" column="VALIDTO"/>
-                <Level name="VALIDFROM" column="VALIDFROM"/>
                 <Level name="COUNTRY" column="C_LAND"/>
                 <Level name="SALESORGCURRENT" column="C_SALESORGCURRENT"/>
                 <Level name="SALESORGHISTORIC" column="C_SALESORGHISTORIC"/>
                 <Level name="CITY" column="C_CITY"/>
-<!--                <Level name="CUSTOMER" column="C_ID" nameColumn="C_DESC"/>-->
-                <Level name="CUSTOMER" column="C_ID"/>
+                <Level name="CUSTOMER" column="C_ID" nameColumn="C_DESC">
+                    <Property name="VALID_FROM" column="VALIDFROM"/>
+                    <Property name="VALID_TO" column="VALIDTO"/>
+                    <Property name="ONGOING" column="ONGOING"/>
+                </Level>
             </Hierarchy>
         </Dimension>
 
-        <Dimension name="PRODUCTSHIERARCHY" foreignKey="FACT_P_ID">
-            <Hierarchy hasAll="true" primaryKey="P_ID">
+
+        <Dimension name="PRODUCT" foreignKey="FACT_P_ID">
+            <Hierarchy primaryKey="P_ID" hasAll="false">
                 <Table name="WI2_ACU008_PRODUCT" schema="ACU008"/>
-                <Level name="PRODUCTIONPRICE" column="P_PRODUCTIONPRICE"/>
-                <Level name="SALESPRICE" column="P_SALESPRICE"/>
                 <Level name="PRODUCT_CATEGORY" column="P_CATEGORYID" nameColumn="P_CATEGORY"/>
                 <Level name="DIVISION" column="P_DIVISION"/>
-                <Level name="PRODUCT" column="P_ID" nameColumn="P_DESC"/>
+                <Level name="PRODUCT" column="P_ID" nameColumn="P_DESC">
+                    <Property name="SALES_PRICE" column="P_SALESPRICE"/>
+                    <Property name="PRODUCTION_PRICE" column="P_PRODUCTIONPRICE"/>
+                </Level>
             </Hierarchy>
         </Dimension>
+
 
         <Measure name="REVENUE" column="REVENUE" aggregator="sum"/>
         <Measure name="DISCOUNT" column="DISCOUNT" aggregator="sum"/>
