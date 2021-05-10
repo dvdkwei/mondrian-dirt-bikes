@@ -1,10 +1,20 @@
-2021-05-10 00:46:31,733 DEBUG [mondrian.sql] 0: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_2_WI2_ACU008_FACT_TABLE"]
-2021-05-10 00:46:31,764 DEBUG [mondrian.sql] 0: , exec 27 ms
-2021-05-10 00:46:31,764 DEBUG [mondrian.sql] 0: , exec+fetch 31 ms, 1 rows
-2021-05-10 00:46:31,767 DEBUG [mondrian.sql] 1: AggStar.FactTable.makeNumberOfRows: executing sql [
+2021-05-10 10:41:32,396 DEBUG [mondrian.sql] 0: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-05-10 10:41:32,434 DEBUG [mondrian.sql] 0: , exec 33 ms
+2021-05-10 10:41:32,434 DEBUG [mondrian.sql] 0: , exec+fetch 38 ms, 1 rows
+2021-05-10 10:41:32,434 DEBUG [mondrian.sql] 1: AggStar.FactTable.makeNumberOfRows: executing sql [
 select
     count(*) as "c0"
 from
     "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"]
-2021-05-10 00:46:31,796 DEBUG [mondrian.sql] 1: , exec 28 ms
-2021-05-10 00:46:31,797 DEBUG [mondrian.sql] 1: , exec+fetch 30 ms, 1 rows
+2021-05-10 10:41:32,481 DEBUG [mondrian.sql] 1: , exec 36 ms
+2021-05-10 10:41:32,481 DEBUG [mondrian.sql] 1: , exec+fetch 47 ms, 1 rows
+2021-05-10 10:41:48,497 DEBUG [mondrian.sql] 2: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-05-10 10:41:48,536 DEBUG [mondrian.sql] 2: , exec 28 ms
+2021-05-10 10:41:48,537 DEBUG [mondrian.sql] 2: , exec+fetch 29 ms, 1 rows
+2021-05-10 10:41:48,537 DEBUG [mondrian.sql] 3: AggStar.FactTable.makeNumberOfRows: executing sql [
+select
+    count(*) as "c0"
+from
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-05-10 10:41:48,556 DEBUG [mondrian.sql] 3: , exec 30 ms
+2021-05-10 10:41:48,556 DEBUG [mondrian.sql] 3: , exec+fetch 19 ms, 1 rows

@@ -4,6 +4,7 @@
         <Table name="WI2_ACU008_FACT_TABLE">
                 <AggName name="AGG_2_WI2_ACU008_FACT_TABLE" ChooseByVolume="true">
                 <AggFactCount column="FACT_COUNT"/>
+                <AggForeignKey factColumn="FACT_C_ID" aggColumn="CUSTOMER_C_ID"/>
                 <AggMeasure name="[Measures].[REVENUE]" column="sum_revenue"/>
                 <AggMeasure name="[Measures].[DISCOUNT]" column="sum_discount"/>
                 <AggMeasure name="[Measures].[COSTOFGOODSSOLD]" column="sum_cogs"/>
@@ -26,12 +27,15 @@
         </Dimension>
 
         <Dimension name="CUSTOMER" foreignKey="FACT_C_ID">
-            <Hierarchy primaryKey="C_ID" hasAll="false">
+            <Hierarchy primaryKey="C_ID" hasAll="true">
                 <Table name="WI2_ACU008_CUSTOMER" schema="ACU008"/>
                 <Level name="COUNTRY" column="C_LAND"/>
-                <Level name="SALESORGCURRENT" column="C_SALESORGCURRENT"/>
-                <Level name="SALESORGHISTORIC" column="C_SALESORGHISTORIC"/>
+                <Level name="SALESORGCURRENT" column="C_SALESORGCURRENT">
+                    <Property name="SALESORGHISTORIC" column="C_SALESORGHISTORIC"/>
+                </Level>
+
                 <Level name="CITY" column="C_CITY"/>
+
                 <Level name="CUSTOMER" column="C_ID" nameColumn="C_DESC">
                     <Property name="VALID_FROM" column="VALIDFROM"/>
                     <Property name="VALID_TO" column="VALIDTO"/>
@@ -41,7 +45,7 @@
         </Dimension>
 
         <Dimension name="PRODUCT" foreignKey="FACT_P_ID">
-            <Hierarchy primaryKey="P_ID" hasAll="false">
+            <Hierarchy primaryKey="P_ID" hasAll="true">
                 <Table name="WI2_ACU008_PRODUCT" schema="ACU008"/>
                 <Level name="PRODUCT_CATEGORY" column="P_CATEGORYID" nameColumn="P_CATEGORY"/>
                 <Level name="DIVISION" column="P_DIVISION"/>
