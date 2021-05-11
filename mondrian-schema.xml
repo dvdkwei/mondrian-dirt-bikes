@@ -2,17 +2,21 @@
     <Cube name="HyperCube@DirtBikes" cache="true" enabled="true">
 
         <Table name="WI2_ACU008_FACT_TABLE">
-                <AggName name="AGG_2_WI2_ACU008_FACT_TABLE" ChooseByVolume="true">
+                <AggName name="AGG_2_WI2_ACU008_FACT_TABLE" ChooseByVolume="false">
                 <AggFactCount column="FACT_COUNT"/>
-                <AggForeignKey factColumn="FACT_C_ID" aggColumn="CUSTOMER_C_ID"/>
                 <AggMeasure name="[Measures].[REVENUE]" column="sum_revenue"/>
                 <AggMeasure name="[Measures].[DISCOUNT]" column="sum_discount"/>
                 <AggMeasure name="[Measures].[COSTOFGOODSSOLD]" column="sum_cogs"/>
                 <AggMeasure name="[Measures].[SALESQUANTITY]" column="sum_salesquantity"/>
                 <AggMeasure name="[Measures].[NOOFSALESORDERS]" column="sum_noofsalesorders"/>
-                <AggLevel name="[TIME].[YEAR]" column="time_year"/>
-                <AggLevel name="[TIME].[MONTH]" column="time_month"/>
-                <AggLevel name="[PRODUCT].[PRODUCT_CATEGORY]" column="product_p_categoryid"/>
+
+                <AggLevel name="[TIME].[YEAR]" column="TIME_YEAR"/>
+                <AggLevel name="[TIME].[MONTH]" column="TIME_MONTH"/>
+
+                <AggLevel name="[PRODUCT].[DIVISION]" column="PRODUCT_P_DIVISION"/>
+                <AggLevel name="[PRODUCT].[PRODUCT_CATEGORY]" column="PRODUCT_P_CATEGORYID"/>
+
+                <AggLevel name="[CUSTOMER].[CUSTOMER]" column="CUSTOMER_C_ID" collapsed="false"/>
             </AggName>
         </Table>
 
@@ -21,8 +25,10 @@
                 <Table name="WI2_ACU008_TIME" schema="ACU008"/>
                 <Level name="YEAR" column="T_YEAR"/>
                 <Level name="MONTH" column="T_MONTH"/>
-                <Level name="DAY" column="T_DAY"/>
-                <Level name="TIME" column="T_ID"/>
+                <Level name="DAY" column="T_DAY">
+                    <Property name="TIME" column="T_ID"/>
+                </Level>
+
             </Hierarchy>
         </Dimension>
 
@@ -36,7 +42,7 @@
 
                 <Level name="CITY" column="C_CITY"/>
 
-                <Level name="CUSTOMER" column="C_ID" nameColumn="C_DESC">
+                <Level name="CUSTOMER" column="C_ID" nameColumn="C_DESC" uniqueMembers="true">
                     <Property name="VALID_FROM" column="VALIDFROM"/>
                     <Property name="VALID_TO" column="VALIDTO"/>
                     <Property name="ONGOING" column="ONGOING"/>
@@ -47,9 +53,10 @@
         <Dimension name="PRODUCT" foreignKey="FACT_P_ID">
             <Hierarchy primaryKey="P_ID" hasAll="true">
                 <Table name="WI2_ACU008_PRODUCT" schema="ACU008"/>
-                <Level name="PRODUCT_CATEGORY" column="P_CATEGORYID" nameColumn="P_CATEGORY"/>
                 <Level name="DIVISION" column="P_DIVISION"/>
-                <Level name="PRODUCT" column="P_ID" nameColumn="P_DESC">
+                <Level name="PRODUCT_CATEGORY" column="P_CATEGORYID" nameColumn="P_CATEGORY"/>
+
+                <Level name="PRODUCT" column="P_ID" nameColumn="P_DESC" uniqueMembers="true">
                     <Property name="SALES_PRICE" column="P_SALESPRICE"/>
                     <Property name="PRODUCTION_PRICE" column="P_PRODUCTIONPRICE"/>
                 </Level>
