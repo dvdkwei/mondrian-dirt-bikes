@@ -1,0 +1,12 @@
+2021-05-31 15:29:35,958 DEBUG [mondrian.mdx] 102: with set [~ROWS] as '{[TimeHierarchy].[YEAR].Members}'
+select NON EMPTY {[Measures].[SALESQUANTITY], [Measures].[REVENUEEUR], [Measures].[REVENUEUSD], [Measures].[DISCOUNTUSD], [Measures].[NETSALESUSD], [Measures].[COSTOFGOODSSOLDUSD], [Measures].[NOOFSALESORDERS]} ON COLUMNS,
+  NON EMPTY [~ROWS] ON ROWS
+from [HyperCube@DirtBikes]
+
+2021-05-31 15:29:36,331 DEBUG [mondrian.mdx] 102: exec: 372 ms
+2021-05-31 15:29:43,111 DEBUG [mondrian.mdx] 213: with set [~ROWS] as '{[TimeHierarchy].[YEAR].Members}'
+select NON EMPTY {[Measures].[SALESQUANTITY], [Measures].[REVENUEEUR], [Measures].[REVENUEUSD], [Measures].[DISCOUNTUSD], [Measures].[NETSALESUSD], [Measures].[COSTOFGOODSSOLDUSD], [Measures].[NOOFSALESORDERS]} ON COLUMNS,
+  NON EMPTY [~ROWS] ON ROWS
+from [HyperCube@DirtBikes]
+
+2021-05-31 15:29:43,127 DEBUG [mondrian.mdx] 213: exec: 16 ms
