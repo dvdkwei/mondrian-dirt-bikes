@@ -1,34 +1,54 @@
 <Schema name="HyperSchema">
     <Cube name="HyperCube@DirtBikes" cache="true" enabled="true">
 
-        <Table name="WI2_ACU008_FACT_TABLE">
-                <AggName name="AGG_2_WI2_ACU008_FACT_TABLE" ChooseByVolume="false">
-                <AggFactCount column="FACT_COUNT"/>
-                <AggMeasure name="[Measures].[REVENUE]" column="sum_revenue"/>
-                <AggMeasure name="[Measures].[DISCOUNT]" column="sum_discount"/>
-                <AggMeasure name="[Measures].[COSTOFGOODSSOLD]" column="sum_cogs"/>
-                <AggMeasure name="[Measures].[SALESQUANTITY]" column="sum_salesquantity"/>
-                <AggMeasure name="[Measures].[NOOFSALESORDERS]" column="sum_noofsalesorders"/>
+        <Table name="WI2_ACU008_FACT_TABLE"> <AggExclude pattern=".*"/>
+<!--                <AggName name="AGG_2_WI2_ACU008_FACT_TABLE" ChooseByVolume="false">-->
+<!--                <AggFactCount column="FACT_COUNT"/>-->
+<!--                <AggMeasure name="[Measures].[REVENUE]" column="sum_revenue"/>-->
+<!--                <AggMeasure name="[Measures].[DISCOUNT]" column="sum_discount"/>-->
+<!--                <AggMeasure name="[Measures].[COSTOFGOODSSOLD]" column="sum_cogs"/>-->
+<!--                <AggMeasure name="[Measures].[SALESQUANTITY]" column="sum_salesquantity"/>-->
+<!--                <AggMeasure name="[Measures].[NOOFSALESORDERS]" column="sum_noofsalesorders"/>-->
 
-                <AggLevel name="[TIME].[YEAR]" column="TIME_YEAR"/>
-                <AggLevel name="[TIME].[MONTH]" column="TIME_MONTH"/>
+<!--                <AggLevel name="[TIME].[YEAR]" column="TIME_YEAR"/>-->
+<!--                <AggLevel name="[TIME].[MONTH]" column="TIME_MONTH"/>-->
 
-                <AggLevel name="[PRODUCT].[DIVISION]" column="PRODUCT_P_DIVISION"/>
-                <AggLevel name="[PRODUCT].[PRODUCT_CATEGORY]" column="PRODUCT_P_CATEGORYID"/>
+<!--                <AggLevel name="[PRODUCT].[DIVISION]" column="PRODUCT_P_DIVISION"/>-->
+<!--                <AggLevel name="[PRODUCT].[PRODUCT_CATEGORY]" column="PRODUCT_P_CATEGORYID"/>-->
 
-                <AggLevel name="[CUSTOMER].[CUSTOMER]" column="CUSTOMER_C_ID" collapsed="false"/>
-            </AggName>
+<!--                <AggLevel name="[CUSTOMER].[CUSTOMER]" column="CUSTOMER_C_ID" collapsed="false"/>-->
+<!--            </AggName>-->
         </Table>
 
-        <Dimension name="TIME" foreignKey="FACT_T_ID">
-            <Hierarchy primaryKey="T_ID" hasAll="true">
-                <Table name="WI2_ACU008_TIME" schema="ACU008"/>
-                <Level name="YEAR" column="T_YEAR"/>
-                <Level name="MONTH" column="T_MONTH"/>
-                <Level name="DAY" column="T_DAY">
-                    <Property name="TIME" column="T_ID"/>
-                </Level>
+<!--        <Dimension name="TIME" foreignKey="FACT_T_ID">-->
+<!--            <Hierarchy primaryKey="T_ID" hasAll="true">-->
+<!--                <Table name="WI2_ACU008_TIME" schema="ACU008"/>-->
+<!--                <Level name="YEAR" column="T_YEAR"/>-->
+<!--                <Level name="MONTH" column="T_MONTH"/>-->
+<!--                <Level name="DAY" column="T_DAY">-->
+<!--                    <Property name="TIME" column="T_ID"/>-->
+<!--                </Level>-->
 
+<!--            </Hierarchy>-->
+<!--        </Dimension>-->
+
+        <Dimension name="TimeHierarchy">
+            <Hierarchy hasAll="true">
+                <Level name="YEAR" column="ORDER_DATE">
+                    <KeyExpression>
+                        <SQL dialect="generic">EXTRACT(YEAR FROM ORDER_DATE)</SQL>
+                    </KeyExpression>
+                </Level>
+                <Level name="MONTH" column="ORDER_DATE">
+                    <KeyExpression>
+                        <SQL dialect="generic">EXTRACT(MONTH FROM ORDER_DATE)</SQL>
+                    </KeyExpression>
+                </Level>
+                <Level name="DAY" column="ORDER_DATE">
+                    <KeyExpression>
+                        <SQL dialect="generic">EXTRACT(DAY FROM ORDER_DATE)</SQL>
+                    </KeyExpression>
+                </Level>
             </Hierarchy>
         </Dimension>
 
@@ -63,11 +83,13 @@
             </Hierarchy>
         </Dimension>
 
-        <Measure name="REVENUE" column="REVENUE" aggregator="sum"/>
-        <Measure name="DISCOUNT" column="DISCOUNT" aggregator="sum"/>
-        <Measure name="COSTOFGOODSSOLD" column="COGS" aggregator="sum"/>
+        <Measure name="REVENUEUSD" column="REVENUEUSD" aggregator="sum"/>
+        <Measure name="REVENUEEUR" column="REVENUEEUR" aggregator="sum"/>
+        <Measure name="DISCOUNTUSD" column="DISCOUNTUSD" aggregator="sum"/>
+        <Measure name="NETSALESUSD" column="NETSALESUSD" aggregator="sum"/>
+        <Measure name="COSTOFGOODSSOLDUSD" column="COGMUSD" aggregator="sum"/>
         <Measure name="SALESQUANTITY" column="SALESQUANTITY" aggregator="sum"/>
-        <Measure name="NOOFSALESORDERS" column="NOOFSALESORDERS" aggregator="sum"/>
+        <Measure name="NOOFSALESORDERS" column="NOOFSALESORDERS" aggregator="count"/>
     </Cube>
 </Schema>
 
