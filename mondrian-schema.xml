@@ -1,23 +1,26 @@
 <Schema name="HyperSchema">
     <Cube name="HyperCube@DirtBikes" cache="true" enabled="true">
 
-        <Table name="WI2_ACU008_FACT_TABLE"> <AggExclude pattern=".*"/>
-<!--                <AggName name="AGG_2_WI2_ACU008_FACT_TABLE" ChooseByVolume="false">-->
-<!--                <AggFactCount column="FACT_COUNT"/>-->
-<!--                <AggMeasure name="[Measures].[REVENUE]" column="sum_revenue"/>-->
-<!--                <AggMeasure name="[Measures].[DISCOUNT]" column="sum_discount"/>-->
-<!--                <AggMeasure name="[Measures].[COSTOFGOODSSOLD]" column="sum_cogs"/>-->
-<!--                <AggMeasure name="[Measures].[SALESQUANTITY]" column="sum_salesquantity"/>-->
-<!--                <AggMeasure name="[Measures].[NOOFSALESORDERS]" column="sum_noofsalesorders"/>-->
+        <Table name="WI2_ACU008_FACT_TABLE">
+<!--            <AggExclude pattern=".*"/>-->
+                <AggName name="AGG_2_WI2_ACU008_FACT_TABLE" ChooseByVolume="false">
+                <AggFactCount column="FACT_COUNT"/>
+                <AggMeasure name="[Measures].[REVENUEUSD]" column="SUM_REVENUEUSD"/>
+                    <AggMeasure name="[Measures].[REVENUEEUR]" column="SUM_REVENUEEUR"/>
+                <AggMeasure name="[Measures].[DISCOUNTUSD]" column="SUM_DISCOUNTUSD"/>
+                <AggMeasure name="[Measures].[COSTOFGOODSSOLDUSD]" column="SUM_COGSUSD"/>
+                <AggMeasure name="[Measures].[SALESQUANTITY]" column="SUM_SALESQUANTITY"/>
+                <AggMeasure name="[Measures].[NOOFSALESORDERS]" column="SUM_NOOFSALESORDERS"/>
+                    <AggMeasure name="[Measures].[NETSALESUSD]" column="SUM_NETSALESUSD"/>
 
-<!--                <AggLevel name="[TIME].[YEAR]" column="TIME_YEAR"/>-->
-<!--                <AggLevel name="[TIME].[MONTH]" column="TIME_MONTH"/>-->
+                <AggLevel name="[TIME].[YEAR]" column="TIME_YEAR"/>
+                <AggLevel name="[TIME].[MONTH]" column="TIME_MONTH"/>
 
-<!--                <AggLevel name="[PRODUCT].[DIVISION]" column="PRODUCT_P_DIVISION"/>-->
-<!--                <AggLevel name="[PRODUCT].[PRODUCT_CATEGORY]" column="PRODUCT_P_CATEGORYID"/>-->
+                <AggLevel name="[PRODUCT].[DIVISION]" column="PRODUCT_P_DIVISION"/>
+                <AggLevel name="[PRODUCT].[PRODUCT_CATEGORY]" column="PRODUCT_P_CATEGORY"/>
 
-<!--                <AggLevel name="[CUSTOMER].[CUSTOMER]" column="CUSTOMER_C_ID" collapsed="false"/>-->
-<!--            </AggName>-->
+                <AggLevel name="[CUSTOMER].[CUSTOMER]" column="CUSTOMER_C_ID" collapsed="false"/>
+            </AggName>
         </Table>
 
 <!--        <Dimension name="TIME" foreignKey="FACT_T_ID">-->
@@ -32,7 +35,7 @@
 <!--            </Hierarchy>-->
 <!--        </Dimension>-->
 
-        <Dimension name="TimeHierarchy">
+        <Dimension name="TIME">
             <Hierarchy hasAll="true">
                 <Level name="YEAR" column="ORDER_DATE">
                     <KeyExpression>

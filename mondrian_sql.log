@@ -1,0 +1,44 @@
+2021-06-10 10:04:03,627 DEBUG [mondrian.sql] 0: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-06-10 10:04:03,666 DEBUG [mondrian.sql] 0: , exec 33 ms
+2021-06-10 10:04:03,667 DEBUG [mondrian.sql] 0: , exec+fetch 39 ms, 1 rows
+2021-06-10 10:04:03,669 DEBUG [mondrian.sql] 1: AggStar.FactTable.makeNumberOfRows: executing sql [
+select
+    count(*) as "c0"
+from
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-06-10 10:04:03,696 DEBUG [mondrian.sql] 1: , exec 27 ms
+2021-06-10 10:04:03,697 DEBUG [mondrian.sql] 1: , exec+fetch 28 ms, 1 rows
+2021-06-10 10:04:17,700 DEBUG [mondrian.sql] 2: SqlTupleReader.readTuples [[TIME].[YEAR]]: executing sql [
+select
+    EXTRACT(YEAR FROM ORDER_DATE) as "c0"
+from
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
+group by
+    EXTRACT(YEAR FROM ORDER_DATE)
+order by
+    EXTRACT(YEAR FROM ORDER_DATE) ASC NULLS LAST]
+2021-06-10 10:04:17,762 DEBUG [mondrian.sql] 2: , exec 61 ms
+2021-06-10 10:04:17,796 DEBUG [mondrian.sql] 2: , exec+fetch 96 ms, 10 rows
+2021-06-10 10:04:17,834 DEBUG [mondrian.sql] 3: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    EXTRACT(YEAR FROM ORDER_DATE) as "c0"
+from
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE")]
+2021-06-10 10:04:17,883 DEBUG [mondrian.sql] 3: , exec 48 ms
+2021-06-10 10:04:17,883 DEBUG [mondrian.sql] 3: , exec+fetch 49 ms, 1 rows
+2021-06-10 10:04:17,940 DEBUG [mondrian.sql] 4: Segment.load: executing sql [
+select
+    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEUSD") as "m0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEEUR") as "m1",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_DISCOUNTUSD") as "m2",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NETSALESUSD") as "m3",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_COGSUSD") as "m4",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m5",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NOOFSALESORDERS") as "m6"
+from
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
+group by
+    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR"]
+2021-06-10 10:04:17,978 DEBUG [mondrian.sql] 4: , exec 36 ms
+2021-06-10 10:04:18,037 DEBUG [mondrian.sql] 4: , exec+fetch 97 ms, 10 rows
