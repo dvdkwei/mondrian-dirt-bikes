@@ -1,51 +1,18 @@
-2021-05-10 08:51:42,143 DEBUG [mondrian.mdx] 66: with set [~ROWS] as '{[CUSTOMER].[CUSTOMER].Members}'
-select NON EMPTY {[Measures].[REVENUE]} ON COLUMNS,
+2021-06-13 12:47:10,660 DEBUG [mondrian.mdx] 69: with set [~ROWS] as '{[CUSTOMER.CUSTOMER_AS_OF].[CUSTOMER_AS_OF].Members}'
+select NON EMPTY {[Measures].[SALESQUANTITY], [Measures].[REVENUEUSD], [Measures].[DISCOUNTUSD], [Measures].[NETSALESUSD], [Measures].[REVENUEEUR]} ON COLUMNS,
   NON EMPTY [~ROWS] ON ROWS
 from [HyperCube@DirtBikes]
 
-2021-05-10 08:51:42,570 DEBUG [mondrian.mdx] 66: exec: 426 ms
-2021-05-10 08:54:39,888 DEBUG [mondrian.mdx] 123: with set [~ROWS_CUSTOMER_CUSTOMER] as '{[CUSTOMER].[CUSTOMER].Members}'
-  set [~ROWS_PRODUCT_PRODUCT] as '{[PRODUCT].[PRODUCT_CATEGORY].Members}'
-select NON EMPTY {[Measures].[REVENUE]} ON COLUMNS,
-  NON EMPTY NonEmptyCrossJoin([~ROWS_CUSTOMER_CUSTOMER], [~ROWS_PRODUCT_PRODUCT]) ON ROWS
-from [HyperCube@DirtBikes]
-
-2021-05-10 08:54:40,361 DEBUG [mondrian.mdx] 123: exec: 472 ms
-2021-05-10 08:54:57,917 DEBUG [mondrian.mdx] 176: with set [~ROWS_CUSTOMER_CUSTOMER] as '{[CUSTOMER].[CUSTOMER].Members}'
-  set [~ROWS_PRODUCT_PRODUCT] as 'Hierarchize({{[PRODUCT].[PRODUCT_CATEGORY].Members}, {[PRODUCT].[PRODUCT].Members}})'
-select NON EMPTY {[Measures].[REVENUE]} ON COLUMNS,
-  NON EMPTY NonEmptyCrossJoin([~ROWS_CUSTOMER_CUSTOMER], [~ROWS_PRODUCT_PRODUCT]) ON ROWS
-from [HyperCube@DirtBikes]
-
-2021-05-10 08:54:58,095 DEBUG [mondrian.mdx] 176: exec: 178 ms
-2021-05-10 08:56:00,332 DEBUG [mondrian.mdx] 221: with member [Measures].[Zero] as '0'
-select AddCalculatedMembers([CUSTOMER].[CUSTOMER].Members) ON COLUMNS
-from [HyperCube@DirtBikes]
-where [Measures].[Zero]
-
-2021-05-10 08:56:00,336 DEBUG [mondrian.mdx] 221: exec: 4 ms
-2021-05-10 08:56:03,379 DEBUG [mondrian.mdx] 262: with set [~ROWS_CUSTOMER_CUSTOMER] as '{[CUSTOMER].[CUSTOMER].Members}'
-  set [~ROWS_PRODUCT_PRODUCT] as 'Hierarchize({{[PRODUCT].[PRODUCT_CATEGORY].Members}, {[PRODUCT].[PRODUCT].Members}})'
-select NON EMPTY {[Measures].[REVENUE]} ON COLUMNS,
-  NON EMPTY NonEmptyCrossJoin([~ROWS_CUSTOMER_CUSTOMER], [~ROWS_PRODUCT_PRODUCT]) ON ROWS
-from [HyperCube@DirtBikes]
-
-2021-05-10 08:56:03,397 DEBUG [mondrian.mdx] 262: exec: 18 ms
-2021-05-10 08:56:05,898 DEBUG [mondrian.mdx] 318: with set [~ROWS] as 'Hierarchize({{[PRODUCT].[PRODUCT_CATEGORY].Members}, {[PRODUCT].[PRODUCT].Members}})'
-select NON EMPTY {[Measures].[REVENUE]} ON COLUMNS,
+2021-06-13 12:47:10,743 DEBUG [mondrian.mdx] 69: exec: 83 ms
+2021-06-13 12:48:26,752 DEBUG [mondrian.mdx] 166: with set [~ROWS] as '{[CUSTOMER.CUSTOMER_AS_OF].[CUSTOMER_AS_OF].Members}'
+select NON EMPTY {[Measures].[SALESQUANTITY], [Measures].[REVENUEUSD], [Measures].[DISCOUNTUSD], [Measures].[NETSALESUSD], [Measures].[REVENUEEUR]} ON COLUMNS,
   NON EMPTY [~ROWS] ON ROWS
 from [HyperCube@DirtBikes]
 
-2021-05-10 08:56:05,936 DEBUG [mondrian.mdx] 318: exec: 38 ms
-2021-05-10 08:56:15,165 DEBUG [mondrian.mdx] 366: with set [~ROWS] as '{[PRODUCT].[PRODUCT_CATEGORY].Members}'
-select NON EMPTY {[Measures].[REVENUE]} ON COLUMNS,
+2021-06-13 12:48:27,549 DEBUG [mondrian.mdx] 166: exec: 797 ms
+2021-06-13 12:48:31,655 DEBUG [mondrian.mdx] 235: with set [~ROWS] as 'Hierarchize({{[CUSTOMER.CUSTOMER_AS_OF].[SALESORG_AS_OF].Members}, {[CUSTOMER.CUSTOMER_AS_OF].[CUSTOMER_AS_OF].Members}})'
+select NON EMPTY {[Measures].[SALESQUANTITY], [Measures].[REVENUEUSD], [Measures].[DISCOUNTUSD], [Measures].[NETSALESUSD], [Measures].[REVENUEEUR]} ON COLUMNS,
   NON EMPTY [~ROWS] ON ROWS
 from [HyperCube@DirtBikes]
 
-2021-05-10 08:56:15,170 DEBUG [mondrian.mdx] 366: exec: 5 ms
-2021-05-10 08:56:21,795 DEBUG [mondrian.mdx] 412: with set [~ROWS] as 'Hierarchize({{[PRODUCT].[PRODUCT_CATEGORY].Members}, {[PRODUCT].[PRODUCT].Members}})'
-select NON EMPTY {[Measures].[REVENUE]} ON COLUMNS,
-  NON EMPTY [~ROWS] ON ROWS
-from [HyperCube@DirtBikes]
-
-2021-05-10 08:56:21,800 DEBUG [mondrian.mdx] 412: exec: 5 ms
+2021-06-13 12:48:31,972 DEBUG [mondrian.mdx] 235: exec: 317 ms
