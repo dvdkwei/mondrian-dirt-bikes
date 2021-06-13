@@ -1,40 +1,23 @@
 <Schema name="HyperSchema">
     <Cube name="HyperCube@DirtBikes" cache="true" enabled="true">
-
         <Table name="WI2_ACU008_FACT_TABLE">
-<!--            <AggExclude pattern=".*"/>-->
-                <AggName name="AGG_2_WI2_ACU008_FACT_TABLE" ChooseByVolume="false">
+            <!--            <AggExclude pattern=".*"/>-->
+            <AggName name="AGG_2_WI2_ACU008_FACT_TABLE" ChooseByVolume="false">
                 <AggFactCount column="FACT_COUNT"/>
                 <AggMeasure name="[Measures].[REVENUEUSD]" column="SUM_REVENUEUSD"/>
-                    <AggMeasure name="[Measures].[REVENUEEUR]" column="SUM_REVENUEEUR"/>
+                <AggMeasure name="[Measures].[REVENUEEUR]" column="SUM_REVENUEEUR"/>
                 <AggMeasure name="[Measures].[DISCOUNTUSD]" column="SUM_DISCOUNTUSD"/>
                 <AggMeasure name="[Measures].[COSTOFGOODSSOLDUSD]" column="SUM_COGSUSD"/>
                 <AggMeasure name="[Measures].[SALESQUANTITY]" column="SUM_SALESQUANTITY"/>
                 <AggMeasure name="[Measures].[NOOFSALESORDERS]" column="SUM_NOOFSALESORDERS"/>
-                    <AggMeasure name="[Measures].[NETSALESUSD]" column="SUM_NETSALESUSD"/>
-
+                <AggMeasure name="[Measures].[NETSALESUSD]" column="SUM_NETSALESUSD"/>
                 <AggLevel name="[TIME].[YEAR]" column="TIME_YEAR"/>
                 <AggLevel name="[TIME].[MONTH]" column="TIME_MONTH"/>
-
                 <AggLevel name="[PRODUCT].[DIVISION]" column="PRODUCT_P_DIVISION"/>
                 <AggLevel name="[PRODUCT].[PRODUCT_CATEGORY]" column="PRODUCT_P_CATEGORY"/>
-
-                <AggLevel name="[CUSTOMER].[CUSTOMER]" column="CUSTOMER_C_ID" collapsed="false"/>
+                <AggLevel name="[CUSTOMER].[CUSTOMER_AS_IS]" column="CUSTOMER_C_ID" collapsed="false"/>
             </AggName>
         </Table>
-
-<!--        <Dimension name="TIME" foreignKey="FACT_T_ID">-->
-<!--            <Hierarchy primaryKey="T_ID" hasAll="true">-->
-<!--                <Table name="WI2_ACU008_TIME" schema="ACU008"/>-->
-<!--                <Level name="YEAR" column="T_YEAR"/>-->
-<!--                <Level name="MONTH" column="T_MONTH"/>-->
-<!--                <Level name="DAY" column="T_DAY">-->
-<!--                    <Property name="TIME" column="T_ID"/>-->
-<!--                </Level>-->
-
-<!--            </Hierarchy>-->
-<!--        </Dimension>-->
-
         <Dimension name="TIME">
             <Hierarchy hasAll="true">
                 <Level name="YEAR" column="ORDER_DATE">
@@ -54,38 +37,50 @@
                 </Level>
             </Hierarchy>
         </Dimension>
-
-        <Dimension name="CUSTOMER" foreignKey="FACT_C_ID">
-            <Hierarchy primaryKey="C_ID" hasAll="true">
-                <Table name="WI2_ACU008_CUSTOMER" schema="ACU008"/>
-                <Level name="COUNTRY" column="C_LAND"/>
-                <Level name="SALESORGCURRENT" column="C_SALESORGCURRENT">
-                    <Property name="SALESORGHISTORIC" column="C_SALESORGHISTORIC"/>
+        <!--        <Dimension name="CUSTOMER" foreignKey="FACT_C_ID">-->
+        <Dimension name="CUSTOMER">
+            <Hierarchy primaryKey="TECH_C_ID" hasAll="true">
+                <View alias="CUSTOMER_AS_IS">
+                    <SQL dialect="generic">
+                        SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC
+                    </SQL>
+                </View>
+                <Level name="COUNTRY_AS_IS" column="C_LAND"/>
+                <Level name="SALESORG_AS_IS" column="C_SALESORG"/>
+                <Level name="CITY_AS_IS" column="C_CITY"/>
+                <Level name="CUSTOMER_AS_IS" column="TECH_C_ID" nameColumn="C_DESC" uniqueMembers="true">
+                    <!--                    <Property name="VALID_FROM" column="VALIDFROM"/>-->
+                    <!--                    <Property name="VALID_TO" column="VALIDTO"/>-->
+                    <!--                    <Property name="VERSION" column="VERSION"/>-->
                 </Level>
-
-                <Level name="CITY" column="C_CITY"/>
-
-                <Level name="CUSTOMER" column="C_ID" nameColumn="C_DESC" uniqueMembers="true">
-                    <Property name="VALID_FROM" column="VALIDFROM"/>
-                    <Property name="VALID_TO" column="VALIDTO"/>
-                    <Property name="ONGOING" column="ONGOING"/>
+            </Hierarchy>
+            <Hierarchy name="CUSTOMER_AS_OF" primaryKey="TECH_C_ID" hasAll="true">
+                <View alias="CUSTOMER_AS_OF">
+                    <SQL dialect="generic">
+                        SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC
+                    </SQL>
+                </View>
+                <Level name="COUNTRY_AS_OF" column="C_LAND"/>
+                <Level name="SALESORG_AS_OF" column="C_SALESORG"/>
+                <Level name="CITY_AS_OF" column="C_CITY"/>
+                <Level name="CUSTOMER_AS_OF" column="TECH_C_ID" nameColumn="C_DESC" uniqueMembers="true">
+                    <!--                    <Property name="VALID_FROM" column="VALIDFROM"/>-->
+                    <!--                    <Property name="VALID_TO" column="VALIDTO"/>-->
+                    <!--                    <Property name="VERSION" column="VERSION"/>-->
                 </Level>
             </Hierarchy>
         </Dimension>
-
         <Dimension name="PRODUCT" foreignKey="FACT_P_ID">
             <Hierarchy primaryKey="P_ID" hasAll="true">
                 <Table name="WI2_ACU008_PRODUCT" schema="ACU008"/>
                 <Level name="DIVISION" column="P_DIVISION"/>
                 <Level name="PRODUCT_CATEGORY" column="P_CATEGORYID" nameColumn="P_CATEGORY"/>
-
                 <Level name="PRODUCT" column="P_ID" nameColumn="P_DESC" uniqueMembers="true">
                     <Property name="SALES_PRICE" column="P_SALESPRICE"/>
                     <Property name="PRODUCTION_PRICE" column="P_PRODUCTIONPRICE"/>
                 </Level>
             </Hierarchy>
         </Dimension>
-
         <Measure name="REVENUEUSD" column="REVENUEUSD" aggregator="sum"/>
         <Measure name="REVENUEEUR" column="REVENUEEUR" aggregator="sum"/>
         <Measure name="DISCOUNTUSD" column="DISCOUNTUSD" aggregator="sum"/>
