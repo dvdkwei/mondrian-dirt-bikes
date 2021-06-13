@@ -1,12 +1,18 @@
-2021-06-10 10:04:17,682 DEBUG [mondrian.mdx] 104: with set [~ROWS] as '{[TIME].[YEAR].Members}'
-select NON EMPTY {[Measures].[REVENUEUSD], [Measures].[REVENUEEUR], [Measures].[DISCOUNTUSD], [Measures].[NETSALESUSD], [Measures].[COSTOFGOODSSOLDUSD], [Measures].[SALESQUANTITY], [Measures].[NOOFSALESORDERS]} ON COLUMNS,
+2021-06-13 12:47:10,660 DEBUG [mondrian.mdx] 69: with set [~ROWS] as '{[CUSTOMER.CUSTOMER_AS_OF].[CUSTOMER_AS_OF].Members}'
+select NON EMPTY {[Measures].[SALESQUANTITY], [Measures].[REVENUEUSD], [Measures].[DISCOUNTUSD], [Measures].[NETSALESUSD], [Measures].[REVENUEEUR]} ON COLUMNS,
   NON EMPTY [~ROWS] ON ROWS
 from [HyperCube@DirtBikes]
 
-2021-06-10 10:04:18,057 DEBUG [mondrian.mdx] 104: exec: 375 ms
-2021-06-10 10:04:24,173 DEBUG [mondrian.mdx] 215: with set [~ROWS] as '{[TIME].[YEAR].Members}'
-select NON EMPTY {[Measures].[REVENUEUSD], [Measures].[REVENUEEUR], [Measures].[DISCOUNTUSD], [Measures].[NETSALESUSD], [Measures].[COSTOFGOODSSOLDUSD], [Measures].[SALESQUANTITY], [Measures].[NOOFSALESORDERS]} ON COLUMNS,
+2021-06-13 12:47:10,743 DEBUG [mondrian.mdx] 69: exec: 83 ms
+2021-06-13 12:48:26,752 DEBUG [mondrian.mdx] 166: with set [~ROWS] as '{[CUSTOMER.CUSTOMER_AS_OF].[CUSTOMER_AS_OF].Members}'
+select NON EMPTY {[Measures].[SALESQUANTITY], [Measures].[REVENUEUSD], [Measures].[DISCOUNTUSD], [Measures].[NETSALESUSD], [Measures].[REVENUEEUR]} ON COLUMNS,
   NON EMPTY [~ROWS] ON ROWS
 from [HyperCube@DirtBikes]
 
-2021-06-10 10:04:24,217 DEBUG [mondrian.mdx] 215: exec: 43 ms
+2021-06-13 12:48:27,549 DEBUG [mondrian.mdx] 166: exec: 797 ms
+2021-06-13 12:48:31,655 DEBUG [mondrian.mdx] 235: with set [~ROWS] as 'Hierarchize({{[CUSTOMER.CUSTOMER_AS_OF].[SALESORG_AS_OF].Members}, {[CUSTOMER.CUSTOMER_AS_OF].[CUSTOMER_AS_OF].Members}})'
+select NON EMPTY {[Measures].[SALESQUANTITY], [Measures].[REVENUEUSD], [Measures].[DISCOUNTUSD], [Measures].[NETSALESUSD], [Measures].[REVENUEEUR]} ON COLUMNS,
+  NON EMPTY [~ROWS] ON ROWS
+from [HyperCube@DirtBikes]
+
+2021-06-13 12:48:31,972 DEBUG [mondrian.mdx] 235: exec: 317 ms
