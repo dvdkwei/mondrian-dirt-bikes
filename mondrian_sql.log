@@ -1,457 +1,724 @@
-2021-06-13 16:39:19,197 DEBUG [mondrian.sql] 0: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_2_WI2_ACU008_FACT_TABLE"]
-2021-06-13 16:39:19,516 DEBUG [mondrian.sql] 0: , exec 312 ms
-2021-06-13 16:39:19,517 DEBUG [mondrian.sql] 0: , exec+fetch 319 ms, 1 rows
-2021-06-13 16:39:19,520 DEBUG [mondrian.sql] 1: AggStar.FactTable.makeNumberOfRows: executing sql [
+2021-06-15 17:17:52,400 DEBUG [mondrian.sql] 0: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-06-15 17:17:52,451 DEBUG [mondrian.sql] 0: , exec 47 ms
+2021-06-15 17:17:52,451 DEBUG [mondrian.sql] 0: , exec+fetch 51 ms, 1 rows
+2021-06-15 17:17:52,452 DEBUG [mondrian.sql] 1: AggStar.FactTable.makeNumberOfRows: executing sql [
 select
     count(*) as "c0"
 from
     "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"]
-2021-06-13 16:39:19,751 DEBUG [mondrian.sql] 1: , exec 231 ms
-2021-06-13 16:39:19,752 DEBUG [mondrian.sql] 1: , exec+fetch 232 ms, 1 rows
-2021-06-13 16:39:44,053 DEBUG [mondrian.sql] 2: SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]]: executing sql [
+2021-06-15 17:17:52,484 DEBUG [mondrian.sql] 1: , exec 31 ms
+2021-06-15 17:17:52,484 DEBUG [mondrian.sql] 1: , exec+fetch 32 ms, 1 rows
+2021-06-15 17:18:00,759 DEBUG [mondrian.sql] 2: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS]]: executing sql [
 select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    "CUSTOMER_AS_IS"."C_LAND" as "c2"
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    "CUSTOMER_AS_IS"."C_CITY" as "c2",
+    "CUSTOMER_AS_IS"."TECH_C_ID" as "c3",
+    "CUSTOMER_AS_IS"."C_DESC" as "c4"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION",
-    "CUSTOMER_AS_IS"."C_LAND"
-order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST,
-    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST]
-2021-06-13 16:39:44,325 DEBUG [mondrian.sql] 2: , exec 269 ms
-2021-06-13 16:39:44,449 DEBUG [mondrian.sql] 2: , exec+fetch 393 ms, 40 rows
-2021-06-13 16:39:44,515 DEBUG [mondrian.sql] 3: SqlStatisticsProvider.getQueryCardinality: executing sql [
-select count(*) from (select distinct
-    EXTRACT(YEAR FROM ORDER_DATE) as "c0"
-from
-    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE")]
-2021-06-13 16:39:44,677 DEBUG [mondrian.sql] 3: , exec 161 ms
-2021-06-13 16:39:44,677 DEBUG [mondrian.sql] 3: , exec+fetch 162 ms, 1 rows
-2021-06-13 16:39:44,678 DEBUG [mondrian.sql] 4: SqlStatisticsProvider.getQueryCardinality: executing sql [
-select count(*) from (select distinct
-    "CUSTOMER_AS_IS"."C_LAND" as "c0"
-from
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
-2021-06-13 16:39:44,705 DEBUG [mondrian.sql] 4: , exec 27 ms
-2021-06-13 16:39:44,705 DEBUG [mondrian.sql] 4: , exec+fetch 27 ms, 1 rows
-2021-06-13 16:39:44,706 DEBUG [mondrian.sql] 5: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "P_DIVISION") from "ACU008"."WI2_ACU008_PRODUCT"]
-2021-06-13 16:39:44,732 DEBUG [mondrian.sql] 5: , exec 25 ms
-2021-06-13 16:39:44,732 DEBUG [mondrian.sql] 5: , exec+fetch 26 ms, 1 rows
-2021-06-13 16:39:44,809 DEBUG [mondrian.sql] 6: Segment.load: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
     "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"]
-2021-06-13 16:39:45,096 DEBUG [mondrian.sql] 6: , exec 286 ms
-2021-06-13 16:39:45,233 DEBUG [mondrian.sql] 6: , exec+fetch 424 ms, 40 rows
-2021-06-13 16:39:52,471 DEBUG [mondrian.sql] 7: SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]]: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    "CUSTOMER_AS_IS"."C_LAND" as "c2"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION",
-    "CUSTOMER_AS_IS"."C_LAND"
+    "CUSTOMER_AS_IS"."C_SALESORG",
+    "CUSTOMER_AS_IS"."C_CITY",
+    "CUSTOMER_AS_IS"."TECH_C_ID",
+    "CUSTOMER_AS_IS"."C_DESC"
 order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST,
-    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST]
-2021-06-13 16:39:52,725 DEBUG [mondrian.sql] 7: , exec 254 ms
-2021-06-13 16:39:52,847 DEBUG [mondrian.sql] 7: , exec+fetch 376 ms, 40 rows
-2021-06-13 16:40:23,870 DEBUG [mondrian.sql] 8: SqlTupleReader.readTuples [[TIME].[YEAR], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS], [PRODUCT].[DIVISION]]: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"
-order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
     "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST]
-2021-06-13 16:40:24,108 DEBUG [mondrian.sql] 8: , exec 238 ms
-2021-06-13 16:40:24,219 DEBUG [mondrian.sql] 8: , exec+fetch 349 ms, 40 rows
-2021-06-13 16:41:55,404 DEBUG [mondrian.sql] 9: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_2_WI2_ACU008_FACT_TABLE"]
-2021-06-13 16:41:55,466 DEBUG [mondrian.sql] 9: , exec 61 ms
-2021-06-13 16:41:55,467 DEBUG [mondrian.sql] 9: , exec+fetch 63 ms, 1 rows
-2021-06-13 16:41:55,467 DEBUG [mondrian.sql] 10: AggStar.FactTable.makeNumberOfRows: executing sql [
+    "CUSTOMER_AS_IS"."C_SALESORG" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_CITY" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."TECH_C_ID" ASC NULLS LAST]
+2021-06-15 17:18:00,790 DEBUG [mondrian.sql] 2: , exec 29 ms
+2021-06-15 17:18:00,860 DEBUG [mondrian.sql] 2: , exec+fetch 100 ms, 24 rows
+2021-06-15 17:18:00,886 DEBUG [mondrian.sql] 3: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."TECH_C_ID" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:18:00,915 DEBUG [mondrian.sql] 3: , exec 28 ms
+2021-06-15 17:18:00,916 DEBUG [mondrian.sql] 3: , exec+fetch 29 ms, 1 rows
+2021-06-15 17:18:00,941 DEBUG [mondrian.sql] 4: Segment.load: executing sql [
+select
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" as "c0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
+from
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
+group by
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID"]
+2021-06-15 17:18:00,977 DEBUG [mondrian.sql] 4: , exec 34 ms
+2021-06-15 17:18:01,042 DEBUG [mondrian.sql] 4: , exec+fetch 100 ms, 24 rows
+2021-06-15 17:18:14,164 DEBUG [mondrian.sql] 5: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]]: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST]
+2021-06-15 17:18:14,216 DEBUG [mondrian.sql] 5: , exec 51 ms
+2021-06-15 17:18:14,217 DEBUG [mondrian.sql] 5: , exec+fetch 53 ms, 2 rows
+2021-06-15 17:18:14,226 DEBUG [mondrian.sql] 6: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:18:14,256 DEBUG [mondrian.sql] 6: , exec 29 ms
+2021-06-15 17:18:14,256 DEBUG [mondrian.sql] 6: , exec+fetch 30 ms, 1 rows
+2021-06-15 17:18:14,261 DEBUG [mondrian.sql] 7: Segment.load: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
+where
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+group by
+    "CUSTOMER_AS_IS"."C_LAND"]
+2021-06-15 17:18:14,337 DEBUG [mondrian.sql] 7: , exec 76 ms
+2021-06-15 17:18:14,339 DEBUG [mondrian.sql] 7: , exec+fetch 78 ms, 0 rows
+2021-06-15 17:18:19,487 DEBUG [mondrian.sql] 8: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[CUSTOMER_AS_OF]]: executing sql [
+select
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c1",
+    "CUSTOMER_AS_OF"."C_CITY" as "c2",
+    "CUSTOMER_AS_OF"."TECH_C_ID" as "c3",
+    "CUSTOMER_AS_OF"."C_DESC" as "c4"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF"
+group by
+    "CUSTOMER_AS_OF"."C_LAND",
+    "CUSTOMER_AS_OF"."C_SALESORG",
+    "CUSTOMER_AS_OF"."C_CITY",
+    "CUSTOMER_AS_OF"."TECH_C_ID",
+    "CUSTOMER_AS_OF"."C_DESC"
+order by
+    "CUSTOMER_AS_OF"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_OF"."C_SALESORG" ASC NULLS LAST,
+    "CUSTOMER_AS_OF"."C_CITY" ASC NULLS LAST,
+    "CUSTOMER_AS_OF"."TECH_C_ID" ASC NULLS LAST]
+2021-06-15 17:18:19,590 DEBUG [mondrian.sql] 8: , exec 102 ms
+2021-06-15 17:18:19,670 DEBUG [mondrian.sql] 8: , exec+fetch 183 ms, 24 rows
+2021-06-15 17:18:19,674 DEBUG [mondrian.sql] 9: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_OF"."TECH_C_ID" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF")]
+2021-06-15 17:18:19,704 DEBUG [mondrian.sql] 9: , exec 30 ms
+2021-06-15 17:18:19,704 DEBUG [mondrian.sql] 9: , exec+fetch 30 ms, 1 rows
+2021-06-15 17:18:19,708 DEBUG [mondrian.sql] 10: Segment.load: executing sql [
+select
+    "CUSTOMER_AS_OF"."TECH_C_ID" as "c0",
+    sum("WI2_ACU008_FACT_TABLE"."SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF",
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
+where
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "CUSTOMER_AS_OF"."TECH_C_ID"
+group by
+    "CUSTOMER_AS_OF"."TECH_C_ID"]
+2021-06-15 17:18:19,823 DEBUG [mondrian.sql] 10: , exec 114 ms
+2021-06-15 17:18:19,823 DEBUG [mondrian.sql] 10: , exec+fetch 115 ms, 0 rows
+2021-06-15 17:18:22,181 DEBUG [mondrian.sql] 11: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[COUNTRY_AS_OF]]: executing sql [
+select
+    "CUSTOMER_AS_OF"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF"
+group by
+    "CUSTOMER_AS_OF"."C_LAND"
+order by
+    "CUSTOMER_AS_OF"."C_LAND" ASC NULLS LAST]
+2021-06-15 17:18:22,209 DEBUG [mondrian.sql] 11: , exec 28 ms
+2021-06-15 17:18:22,210 DEBUG [mondrian.sql] 11: , exec+fetch 29 ms, 2 rows
+2021-06-15 17:18:22,213 DEBUG [mondrian.sql] 12: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_OF"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF")]
+2021-06-15 17:18:22,240 DEBUG [mondrian.sql] 12: , exec 26 ms
+2021-06-15 17:18:22,241 DEBUG [mondrian.sql] 12: , exec+fetch 28 ms, 1 rows
+2021-06-15 17:18:22,243 DEBUG [mondrian.sql] 13: Segment.load: executing sql [
+select
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    sum("WI2_ACU008_FACT_TABLE"."SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF",
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
+where
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "CUSTOMER_AS_OF"."TECH_C_ID"
+group by
+    "CUSTOMER_AS_OF"."C_LAND"]
+2021-06-15 17:18:22,295 DEBUG [mondrian.sql] 13: , exec 51 ms
+2021-06-15 17:18:22,296 DEBUG [mondrian.sql] 13: , exec+fetch 52 ms, 0 rows
+2021-06-15 17:20:15,437 DEBUG [mondrian.sql] 14: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-06-15 17:20:15,484 DEBUG [mondrian.sql] 14: , exec 47 ms
+2021-06-15 17:20:15,484 DEBUG [mondrian.sql] 14: , exec+fetch 47 ms, 1 rows
+2021-06-15 17:20:15,485 DEBUG [mondrian.sql] 15: AggStar.FactTable.makeNumberOfRows: executing sql [
 select
     count(*) as "c0"
 from
     "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"]
-2021-06-13 16:41:55,550 DEBUG [mondrian.sql] 10: , exec 83 ms
-2021-06-13 16:41:55,551 DEBUG [mondrian.sql] 10: , exec+fetch 84 ms, 1 rows
-2021-06-13 16:42:05,704 DEBUG [mondrian.sql] 11: SqlTupleReader.readTuples [[TIME].[YEAR]]: executing sql [
+2021-06-15 17:20:15,516 DEBUG [mondrian.sql] 15: , exec 31 ms
+2021-06-15 17:20:15,516 DEBUG [mondrian.sql] 15: , exec+fetch 31 ms, 1 rows
+2021-06-15 17:20:34,308 DEBUG [mondrian.sql] 16: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS]]: executing sql [
 select
-    EXTRACT(YEAR FROM ORDER_DATE) as "c0"
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    "CUSTOMER_AS_IS"."C_CITY" as "c2",
+    "CUSTOMER_AS_IS"."TECH_C_ID" as "c3",
+    "CUSTOMER_AS_IS"."C_DESC" as "c4"
 from
-    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
 group by
-    EXTRACT(YEAR FROM ORDER_DATE)
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG",
+    "CUSTOMER_AS_IS"."C_CITY",
+    "CUSTOMER_AS_IS"."TECH_C_ID",
+    "CUSTOMER_AS_IS"."C_DESC"
 order by
-    EXTRACT(YEAR FROM ORDER_DATE) ASC NULLS LAST]
-2021-06-13 16:42:05,894 DEBUG [mondrian.sql] 11: , exec 191 ms
-2021-06-13 16:42:05,942 DEBUG [mondrian.sql] 11: , exec+fetch 238 ms, 10 rows
-2021-06-13 16:42:05,953 DEBUG [mondrian.sql] 12: SqlStatisticsProvider.getQueryCardinality: executing sql [
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_SALESORG" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_CITY" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."TECH_C_ID" ASC NULLS LAST]
+2021-06-15 17:20:34,360 DEBUG [mondrian.sql] 16: , exec 51 ms
+2021-06-15 17:20:34,559 DEBUG [mondrian.sql] 16: , exec+fetch 251 ms, 24 rows
+2021-06-15 17:20:34,561 DEBUG [mondrian.sql] 17: SqlStatisticsProvider.getQueryCardinality: executing sql [
 select count(*) from (select distinct
-    EXTRACT(YEAR FROM ORDER_DATE) as "c0"
+    "CUSTOMER_AS_IS"."TECH_C_ID" as "c0"
 from
-    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE")]
-2021-06-13 16:42:06,162 DEBUG [mondrian.sql] 12: , exec 208 ms
-2021-06-13 16:42:06,162 DEBUG [mondrian.sql] 12: , exec+fetch 209 ms, 1 rows
-2021-06-13 16:42:06,166 DEBUG [mondrian.sql] 13: Segment.load: executing sql [
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:20:34,588 DEBUG [mondrian.sql] 17: , exec 26 ms
+2021-06-15 17:20:34,588 DEBUG [mondrian.sql] 17: , exec+fetch 27 ms, 1 rows
+2021-06-15 17:20:34,590 DEBUG [mondrian.sql] 18: Segment.load: executing sql [
 select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" as "c0",
     sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
 from
     "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR"]
-2021-06-13 16:42:06,202 DEBUG [mondrian.sql] 13: , exec 35 ms
-2021-06-13 16:42:06,232 DEBUG [mondrian.sql] 13: , exec+fetch 65 ms, 10 rows
-2021-06-13 16:42:09,461 DEBUG [mondrian.sql] 14: SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION]]: executing sql [
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID"]
+2021-06-15 17:20:34,623 DEBUG [mondrian.sql] 18: , exec 33 ms
+2021-06-15 17:20:34,686 DEBUG [mondrian.sql] 18: , exec+fetch 96 ms, 24 rows
+2021-06-15 17:42:32,074 DEBUG [mondrian.sql] 19: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-06-15 17:42:32,131 DEBUG [mondrian.sql] 19: , exec 56 ms
+2021-06-15 17:42:32,131 DEBUG [mondrian.sql] 19: , exec+fetch 57 ms, 1 rows
+2021-06-15 17:42:32,132 DEBUG [mondrian.sql] 20: AggStar.FactTable.makeNumberOfRows: executing sql [
 select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1"
+    count(*) as "c0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-06-15 17:42:32,171 DEBUG [mondrian.sql] 20: , exec 38 ms
+2021-06-15 17:42:32,171 DEBUG [mondrian.sql] 20: , exec+fetch 39 ms, 1 rows
+2021-06-15 17:42:41,721 DEBUG [mondrian.sql] 21: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[CUSTOMER_AS_OF]]: executing sql [
+select
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c1",
+    "CUSTOMER_AS_OF"."C_CITY" as "c2",
+    "CUSTOMER_AS_OF"."TECH_C_ID" as "c3",
+    "CUSTOMER_AS_OF"."C_DESC" as "c4"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"
+    "CUSTOMER_AS_OF"."C_LAND",
+    "CUSTOMER_AS_OF"."C_SALESORG",
+    "CUSTOMER_AS_OF"."C_CITY",
+    "CUSTOMER_AS_OF"."TECH_C_ID",
+    "CUSTOMER_AS_OF"."C_DESC"
 order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST]
-2021-06-13 16:42:09,496 DEBUG [mondrian.sql] 14: , exec 34 ms
-2021-06-13 16:42:09,556 DEBUG [mondrian.sql] 14: , exec+fetch 95 ms, 20 rows
-2021-06-13 16:42:09,564 DEBUG [mondrian.sql] 15: SqlStatisticsProvider.getColumnCardinality: executing sql [select count(distinct "P_DIVISION") from "ACU008"."WI2_ACU008_PRODUCT"]
-2021-06-13 16:42:09,597 DEBUG [mondrian.sql] 15: , exec 33 ms
-2021-06-13 16:42:09,598 DEBUG [mondrian.sql] 15: , exec+fetch 34 ms, 1 rows
-2021-06-13 16:42:09,602 DEBUG [mondrian.sql] 16: Segment.load: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
+    "CUSTOMER_AS_OF"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_OF"."C_SALESORG" ASC NULLS LAST,
+    "CUSTOMER_AS_OF"."C_CITY" ASC NULLS LAST,
+    "CUSTOMER_AS_OF"."TECH_C_ID" ASC NULLS LAST]
+2021-06-15 17:42:41,750 DEBUG [mondrian.sql] 21: , exec 28 ms
+2021-06-15 17:42:41,806 DEBUG [mondrian.sql] 21: , exec+fetch 85 ms, 24 rows
+2021-06-15 17:42:41,811 DEBUG [mondrian.sql] 22: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_OF"."TECH_C_ID" as "c0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"]
-2021-06-13 16:42:09,645 DEBUG [mondrian.sql] 16: , exec 42 ms
-2021-06-13 16:42:09,703 DEBUG [mondrian.sql] 16: , exec+fetch 101 ms, 20 rows
-2021-06-13 16:42:16,843 DEBUG [mondrian.sql] 17: SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]]: executing sql [
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF")]
+2021-06-15 17:42:41,838 DEBUG [mondrian.sql] 22: , exec 27 ms
+2021-06-15 17:42:41,839 DEBUG [mondrian.sql] 22: , exec+fetch 28 ms, 1 rows
+2021-06-15 17:42:41,842 DEBUG [mondrian.sql] 23: Segment.load: executing sql [
 select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    "CUSTOMER_AS_IS"."C_LAND" as "c2"
+    "CUSTOMER_AS_OF"."TECH_C_ID" as "c0",
+    sum("WI2_ACU008_FACT_TABLE"."SALESQUANTITY") as "m0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF",
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
 where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "CUSTOMER_AS_OF"."FACT_C_ID"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION",
-    "CUSTOMER_AS_IS"."C_LAND"
+    "CUSTOMER_AS_OF"."TECH_C_ID"]
+2021-06-15 17:42:41,909 DEBUG [mondrian.sql] 23: , exec+fetch 66 ms, 0 rows
+2021-06-15 17:42:41,909 DEBUG [mondrian.sql] 23: , failed (java.sql.SQLSyntaxErrorException: ORA-00904: "CUSTOMER_AS_OF"."FACT_C_ID": ungültige ID
+)
+2021-06-15 17:44:00,617 DEBUG [mondrian.sql] 24: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-06-15 17:44:00,654 DEBUG [mondrian.sql] 24: , exec 38 ms
+2021-06-15 17:44:00,654 DEBUG [mondrian.sql] 24: , exec+fetch 37 ms, 1 rows
+2021-06-15 17:44:00,655 DEBUG [mondrian.sql] 25: AggStar.FactTable.makeNumberOfRows: executing sql [
+select
+    count(*) as "c0"
+from
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-06-15 17:44:00,684 DEBUG [mondrian.sql] 25: , exec 28 ms
+2021-06-15 17:44:00,684 DEBUG [mondrian.sql] 25: , exec+fetch 29 ms, 1 rows
+2021-06-15 17:44:10,100 DEBUG [mondrian.sql] 26: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[CUSTOMER_AS_OF]]: executing sql [
+select
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c1",
+    "CUSTOMER_AS_OF"."C_CITY" as "c2",
+    "CUSTOMER_AS_OF"."TECH_C_ID" as "c3",
+    "CUSTOMER_AS_OF"."C_DESC" as "c4"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF"
+group by
+    "CUSTOMER_AS_OF"."C_LAND",
+    "CUSTOMER_AS_OF"."C_SALESORG",
+    "CUSTOMER_AS_OF"."C_CITY",
+    "CUSTOMER_AS_OF"."TECH_C_ID",
+    "CUSTOMER_AS_OF"."C_DESC"
 order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST,
-    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST]
-2021-06-13 16:42:16,879 DEBUG [mondrian.sql] 17: , exec 36 ms
-2021-06-13 16:42:16,993 DEBUG [mondrian.sql] 17: , exec+fetch 150 ms, 40 rows
-2021-06-13 16:42:16,998 DEBUG [mondrian.sql] 18: SqlStatisticsProvider.getQueryCardinality: executing sql [
+    "CUSTOMER_AS_OF"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_OF"."C_SALESORG" ASC NULLS LAST,
+    "CUSTOMER_AS_OF"."C_CITY" ASC NULLS LAST,
+    "CUSTOMER_AS_OF"."TECH_C_ID" ASC NULLS LAST]
+2021-06-15 17:44:10,134 DEBUG [mondrian.sql] 26: , exec 33 ms
+2021-06-15 17:44:10,188 DEBUG [mondrian.sql] 26: , exec+fetch 88 ms, 24 rows
+2021-06-15 17:44:10,192 DEBUG [mondrian.sql] 27: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_OF"."TECH_C_ID" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF")]
+2021-06-15 17:44:10,219 DEBUG [mondrian.sql] 27: , exec 27 ms
+2021-06-15 17:44:10,219 DEBUG [mondrian.sql] 27: , exec+fetch 27 ms, 1 rows
+2021-06-15 17:44:10,223 DEBUG [mondrian.sql] 28: Segment.load: executing sql [
+select
+    "CUSTOMER_AS_OF"."TECH_C_ID" as "c0",
+    sum("WI2_ACU008_FACT_TABLE"."SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF",
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
+where
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "CUSTOMER_AS_OF"."C_ID"
+group by
+    "CUSTOMER_AS_OF"."TECH_C_ID"]
+2021-06-15 17:44:10,325 DEBUG [mondrian.sql] 28: , exec 101 ms
+2021-06-15 17:44:10,380 DEBUG [mondrian.sql] 28: , exec+fetch 157 ms, 24 rows
+2021-06-15 17:44:21,485 DEBUG [mondrian.sql] 29: Segment.load: executing sql [
+select
+    "CUSTOMER_AS_OF"."TECH_C_ID" as "c0",
+    sum("WI2_ACU008_FACT_TABLE"."REVENUEUSD") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF",
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
+where
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "CUSTOMER_AS_OF"."C_ID"
+group by
+    "CUSTOMER_AS_OF"."TECH_C_ID"]
+2021-06-15 17:44:21,550 DEBUG [mondrian.sql] 29: , exec 64 ms
+2021-06-15 17:44:21,603 DEBUG [mondrian.sql] 29: , exec+fetch 118 ms, 24 rows
+2021-06-15 17:44:26,013 DEBUG [mondrian.sql] 30: Segment.load: executing sql [
+select
+    "CUSTOMER_AS_OF"."TECH_C_ID" as "c0",
+    sum("WI2_ACU008_FACT_TABLE"."REVENUEEUR") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF",
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
+where
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "CUSTOMER_AS_OF"."C_ID"
+group by
+    "CUSTOMER_AS_OF"."TECH_C_ID"]
+2021-06-15 17:44:26,104 DEBUG [mondrian.sql] 30: , exec 91 ms
+2021-06-15 17:44:26,163 DEBUG [mondrian.sql] 30: , exec+fetch 149 ms, 24 rows
+2021-06-15 17:44:31,542 DEBUG [mondrian.sql] 31: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS]]: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    "CUSTOMER_AS_IS"."C_CITY" as "c2",
+    "CUSTOMER_AS_IS"."TECH_C_ID" as "c3",
+    "CUSTOMER_AS_IS"."C_DESC" as "c4"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG",
+    "CUSTOMER_AS_IS"."C_CITY",
+    "CUSTOMER_AS_IS"."TECH_C_ID",
+    "CUSTOMER_AS_IS"."C_DESC"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_SALESORG" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_CITY" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."TECH_C_ID" ASC NULLS LAST]
+2021-06-15 17:44:31,572 DEBUG [mondrian.sql] 31: , exec 29 ms
+2021-06-15 17:44:31,625 DEBUG [mondrian.sql] 31: , exec+fetch 83 ms, 24 rows
+2021-06-15 17:44:31,627 DEBUG [mondrian.sql] 32: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."TECH_C_ID" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:44:31,655 DEBUG [mondrian.sql] 32: , exec 27 ms
+2021-06-15 17:44:31,656 DEBUG [mondrian.sql] 32: , exec+fetch 28 ms, 1 rows
+2021-06-15 17:44:31,661 DEBUG [mondrian.sql] 33: Segment.load: executing sql [
+select
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" as "c0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEUSD") as "m0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEEUR") as "m1",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m2"
+from
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
+group by
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID"]
+2021-06-15 17:44:31,701 DEBUG [mondrian.sql] 33: , exec 39 ms
+2021-06-15 17:44:31,757 DEBUG [mondrian.sql] 33: , exec+fetch 96 ms, 24 rows
+2021-06-15 17:44:34,170 DEBUG [mondrian.sql] 34: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS]]: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_SALESORG" ASC NULLS LAST]
+2021-06-15 17:44:34,217 DEBUG [mondrian.sql] 34: , exec 46 ms
+2021-06-15 17:44:34,217 DEBUG [mondrian.sql] 34: , exec+fetch 47 ms, 4 rows
+2021-06-15 17:44:34,223 DEBUG [mondrian.sql] 35: SqlStatisticsProvider.getQueryCardinality: executing sql [
 select count(*) from (select distinct
     "CUSTOMER_AS_IS"."C_LAND" as "c0"
 from
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
-2021-06-13 16:42:17,024 DEBUG [mondrian.sql] 18: , exec 26 ms
-2021-06-13 16:42:17,025 DEBUG [mondrian.sql] 18: , exec+fetch 27 ms, 1 rows
-2021-06-13 16:42:17,030 DEBUG [mondrian.sql] 19: Segment.load: executing sql [
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:44:34,260 DEBUG [mondrian.sql] 35: , exec 36 ms
+2021-06-15 17:44:34,260 DEBUG [mondrian.sql] 35: , exec+fetch 37 ms, 1 rows
+2021-06-15 17:44:34,260 DEBUG [mondrian.sql] 36: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:44:34,301 DEBUG [mondrian.sql] 36: , exec 40 ms
+2021-06-15 17:44:34,302 DEBUG [mondrian.sql] 36: , exec+fetch 42 ms, 1 rows
+2021-06-15 17:44:34,306 DEBUG [mondrian.sql] 37: Segment.load: executing sql [
 select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEUSD") as "m0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEEUR") as "m1",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m2"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
+where
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG"]
+2021-06-15 17:44:34,387 DEBUG [mondrian.sql] 37: , exec 80 ms
+2021-06-15 17:44:34,388 DEBUG [mondrian.sql] 37: , exec+fetch 82 ms, 0 rows
+2021-06-15 17:44:36,107 DEBUG [mondrian.sql] 38: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]]: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST]
+2021-06-15 17:44:36,135 DEBUG [mondrian.sql] 38: , exec 28 ms
+2021-06-15 17:44:36,136 DEBUG [mondrian.sql] 38: , exec+fetch 29 ms, 2 rows
+2021-06-15 17:44:37,844 DEBUG [mondrian.sql] 39: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CITY_AS_IS]]: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    "CUSTOMER_AS_IS"."C_CITY" as "c2"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG",
+    "CUSTOMER_AS_IS"."C_CITY"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_SALESORG" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_CITY" ASC NULLS LAST]
+2021-06-15 17:44:37,893 DEBUG [mondrian.sql] 39: , exec 49 ms
+2021-06-15 17:44:37,945 DEBUG [mondrian.sql] 39: , exec+fetch 101 ms, 24 rows
+2021-06-15 17:44:37,953 DEBUG [mondrian.sql] 40: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."C_CITY" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:44:37,981 DEBUG [mondrian.sql] 40: , exec 27 ms
+2021-06-15 17:44:37,981 DEBUG [mondrian.sql] 40: , exec+fetch 28 ms, 1 rows
+2021-06-15 17:44:37,988 DEBUG [mondrian.sql] 41: Segment.load: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    "CUSTOMER_AS_IS"."C_CITY" as "c2",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEUSD") as "m0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEEUR") as "m1",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m2"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
+where
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG",
+    "CUSTOMER_AS_IS"."C_CITY"]
+2021-06-15 17:44:38,046 DEBUG [mondrian.sql] 41: , exec 58 ms
+2021-06-15 17:44:38,047 DEBUG [mondrian.sql] 41: , exec+fetch 59 ms, 0 rows
+2021-06-15 17:45:02,376 DEBUG [mondrian.sql] 42: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-06-15 17:45:02,407 DEBUG [mondrian.sql] 42: , exec 30 ms
+2021-06-15 17:45:02,407 DEBUG [mondrian.sql] 42: , exec+fetch 30 ms, 1 rows
+2021-06-15 17:45:02,407 DEBUG [mondrian.sql] 43: AggStar.FactTable.makeNumberOfRows: executing sql [
+select
+    count(*) as "c0"
+from
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-06-15 17:45:02,441 DEBUG [mondrian.sql] 43: , exec 32 ms
+2021-06-15 17:45:02,441 DEBUG [mondrian.sql] 43: , exec+fetch 34 ms, 1 rows
+2021-06-15 17:45:13,356 DEBUG [mondrian.sql] 44: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS]]: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    "CUSTOMER_AS_IS"."C_CITY" as "c2",
+    "CUSTOMER_AS_IS"."TECH_C_ID" as "c3",
+    "CUSTOMER_AS_IS"."C_DESC" as "c4"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG",
+    "CUSTOMER_AS_IS"."C_CITY",
+    "CUSTOMER_AS_IS"."TECH_C_ID",
+    "CUSTOMER_AS_IS"."C_DESC"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_SALESORG" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_CITY" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."TECH_C_ID" ASC NULLS LAST]
+2021-06-15 17:45:13,382 DEBUG [mondrian.sql] 44: , exec 26 ms
+2021-06-15 17:45:13,437 DEBUG [mondrian.sql] 44: , exec+fetch 81 ms, 24 rows
+2021-06-15 17:45:13,456 DEBUG [mondrian.sql] 45: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."TECH_C_ID" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:45:13,481 DEBUG [mondrian.sql] 45: , exec 25 ms
+2021-06-15 17:45:13,482 DEBUG [mondrian.sql] 45: , exec+fetch 26 ms, 1 rows
+2021-06-15 17:45:13,485 DEBUG [mondrian.sql] 46: Segment.load: executing sql [
+select
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" as "c0",
     sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"]
-2021-06-13 16:42:17,064 DEBUG [mondrian.sql] 19: , exec 33 ms
-2021-06-13 16:42:17,226 DEBUG [mondrian.sql] 19: , exec+fetch 195 ms, 40 rows
-2021-06-13 16:42:24,146 DEBUG [mondrian.sql] 20: SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]]: executing sql [
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID"]
+2021-06-15 17:45:13,518 DEBUG [mondrian.sql] 46: , exec 31 ms
+2021-06-15 17:45:13,575 DEBUG [mondrian.sql] 46: , exec+fetch 89 ms, 24 rows
+2021-06-15 17:45:21,989 DEBUG [mondrian.sql] 47: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS]]: executing sql [
 select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    "CUSTOMER_AS_IS"."C_LAND" as "c2"
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_SALESORG" ASC NULLS LAST]
+2021-06-15 17:45:22,031 DEBUG [mondrian.sql] 47: , exec 42 ms
+2021-06-15 17:45:22,032 DEBUG [mondrian.sql] 47: , exec+fetch 43 ms, 4 rows
+2021-06-15 17:45:22,035 DEBUG [mondrian.sql] 48: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:45:22,067 DEBUG [mondrian.sql] 48: , exec 30 ms
+2021-06-15 17:45:22,068 DEBUG [mondrian.sql] 48: , exec+fetch 33 ms, 1 rows
+2021-06-15 17:45:22,068 DEBUG [mondrian.sql] 49: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:45:22,099 DEBUG [mondrian.sql] 49: , exec 30 ms
+2021-06-15 17:45:22,100 DEBUG [mondrian.sql] 49: , exec+fetch 32 ms, 1 rows
+2021-06-15 17:45:22,105 DEBUG [mondrian.sql] 50: Segment.load: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
 where
     "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION",
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG"]
+2021-06-15 17:45:22,157 DEBUG [mondrian.sql] 50: , exec 52 ms
+2021-06-15 17:45:22,158 DEBUG [mondrian.sql] 50: , exec+fetch 52 ms, 0 rows
+2021-06-15 17:46:23,879 DEBUG [mondrian.sql] 51: SqlStatisticsProvider.getTableCardinality: executing sql [select count(*) from "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-06-15 17:46:23,917 DEBUG [mondrian.sql] 51: , exec 37 ms
+2021-06-15 17:46:23,917 DEBUG [mondrian.sql] 51: , exec+fetch 38 ms, 1 rows
+2021-06-15 17:46:23,918 DEBUG [mondrian.sql] 52: AggStar.FactTable.makeNumberOfRows: executing sql [
+select
+    count(*) as "c0"
+from
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"]
+2021-06-15 17:46:23,960 DEBUG [mondrian.sql] 52: , exec 42 ms
+2021-06-15 17:46:23,961 DEBUG [mondrian.sql] 52: , exec+fetch 43 ms, 1 rows
+2021-06-15 17:46:32,367 DEBUG [mondrian.sql] 53: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS]]: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    "CUSTOMER_AS_IS"."C_CITY" as "c2",
+    "CUSTOMER_AS_IS"."C_ID" as "c3",
+    "CUSTOMER_AS_IS"."C_DESC" as "c4"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG",
+    "CUSTOMER_AS_IS"."C_CITY",
+    "CUSTOMER_AS_IS"."C_ID",
+    "CUSTOMER_AS_IS"."C_DESC"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_SALESORG" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_CITY" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_ID" ASC NULLS LAST]
+2021-06-15 17:46:32,405 DEBUG [mondrian.sql] 53: , exec 37 ms
+2021-06-15 17:46:32,466 DEBUG [mondrian.sql] 53: , exec+fetch 99 ms, 24 rows
+2021-06-15 17:46:32,469 DEBUG [mondrian.sql] 54: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."C_ID" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:46:32,531 DEBUG [mondrian.sql] 54: , exec 61 ms
+2021-06-15 17:46:32,532 DEBUG [mondrian.sql] 54: , exec+fetch 63 ms, 1 rows
+2021-06-15 17:46:32,536 DEBUG [mondrian.sql] 55: Segment.load: executing sql [
+select
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" as "c0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
+from
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
+group by
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID"]
+2021-06-15 17:46:32,574 DEBUG [mondrian.sql] 55: , exec 38 ms
+2021-06-15 17:46:32,638 DEBUG [mondrian.sql] 55: , exec+fetch 101 ms, 24 rows
+2021-06-15 17:46:42,779 DEBUG [mondrian.sql] 56: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]]: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
     "CUSTOMER_AS_IS"."C_LAND"
 order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST,
     "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST]
-2021-06-13 16:42:24,183 DEBUG [mondrian.sql] 20: , exec 36 ms
-2021-06-13 16:42:24,299 DEBUG [mondrian.sql] 20: , exec+fetch 153 ms, 40 rows
-2021-06-13 16:46:01,093 DEBUG [mondrian.sql] 21: SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]]: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    "CUSTOMER_AS_IS"."C_LAND" as "c2"
+2021-06-15 17:46:42,811 DEBUG [mondrian.sql] 56: , exec 32 ms
+2021-06-15 17:46:42,812 DEBUG [mondrian.sql] 56: , exec+fetch 33 ms, 2 rows
+2021-06-15 17:46:42,814 DEBUG [mondrian.sql] 57: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."C_LAND" as "c0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION",
-    "CUSTOMER_AS_IS"."C_LAND"
-order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST,
-    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST]
-2021-06-13 16:46:01,144 DEBUG [mondrian.sql] 21: , exec 50 ms
-2021-06-13 16:46:01,253 DEBUG [mondrian.sql] 21: , exec+fetch 159 ms, 40 rows
-2021-06-13 16:46:01,269 DEBUG [mondrian.sql] 22: Segment.load: executing sql [
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:46:42,846 DEBUG [mondrian.sql] 57: , exec 31 ms
+2021-06-15 17:46:42,846 DEBUG [mondrian.sql] 57: , exec+fetch 32 ms, 1 rows
+2021-06-15 17:46:42,849 DEBUG [mondrian.sql] 58: Segment.load: executing sql [
 select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEEUR") as "m0"
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
 where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."C_ID"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
+    "CUSTOMER_AS_IS"."C_LAND"]
+2021-06-15 17:46:42,894 DEBUG [mondrian.sql] 58: , exec 43 ms
+2021-06-15 17:46:42,903 DEBUG [mondrian.sql] 58: , exec+fetch 54 ms, 2 rows
+2021-06-15 17:46:43,621 DEBUG [mondrian.sql] 59: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS]]: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
     "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"]
-2021-06-13 16:46:01,313 DEBUG [mondrian.sql] 22: , exec 44 ms
-2021-06-13 16:46:01,425 DEBUG [mondrian.sql] 22: , exec+fetch 156 ms, 40 rows
-2021-06-13 16:46:02,367 DEBUG [mondrian.sql] 23: SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]]: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    "CUSTOMER_AS_IS"."C_LAND" as "c2"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION",
-    "CUSTOMER_AS_IS"."C_LAND"
+    "CUSTOMER_AS_IS"."C_SALESORG"
 order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST,
-    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST]
-2021-06-13 16:46:02,404 DEBUG [mondrian.sql] 23: , exec 36 ms
-2021-06-13 16:46:02,507 DEBUG [mondrian.sql] 23: , exec+fetch 139 ms, 40 rows
-2021-06-13 16:46:02,520 DEBUG [mondrian.sql] 24: Segment.load: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEUSD") as "m0"
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_SALESORG" ASC NULLS LAST]
+2021-06-15 17:46:43,660 DEBUG [mondrian.sql] 59: , exec 38 ms
+2021-06-15 17:46:43,661 DEBUG [mondrian.sql] 59: , exec+fetch 40 ms, 4 rows
+2021-06-15 17:46:43,664 DEBUG [mondrian.sql] 60: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:46:43,694 DEBUG [mondrian.sql] 60: , exec 30 ms
+2021-06-15 17:46:43,694 DEBUG [mondrian.sql] 60: , exec+fetch 30 ms, 1 rows
+2021-06-15 17:46:43,699 DEBUG [mondrian.sql] 61: Segment.load: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
 where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."C_ID"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
     "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"]
-2021-06-13 16:46:02,562 DEBUG [mondrian.sql] 24: , exec 41 ms
-2021-06-13 16:46:02,680 DEBUG [mondrian.sql] 24: , exec+fetch 160 ms, 40 rows
-2021-06-13 16:46:03,742 DEBUG [mondrian.sql] 25: SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]]: executing sql [
+    "CUSTOMER_AS_IS"."C_SALESORG"]
+2021-06-15 17:46:43,742 DEBUG [mondrian.sql] 61: , exec 42 ms
+2021-06-15 17:46:43,744 DEBUG [mondrian.sql] 61: , exec+fetch 44 ms, 4 rows
+2021-06-15 17:46:56,343 DEBUG [mondrian.sql] 62: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF]]: executing sql [
 select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    "CUSTOMER_AS_IS"."C_LAND" as "c2"
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c1"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION",
-    "CUSTOMER_AS_IS"."C_LAND"
+    "CUSTOMER_AS_OF"."C_LAND",
+    "CUSTOMER_AS_OF"."C_SALESORG"
 order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST,
-    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST]
-2021-06-13 16:46:03,786 DEBUG [mondrian.sql] 25: , exec 44 ms
-2021-06-13 16:46:03,898 DEBUG [mondrian.sql] 25: , exec+fetch 156 ms, 40 rows
-2021-06-13 16:46:03,910 DEBUG [mondrian.sql] 26: Segment.load: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_DISCOUNTUSD") as "m0"
+    "CUSTOMER_AS_OF"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_OF"."C_SALESORG" ASC NULLS LAST]
+2021-06-15 17:46:56,377 DEBUG [mondrian.sql] 62: , exec 33 ms
+2021-06-15 17:46:56,377 DEBUG [mondrian.sql] 62: , exec+fetch 34 ms, 3 rows
+2021-06-15 17:46:56,379 DEBUG [mondrian.sql] 63: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_OF"."C_LAND" as "c0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"]
-2021-06-13 16:46:03,953 DEBUG [mondrian.sql] 26: , exec 43 ms
-2021-06-13 16:46:04,068 DEBUG [mondrian.sql] 26: , exec+fetch 157 ms, 40 rows
-2021-06-13 16:46:04,958 DEBUG [mondrian.sql] 27: SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]]: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    "CUSTOMER_AS_IS"."C_LAND" as "c2"
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF")]
+2021-06-15 17:46:56,412 DEBUG [mondrian.sql] 63: , exec 32 ms
+2021-06-15 17:46:56,413 DEBUG [mondrian.sql] 63: , exec+fetch 33 ms, 1 rows
+2021-06-15 17:46:56,413 DEBUG [mondrian.sql] 64: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION",
-    "CUSTOMER_AS_IS"."C_LAND"
-order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST,
-    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST]
-2021-06-13 16:46:04,997 DEBUG [mondrian.sql] 27: , exec 39 ms
-2021-06-13 16:46:05,103 DEBUG [mondrian.sql] 27: , exec+fetch 145 ms, 40 rows
-2021-06-13 16:46:05,115 DEBUG [mondrian.sql] 28: Segment.load: executing sql [
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF")]
+2021-06-15 17:46:56,448 DEBUG [mondrian.sql] 64: , exec 34 ms
+2021-06-15 17:46:56,449 DEBUG [mondrian.sql] 64: , exec+fetch 35 ms, 1 rows
+2021-06-15 17:46:56,452 DEBUG [mondrian.sql] 65: Segment.load: executing sql [
 select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NETSALESUSD") as "m0"
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c1",
+    sum("WI2_ACU008_FACT_TABLE"."SALESQUANTITY") as "m0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF",
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
 where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "CUSTOMER_AS_OF"."C_ID"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"]
-2021-06-13 16:46:05,158 DEBUG [mondrian.sql] 28: , exec 44 ms
-2021-06-13 16:46:05,274 DEBUG [mondrian.sql] 28: , exec+fetch 158 ms, 40 rows
-2021-06-13 16:46:06,419 DEBUG [mondrian.sql] 29: SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]]: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    "CUSTOMER_AS_IS"."C_LAND" as "c2"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION",
-    "CUSTOMER_AS_IS"."C_LAND"
-order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST,
-    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST]
-2021-06-13 16:46:06,457 DEBUG [mondrian.sql] 29: , exec 38 ms
-2021-06-13 16:46:06,563 DEBUG [mondrian.sql] 29: , exec+fetch 143 ms, 40 rows
-2021-06-13 16:46:06,586 DEBUG [mondrian.sql] 30: Segment.load: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_COGSUSD") as "m0"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"]
-2021-06-13 16:46:06,633 DEBUG [mondrian.sql] 30: , exec 46 ms
-2021-06-13 16:46:06,744 DEBUG [mondrian.sql] 30: , exec+fetch 157 ms, 40 rows
-2021-06-13 16:46:07,741 DEBUG [mondrian.sql] 31: SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]]: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    "CUSTOMER_AS_IS"."C_LAND" as "c2"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION",
-    "CUSTOMER_AS_IS"."C_LAND"
-order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST,
-    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST]
-2021-06-13 16:46:07,789 DEBUG [mondrian.sql] 31: , exec 47 ms
-2021-06-13 16:46:07,894 DEBUG [mondrian.sql] 31: , exec+fetch 153 ms, 40 rows
-2021-06-13 16:46:07,910 DEBUG [mondrian.sql] 32: Segment.load: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NOOFSALESORDERS") as "m0"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"]
-2021-06-13 16:46:07,959 DEBUG [mondrian.sql] 32: , exec 48 ms
-2021-06-13 16:46:08,076 DEBUG [mondrian.sql] 32: , exec+fetch 165 ms, 40 rows
+    "CUSTOMER_AS_OF"."C_LAND",
+    "CUSTOMER_AS_OF"."C_SALESORG"]
+2021-06-15 17:46:56,529 DEBUG [mondrian.sql] 65: , exec 76 ms
+2021-06-15 17:46:56,531 DEBUG [mondrian.sql] 65: , exec+fetch 78 ms, 3 rows

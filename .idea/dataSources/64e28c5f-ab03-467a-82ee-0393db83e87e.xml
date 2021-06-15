@@ -21253,9 +21253,9 @@
     <schema id="7084" parent="1" name="ACU008">
       <ObjectId>9628</ObjectId>
       <CreatedTimestamp>2020-04-30.00:17:52</CreatedTimestamp>
-      <ModifiedTimestamp>2021-06-13.16:56:19</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-06-15.19:30:21</ModifiedTimestamp>
       <IntrospectionVersion>200820</IntrospectionVersion>
-      <IntrospectionTimestamp>2021-06-13.16:56:25</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2021-06-15.19:30:25</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="7085" parent="1" name="ACU009">
@@ -24712,7 +24712,7 @@
       <ObjectId>3156</ObjectId>
     </schema>
     <schema id="8235" parent="1" name="SCOTT">
-      <ObjectId>11233</ObjectId>
+      <ObjectId>11237</ObjectId>
     </schema>
     <schema id="8236" parent="1" name="SCOTTY">
       <ObjectId>3158</ObjectId>
@@ -49629,7 +49629,7 @@
       <ObjectId>3156</ObjectId>
     </user>
     <user id="16540" parent="1" name="SCOTT">
-      <ObjectId>11233</ObjectId>
+      <ObjectId>11237</ObjectId>
     </user>
     <user id="16541" parent="1" name="SCOTTY">
       <ObjectId>3158</ObjectId>
@@ -49865,7 +49865,7 @@
     <table id="16615" parent="7084" name="AGG_2_WI2_ACU008_FACT_TABLE">
       <ObjectId>1729576</ObjectId>
       <CreatedTimestamp>2021-06-13.13:12:14</CreatedTimestamp>
-      <ModifiedTimestamp>2021-06-13.13:12:14</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-06-15.19:15:51</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="16616" parent="7084" name="ANSCHRIFT">
@@ -49937,7 +49937,7 @@
     <table id="16627" parent="7084" name="WI2_ACU008_CUSTOMER">
       <ObjectId>1729574</ObjectId>
       <CreatedTimestamp>2021-06-13.13:12:05</CreatedTimestamp>
-      <ModifiedTimestamp>2021-06-13.14:31:13</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-06-15.18:31:02</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="16628" parent="7084" name="WI2_ACU008_CUSTOMER_AS_OF">
@@ -49955,19 +49955,19 @@
     <table id="16630" parent="7084" name="WI2_ACU008_FACT_TABLE">
       <ObjectId>1729575</ObjectId>
       <CreatedTimestamp>2021-06-13.13:12:09</CreatedTimestamp>
-      <ModifiedTimestamp>2021-06-13.16:56:19</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-06-15.19:30:21</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="16631" parent="7084" name="WI2_ACU008_PRODUCT">
       <ObjectId>1668823</ObjectId>
       <CreatedTimestamp>2021-05-21.14:05:32</CreatedTimestamp>
-      <ModifiedTimestamp>2021-05-31.17:56:44</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-06-15.13:27:23</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="16632" parent="7084" name="WI2_ACU008_TIME">
       <ObjectId>1718246</ObjectId>
       <CreatedTimestamp>2021-06-10.11:49:58</CreatedTimestamp>
-      <ModifiedTimestamp>2021-06-10.11:49:58</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-06-15.13:27:24</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <view id="16633" parent="7084" name="DATE_JOINS">
@@ -50653,15 +50653,15 @@ KUNDEID</ColNames>
       <DefaultExpression>1</DefaultExpression>
     </column>
     <index id="16742" parent="16627" name="PK_CUSTOMER">
-      <ObjectId>1729624</ObjectId>
-      <CreatedTimestamp>2021-06-13.14:31:13</CreatedTimestamp>
-      <ModifiedTimestamp>2021-06-13.14:31:13</ModifiedTimestamp>
+      <ObjectId>1733758</ObjectId>
+      <CreatedTimestamp>2021-06-15.18:31:02</CreatedTimestamp>
+      <ModifiedTimestamp>2021-06-15.18:31:02</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>TECH_C_ID</ColNames>
       <Unique>1</Unique>
     </index>
     <key id="16743" parent="16627" name="PK_CUSTOMER">
-      <ModifiedTimestamp>2021-06-13.14:31:13</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-06-15.18:31:02</ModifiedTimestamp>
       <ColNames>TECH_C_ID</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>PK_CUSTOMER</UnderlyingIndexName>
@@ -50717,7 +50717,7 @@ KUNDEID</ColNames>
     </column>
     <column id="16756" parent="16630" name="FACT_C_ID">
       <Position>2</Position>
-      <DataType>NUMBER(*)|0s</DataType>
+      <DataType>VARCHAR2(20 byte)|0s</DataType>
     </column>
     <column id="16757" parent="16630" name="ORDER_DATE">
       <Position>3</Position>
@@ -50760,44 +50760,36 @@ KUNDEID</ColNames>
       <RefKeyName>SYS_C001944805</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <foreign-key id="16766" parent="16630" name="FK_FACT">
-      <ModifiedTimestamp>2021-06-13.16:56:19</ModifiedTimestamp>
-      <ColNames>FACT_C_ID</ColNames>
-      <RefSchemaName>ACU008</RefSchemaName>
-      <RefTableName>WI2_ACU008_CUSTOMER</RefTableName>
-      <RefKeyName>PK_CUSTOMER</RefKeyName>
-      <OnDelete>restrict</OnDelete>
-    </foreign-key>
-    <column id="16767" parent="16631" name="P_ID">
+    <column id="16766" parent="16631" name="P_ID">
       <Position>1</Position>
       <DataType>VARCHAR2(10 byte)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="16768" parent="16631" name="P_DESC">
+    <column id="16767" parent="16631" name="P_DESC">
       <Position>2</Position>
       <DataType>VARCHAR2(50 byte)|0s</DataType>
     </column>
-    <column id="16769" parent="16631" name="P_DIVISION">
+    <column id="16768" parent="16631" name="P_DIVISION">
       <Position>3</Position>
       <DataType>VARCHAR2(50 byte)|0s</DataType>
     </column>
-    <column id="16770" parent="16631" name="P_CATEGORYID">
+    <column id="16769" parent="16631" name="P_CATEGORYID">
       <Position>4</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <column id="16771" parent="16631" name="P_CATEGORY">
+    <column id="16770" parent="16631" name="P_CATEGORY">
       <Position>5</Position>
       <DataType>VARCHAR2(50 byte)|0s</DataType>
     </column>
-    <column id="16772" parent="16631" name="P_SALESPRICE">
+    <column id="16771" parent="16631" name="P_SALESPRICE">
       <Position>6</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <column id="16773" parent="16631" name="P_PRODUCTIONPRICE">
+    <column id="16772" parent="16631" name="P_PRODUCTIONPRICE">
       <Position>7</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <index id="16774" parent="16631" name="SYS_C001944805">
+    <index id="16773" parent="16631" name="SYS_C001944805">
       <ObjectId>1668824</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-05-21.14:05:32</CreatedTimestamp>
@@ -50806,7 +50798,7 @@ KUNDEID</ColNames>
       <ColNames>P_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="16775" parent="16631" name="SYS_C001944805">
+    <key id="16774" parent="16631" name="SYS_C001944805">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2021-05-21.14:05:32</ModifiedTimestamp>
       <ColNames>P_ID</ColNames>
@@ -50814,29 +50806,29 @@ KUNDEID</ColNames>
       <UnderlyingIndexName>SYS_C001944805</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="16776" parent="16632" name="T_ID">
+    <column id="16775" parent="16632" name="T_ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
       <AutoInc>1</AutoInc>
     </column>
-    <column id="16777" parent="16632" name="T_DAY">
+    <column id="16776" parent="16632" name="T_DAY">
       <Position>2</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <column id="16778" parent="16632" name="T_MONTH">
+    <column id="16777" parent="16632" name="T_MONTH">
       <Position>3</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <column id="16779" parent="16632" name="T_YEAR">
+    <column id="16778" parent="16632" name="T_YEAR">
       <Position>4</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <column id="16780" parent="16632" name="T_ORDER_DATE">
+    <column id="16779" parent="16632" name="T_ORDER_DATE">
       <Position>5</Position>
       <DataType>DATE|0s</DataType>
     </column>
-    <index id="16781" parent="16632" name="SYS_C002036210">
+    <index id="16780" parent="16632" name="SYS_C002036210">
       <ObjectId>1718248</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-06-10.11:49:58</CreatedTimestamp>
@@ -50845,7 +50837,7 @@ KUNDEID</ColNames>
       <ColNames>T_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="16782" parent="16632" name="SYS_C002036210">
+    <key id="16781" parent="16632" name="SYS_C002036210">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2021-06-10.11:49:58</ModifiedTimestamp>
       <ColNames>T_ID</ColNames>
@@ -50853,71 +50845,71 @@ KUNDEID</ColNames>
       <UnderlyingIndexName>SYS_C002036210</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="16783" parent="16633" name="DATES">
+    <column id="16782" parent="16633" name="DATES">
       <Position>1</Position>
       <DataType>DATE|0s</DataType>
     </column>
-    <column id="16784" parent="16634" name="ORDER_DATE">
+    <column id="16783" parent="16634" name="ORDER_DATE">
       <Position>1</Position>
       <DataType>DATE|0s</DataType>
     </column>
-    <column id="16785" parent="16634" name="CUSTOMER">
+    <column id="16784" parent="16634" name="CUSTOMER">
       <Position>2</Position>
       <DataType>VARCHAR2(10 byte)|0s</DataType>
     </column>
-    <column id="16786" parent="16634" name="C_DESC">
+    <column id="16785" parent="16634" name="C_DESC">
       <Position>3</Position>
       <DataType>VARCHAR2(50 byte)|0s</DataType>
     </column>
-    <column id="16787" parent="16634" name="PRODUCT">
+    <column id="16786" parent="16634" name="PRODUCT">
       <Position>4</Position>
       <DataType>VARCHAR2(10 byte)|0s</DataType>
     </column>
-    <column id="16788" parent="16634" name="PRODUCT_DESC">
+    <column id="16787" parent="16634" name="PRODUCT_DESC">
       <Position>5</Position>
       <DataType>VARCHAR2(50 byte)|0s</DataType>
     </column>
-    <column id="16789" parent="16634" name="P_CATEGORY">
+    <column id="16788" parent="16634" name="P_CATEGORY">
       <Position>6</Position>
       <DataType>VARCHAR2(20 byte)|0s</DataType>
     </column>
-    <column id="16790" parent="16634" name="DIVISION">
+    <column id="16789" parent="16634" name="DIVISION">
       <Position>7</Position>
       <DataType>VARCHAR2(10 byte)|0s</DataType>
     </column>
-    <column id="16791" parent="16634" name="ORGANISATION">
+    <column id="16790" parent="16634" name="ORGANISATION">
       <Position>8</Position>
       <DataType>VARCHAR2(10 byte)|0s</DataType>
     </column>
-    <column id="16792" parent="16634" name="CITY">
+    <column id="16791" parent="16634" name="CITY">
       <Position>9</Position>
       <DataType>VARCHAR2(20 byte)|0s</DataType>
     </column>
-    <column id="16793" parent="16634" name="COUNTRY">
+    <column id="16792" parent="16634" name="COUNTRY">
       <Position>10</Position>
       <DataType>VARCHAR2(10 byte)|0s</DataType>
     </column>
-    <column id="16794" parent="16634" name="REVENUE">
+    <column id="16793" parent="16634" name="REVENUE">
       <Position>11</Position>
       <DataType>NUMBER(15,2 digit)|0s</DataType>
     </column>
-    <column id="16795" parent="16634" name="DISCOUNT">
+    <column id="16794" parent="16634" name="DISCOUNT">
       <Position>12</Position>
       <DataType>NUMBER(15,2 digit)|0s</DataType>
     </column>
-    <column id="16796" parent="16634" name="COGS">
+    <column id="16795" parent="16634" name="COGS">
       <Position>13</Position>
       <DataType>NUMBER(15,2 digit)|0s</DataType>
     </column>
-    <column id="16797" parent="16634" name="SALES_QUANTITY">
+    <column id="16796" parent="16634" name="SALES_QUANTITY">
       <Position>14</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <column id="16798" parent="16635" name="AVRG">
+    <column id="16797" parent="16635" name="AVRG">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <column id="16799" parent="16635" name="TS">
+    <column id="16798" parent="16635" name="TS">
       <Position>2</Position>
       <DataType>TIMESTAMP(0)|0s</DataType>
     </column>

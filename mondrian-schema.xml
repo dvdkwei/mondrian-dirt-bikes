@@ -44,36 +44,28 @@
         </Dimension>
 
         <Dimension name="CUSTOMER" foreignKey="FACT_C_ID">
-            <Hierarchy name="CUSTOMER_HIERARCHY_AS_IS" primaryKey="TECH_C_ID" hasAll="true">
+            <Hierarchy name="CUSTOMER_HIERARCHY_AS_IS" primaryKey="C_ID" hasAll="true">
                 <View alias="CUSTOMER_AS_IS">
                     <SQL dialect="generic">
-                        SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC
+                        SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC
                     </SQL>
                 </View>
                 <Level name="COUNTRY_AS_IS" column="C_LAND"/>
                 <Level name="SALESORG_AS_IS" column="C_SALESORG"/>
                 <Level name="CITY_AS_IS" column="C_CITY"/>
-                <Level name="CUSTOMER_AS_IS" column="TECH_C_ID" nameColumn="C_DESC" uniqueMembers="true">
-                    <!--                    <Property name="VALID_FROM" column="VALIDFROM"/>-->
-                    <!--                    <Property name="VALID_TO" column="VALIDTO"/>-->
-                    <!--                    <Property name="VERSION" column="VERSION"/>-->
-                </Level>
+                <Level name="CUSTOMER_AS_IS" column="C_ID" nameColumn="C_DESC" uniqueMembers="true"/>
             </Hierarchy>
 
-            <Hierarchy name="CUSTOMER_HIERARCHY_AS_OF" primaryKey="TECH_C_ID" hasAll="true">
+            <Hierarchy name="CUSTOMER_HIERARCHY_AS_OF" primaryKey="C_ID" hasAll="true">
                 <View alias="CUSTOMER_AS_OF">
                     <SQL dialect="generic">
-                        SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC
+                        SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC
                     </SQL>
                 </View>
                 <Level name="COUNTRY_AS_OF" column="C_LAND"/>
                 <Level name="SALESORG_AS_OF" column="C_SALESORG"/>
                 <Level name="CITY_AS_OF" column="C_CITY"/>
-                <Level name="CUSTOMER_AS_OF" column="TECH_C_ID" nameColumn="C_DESC" uniqueMembers="true">
-                    <!--                    <Property name="VALID_FROM" column="VALIDFROM"/>-->
-                    <!--                    <Property name="VALID_TO" column="VALIDTO"/>-->
-                    <!--                    <Property name="VERSION" column="VERSION"/>-->
-                </Level>
+                <Level name="CUSTOMER_AS_OF" column="C_ID" nameColumn="C_DESC" uniqueMembers="true"/>
             </Hierarchy>
         </Dimension>
 

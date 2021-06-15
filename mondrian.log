@@ -1,458 +1,315 @@
-2021-06-13 16:46:06,573 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
-2021-06-13 16:46:06,573 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
-2021-06-13 16:46:06,574 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
-2021-06-13 16:46:06,579 DEBUG [mondrian.server.monitor] ExecutionPhaseEvent(3586, 0)
-2021-06-13 16:46:06,580 DEBUG [mondrian.rolap.FastBatchingCellReader] FastBatchingCellReader: bitkey=0x0000000000000000000000000000000000000000000000000010000000001001
-  YEAR (0): EXTRACT(YEAR FROM ORDER_DATE)
-  COUNTRY_AS_IS (3): "CUSTOMER_AS_IS"."C_LAND"
-  DIVISION (13): "WI2_ACU008_PRODUCT"."P_DIVISION"
-
-2021-06-13 16:46:06,584 DEBUG [mondrian.rolap.cache.SegmentCacheIndexImpl] SegmentCacheIndexImpl(1727011176).add:
-*Segment Header
-Schema:[HyperSchema]
-Checksum:[911011f5a5d2b2e733399aa52ef4271d]
-Cube:[HyperCube@DirtBikes]
-Measure:[COSTOFGOODSSOLDUSD]
-Axes:[
-    {CUSTOMER_AS_IS.C_LAND=(*)}
-    {EXTRACT(YEAR FROM ORDER_DATE)=(*)}
-    {WI2_ACU008_PRODUCT.P_DIVISION=(*)}]
-Excluded Regions:[]
-Compound Predicates:[]
-ID:[e222108841298b3a3bd2c2e66a99179046c154653ded4d1a758a7d4f8618638e]
-
-2021-06-13 16:46:06,585 DEBUG [mondrian.rolap.BatchLoader$Batch] Batch.load (millis) 1
-2021-06-13 16:46:06,585 DEBUG [mondrian.rolap.FastBatchingCellReader] load (millis): 5
-2021-06-13 16:46:06,585 DEBUG [mondrian.rolap.agg.AggregationManager] MATCH: WI2_ACU008_FACT_TABLE
-   foreign=0x0000000000000000000000000000000000000000000000000010000000001001
-   measure=0x0000000000000000000000000000000000000000010000000000000000000000
-   aggstar=0x0000000000000000000000000000000000000001111111001010000010111011
-AggStar=AGG_2_WI2_ACU008_FACT_TABLE
-   [NETSALESUSD] (21): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NETSALESUSD")
-   [DISCOUNTUSD] (20): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_DISCOUNTUSD")
-   [SALESQUANTITY] (23): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY")
-   [REVENUEEUR] (19): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEEUR")
-   [REVENUEUSD] (18): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEUSD")
-   [COSTOFGOODSSOLDUSD] (22): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_COGSUSD")
-   [NOOFSALESORDERS] (24): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NOOFSALESORDERS")
-   YEAR (0): "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR"
-   CUSTOMER_AS_IS (7): "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID"
-   MONTH (1): "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_MONTH"
-   DIVISION (13): "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"
-   PRODUCT_CATEGORY (15): "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_CATEGORY"
-
-2021-06-13 16:46:06,586 DEBUG [mondrian.rolap.agg.AggregationManager] generateSqlQuery: sql=select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_COGSUSD") as "m0"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"
-2021-06-13 16:46:06,586 DEBUG [mondrian.sql] 30: Segment.load: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_COGSUSD") as "m0"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"]
-2021-06-13 16:46:06,587 DEBUG [mondrian.server.monitor] SqlStatementStartEvent(30)
-2021-06-13 16:46:06,633 DEBUG [mondrian.sql] 30: , exec 46 ms
-2021-06-13 16:46:06,633 DEBUG [mondrian.rolap.RolapUtil] Segment.load: executing sql [select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_COGSUSD") as "m0"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"], exec 46 ms
-2021-06-13 16:46:06,633 DEBUG [mondrian.server.monitor] SqlStatementExecuteEvent(30)
-2021-06-13 16:46:06,744 DEBUG [mondrian.server.monitor] mondrian.rolap.agg.SegmentCacheManager$SegmentLoadSucceededEvent@3c69721
-2021-06-13 16:46:06,744 DEBUG [mondrian.sql] 30: , exec+fetch 157 ms, 40 rows
-2021-06-13 16:46:06,744 DEBUG [mondrian.server.monitor] mondrian.server.monitor.CellCacheSegmentCreateEvent@28947aa4
-2021-06-13 16:46:06,744 DEBUG [mondrian.rolap.RolapUtil] Segment.load: done executing sql [select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_COGSUSD") as "m0"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"], exec+fetch 157 ms, 40 rows, ex=31, close=31, open=[]
-2021-06-13 16:46:06,744 DEBUG [mondrian.server.monitor] SqlStatementInfo{sqlStatementId=30, sql=select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_COGSUSD") as "m0"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"}
-2021-06-13 16:46:06,745 DEBUG [mondrian.server.monitor] SqlStatementEndEvent(30)
-2021-06-13 16:46:06,747 DEBUG [mondrian.profile] QueryBody:
-
-Query Timing (Cumulative):
-SqlStatement-Segment.load invoked 1 times for total of 157ms.  (Avg. 157ms/invocation)
-SqlStatement-SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]] invoked 1 times for total of 143ms.  (Avg. 143ms/invocation)
-
-2021-06-13 16:46:06,747 DEBUG [mondrian.olap.ResultBase] RolapResult<init>: FREE_MEMORY: 326074kb 82.81%
-2021-06-13 16:46:06,748 DEBUG [mondrian.rolap.RolapStar] RolapStar.clearCachedAggregations: schema=HyperSchema, star=WI2_ACU008_FACT_TABLE
-2021-06-13 16:46:06,748 DEBUG [mondrian.server.monitor] ExecutionInfo{executionId=3586, phaseCount=2, cellCacheRequestCount=480, cellCacheHitCount=440, cellCacheMissCount=40, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0, expCacheHitCount=0, expCacheMissCount=0}
-2021-06-13 16:46:06,748 DEBUG [mondrian.mdx] 3586: exec: 330 ms
-2021-06-13 16:46:06,748 DEBUG [mondrian.server.monitor] ExecutionEndEvent(3586)
-2021-06-13 16:46:06,749 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=3, statements=1, connections=10
-2021-06-13 16:46:06,749 DEBUG [mondrian.server.monitor] StatementInfo{statementId=111, executeStartCount=1, executeEndCount=1, phaseCount=2, cellCacheRequestCount=480, cellCacheHitCount=440, cellCacheMissCount=40, cellCachePendingCount=0, sqlStatementStartCount=2, sqlStatementExecuteCount=2, sqlStatementEndCount=2, sqlStatementRowFetchCount=80, sqlStatementExecuteNanos=84830800, cellRequestCount=40}
-2021-06-13 16:46:06,749 DEBUG [mondrian.server.monitor] StatementEndEvent(111)
-2021-06-13 16:46:06,760 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=3, statements=0, connections=10
-2021-06-13 16:46:06,760 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=3, statements=0, connections=11
-2021-06-13 16:46:06,760 DEBUG [mondrian.server.monitor] ConnectionStartEvent(104)
-2021-06-13 16:46:06,760 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
-2021-06-13 16:46:06,760 DEBUG [mondrian.server.monitor] StatementStartEvent(116)
-2021-06-13 16:46:06,761 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=3, statements=1, connections=11
-2021-06-13 16:46:06,761 DEBUG [mondrian.server.monitor] StatementInfo{statementId=116, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
-2021-06-13 16:46:06,761 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=3, statements=0, connections=11
-2021-06-13 16:46:06,761 DEBUG [mondrian.server.monitor] StatementEndEvent(116)
-2021-06-13 16:46:06,761 DEBUG [mondrian.server.monitor] ConnectionStartEvent(104)
-2021-06-13 16:46:06,761 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
-2021-06-13 16:46:06,761 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
-2021-06-13 16:46:06,761 DEBUG [mondrian.server.monitor] ConnectionStartEvent(105)
-2021-06-13 16:46:06,762 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
-2021-06-13 16:46:06,762 DEBUG [mondrian.server.monitor] StatementStartEvent(117)
-2021-06-13 16:46:06,762 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
-2021-06-13 16:46:06,762 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
-2021-06-13 16:46:06,762 DEBUG [mondrian.server.monitor] StatementInfo{statementId=117, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
-2021-06-13 16:46:06,762 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
-2021-06-13 16:46:06,762 DEBUG [mondrian.server.monitor] StatementEndEvent(117)
-2021-06-13 16:46:06,762 DEBUG [mondrian.server.monitor] ConnectionStartEvent(105)
-2021-06-13 16:46:06,763 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
-2021-06-13 16:46:06,763 DEBUG [mondrian.server.monitor] ConnectionEndEvent(105)
-2021-06-13 16:46:07,716 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=3, statements=0, connections=11
-2021-06-13 16:46:07,716 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=3, statements=0, connections=12
-2021-06-13 16:46:07,716 DEBUG [mondrian.server.monitor] ConnectionStartEvent(106)
-2021-06-13 16:46:07,716 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
-2021-06-13 16:46:07,717 DEBUG [mondrian.server.monitor] StatementStartEvent(118)
-2021-06-13 16:46:07,717 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=3, statements=1, connections=12
-2021-06-13 16:46:07,717 DEBUG [mondrian.server.monitor] StatementInfo{statementId=118, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
-2021-06-13 16:46:07,717 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=3, statements=0, connections=12
-2021-06-13 16:46:07,717 DEBUG [mondrian.server.monitor] StatementEndEvent(118)
-2021-06-13 16:46:07,717 DEBUG [mondrian.server.monitor] ConnectionStartEvent(106)
-2021-06-13 16:46:07,718 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
-2021-06-13 16:46:07,718 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
-2021-06-13 16:46:07,718 DEBUG [mondrian.server.monitor] ConnectionStartEvent(107)
-2021-06-13 16:46:07,718 DEBUG [mondrian.server.monitor] StatementStartEvent(119)
-2021-06-13 16:46:07,718 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
-2021-06-13 16:46:07,718 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
-2021-06-13 16:46:07,718 DEBUG [mondrian.server.monitor] StatementInfo{statementId=119, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
-2021-06-13 16:46:07,718 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
-2021-06-13 16:46:07,718 DEBUG [mondrian.server.monitor] StatementEndEvent(119)
-2021-06-13 16:46:07,719 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
-2021-06-13 16:46:07,719 DEBUG [mondrian.server.monitor] ConnectionStartEvent(107)
-2021-06-13 16:46:07,719 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
-2021-06-13 16:46:07,719 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=3, statements=0, connections=12
-2021-06-13 16:46:07,719 DEBUG [mondrian.server.monitor] ConnectionEndEvent(107)
-2021-06-13 16:46:07,719 DEBUG [mondrian.server.monitor] StatementStartEvent(120)
-2021-06-13 16:46:07,719 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=3, statements=1, connections=12
-2021-06-13 16:46:07,719 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=3, statements=1, connections=13
-2021-06-13 16:46:07,719 DEBUG [mondrian.server.monitor] ConnectionStartEvent(108)
-2021-06-13 16:46:07,719 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
-2021-06-13 16:46:07,719 DEBUG [mondrian.server.monitor] StatementStartEvent(121)
-2021-06-13 16:46:07,720 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=3, statements=2, connections=13
-2021-06-13 16:46:07,720 DEBUG [mondrian.server.monitor] StatementInfo{statementId=121, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
-2021-06-13 16:46:07,720 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=3, statements=1, connections=13
-2021-06-13 16:46:07,721 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
-2021-06-13 16:46:07,720 DEBUG [mondrian.server.monitor] StatementEndEvent(121)
-2021-06-13 16:46:07,721 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
-2021-06-13 16:46:07,721 DEBUG [mondrian.server.monitor] ConnectionStartEvent(108)
-2021-06-13 16:46:07,721 DEBUG [mondrian.server.monitor] ConnectionStartEvent(109)
-2021-06-13 16:46:07,721 DEBUG [mondrian.server.monitor] StatementStartEvent(122)
-2021-06-13 16:46:07,721 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
-2021-06-13 16:46:07,721 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
-2021-06-13 16:46:07,722 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
-2021-06-13 16:46:07,722 DEBUG [mondrian.server.monitor] StatementInfo{statementId=122, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
-2021-06-13 16:46:07,722 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
-2021-06-13 16:46:07,722 DEBUG [mondrian.server.monitor] StatementEndEvent(122)
-2021-06-13 16:46:07,722 DEBUG [mondrian.server.monitor] ConnectionStartEvent(109)
-2021-06-13 16:46:07,722 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
-2021-06-13 16:46:07,722 DEBUG [mondrian.server.monitor] ConnectionEndEvent(109)
-2021-06-13 16:46:07,725 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=3, statements=1, connections=13
-2021-06-13 16:46:07,725 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=3, statements=1, connections=14
-2021-06-13 16:46:07,725 DEBUG [mondrian.server.monitor] ConnectionStartEvent(110)
-2021-06-13 16:46:07,725 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
-2021-06-13 16:46:07,725 DEBUG [mondrian.server.monitor] StatementStartEvent(123)
-2021-06-13 16:46:07,726 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=3, statements=2, connections=14
-2021-06-13 16:46:07,726 DEBUG [mondrian.server.monitor] StatementInfo{statementId=123, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
-2021-06-13 16:46:07,726 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=3, statements=1, connections=14
-2021-06-13 16:46:07,726 DEBUG [mondrian.server.monitor] StatementEndEvent(123)
-2021-06-13 16:46:07,727 DEBUG [mondrian.server.monitor] ConnectionStartEvent(110)
-2021-06-13 16:46:07,727 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
-2021-06-13 16:46:07,727 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
-2021-06-13 16:46:07,727 DEBUG [mondrian.server.monitor] ConnectionStartEvent(111)
-2021-06-13 16:46:07,727 DEBUG [mondrian.server.monitor] StatementStartEvent(124)
-2021-06-13 16:46:07,727 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
-2021-06-13 16:46:07,728 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
-2021-06-13 16:46:07,728 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
-2021-06-13 16:46:07,728 DEBUG [mondrian.server.monitor] StatementInfo{statementId=124, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
-2021-06-13 16:46:07,728 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
-2021-06-13 16:46:07,728 DEBUG [mondrian.server.monitor] StatementEndEvent(124)
-2021-06-13 16:46:07,728 DEBUG [mondrian.server.monitor] ConnectionStartEvent(111)
-2021-06-13 16:46:07,728 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
-2021-06-13 16:46:07,728 DEBUG [mondrian.server.monitor] ConnectionEndEvent(111)
-2021-06-13 16:46:07,728 DEBUG [mondrian.rolap.RolapConnection] 
-WITH
-SET [~ROWS_TIME_TIME] AS
-    {[TIME].[YEAR].Members}
-SET [~ROWS_PRODUCT_PRODUCT] AS
-    {[PRODUCT].[DIVISION].Members}
-SET [~ROWS_CUSTOMER_CUSTOMER.CUSTOMER_AS_IS_REPORTING] AS
-    {[CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS].Members}
-SELECT
-NON EMPTY {[Measures].[SALESQUANTITY], [Measures].[REVENUEEUR], [Measures].[REVENUEUSD], [Measures].[DISCOUNTUSD], [Measures].[NETSALESUSD], [Measures].[COSTOFGOODSSOLDUSD], [Measures].[NOOFSALESORDERS]} ON COLUMNS,
-NON EMPTY NonEmptyCrossJoin([~ROWS_TIME_TIME], NonEmptyCrossJoin([~ROWS_PRODUCT_PRODUCT], [~ROWS_CUSTOMER_CUSTOMER.CUSTOMER_AS_IS_REPORTING])) ON ROWS
-FROM [HyperCube@DirtBikes]
-2021-06-13 16:46:07,729 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[CUSTOMER.CUSTOMER_AS_IS_REPORTING]
-2021-06-13 16:46:07,729 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[CUSTOMER.CUSTOMER_AS_IS_REPORTING], status=hierUsage == null returning elementname=CUSTOMER.CUSTOMER_AS_IS_REPORTING
-2021-06-13 16:46:07,729 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=CUSTOMER.CUSTOMER_AS_IS_REPORTING, child.class=mondrian.rolap.RolapCubeHierarchy
-2021-06-13 16:46:07,730 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[PRODUCT]
-2021-06-13 16:46:07,730 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[PRODUCT], status=hierUsage == not shared returning elementname=PRODUCT
-2021-06-13 16:46:07,730 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=PRODUCT, child.class=mondrian.rolap.RolapCubeDimension
-2021-06-13 16:46:07,730 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[TIME]
-2021-06-13 16:46:07,730 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[TIME], status=hierUsage == not shared returning elementname=TIME
-2021-06-13 16:46:07,730 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=TIME, child.class=mondrian.rolap.RolapCubeDimension
-2021-06-13 16:46:07,731 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[TIME].[YEAR]
-2021-06-13 16:46:07,731 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[TIME], status=hierUsage == not shared returning elementname=TIME
-2021-06-13 16:46:07,731 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=TIME, childname=[YEAR] returning elementname=YEAR
-2021-06-13 16:46:07,731 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=YEAR, child.class=mondrian.rolap.RolapCubeLevel
-2021-06-13 16:46:07,731 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[PRODUCT].[DIVISION]
-2021-06-13 16:46:07,731 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[PRODUCT], status=hierUsage == not shared returning elementname=PRODUCT
-2021-06-13 16:46:07,731 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=PRODUCT, childname=[DIVISION] returning elementname=DIVISION
-2021-06-13 16:46:07,731 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=DIVISION, child.class=mondrian.rolap.RolapCubeLevel
-2021-06-13 16:46:07,732 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]
-2021-06-13 16:46:07,732 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[CUSTOMER.CUSTOMER_AS_IS_REPORTING], status=hierUsage == null returning elementname=CUSTOMER.CUSTOMER_AS_IS_REPORTING
-2021-06-13 16:46:07,732 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=CUSTOMER.CUSTOMER_AS_IS_REPORTING, childname=[COUNTRY_AS_IS] returning elementname=COUNTRY_AS_IS
-2021-06-13 16:46:07,732 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=COUNTRY_AS_IS, child.class=mondrian.rolap.RolapCubeLevel
-2021-06-13 16:46:07,732 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[Measures].[SALESQUANTITY]
-2021-06-13 16:46:07,732 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[Measures] returning elementname=Measures
-2021-06-13 16:46:07,732 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=Measures, childname=[SALESQUANTITY] returning elementname=SALESQUANTITY
-2021-06-13 16:46:07,732 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=SALESQUANTITY, child.class=mondrian.rolap.RolapBaseCubeMeasure
-2021-06-13 16:46:07,733 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[Measures].[REVENUEEUR]
-2021-06-13 16:46:07,733 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[Measures] returning elementname=Measures
-2021-06-13 16:46:07,733 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=Measures, childname=[REVENUEEUR] returning elementname=REVENUEEUR
-2021-06-13 16:46:07,733 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=REVENUEEUR, child.class=mondrian.rolap.RolapBaseCubeMeasure
-2021-06-13 16:46:07,733 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[Measures].[REVENUEUSD]
-2021-06-13 16:46:07,733 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[Measures] returning elementname=Measures
-2021-06-13 16:46:07,733 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=Measures, childname=[REVENUEUSD] returning elementname=REVENUEUSD
-2021-06-13 16:46:07,733 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=REVENUEUSD, child.class=mondrian.rolap.RolapBaseCubeMeasure
-2021-06-13 16:46:07,733 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[Measures].[DISCOUNTUSD]
-2021-06-13 16:46:07,733 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[Measures] returning elementname=Measures
-2021-06-13 16:46:07,734 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=Measures, childname=[DISCOUNTUSD] returning elementname=DISCOUNTUSD
-2021-06-13 16:46:07,734 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=DISCOUNTUSD, child.class=mondrian.rolap.RolapBaseCubeMeasure
-2021-06-13 16:46:07,734 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[Measures].[NETSALESUSD]
-2021-06-13 16:46:07,734 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[Measures] returning elementname=Measures
-2021-06-13 16:46:07,734 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=Measures, childname=[NETSALESUSD] returning elementname=NETSALESUSD
-2021-06-13 16:46:07,734 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=NETSALESUSD, child.class=mondrian.rolap.RolapBaseCubeMeasure
-2021-06-13 16:46:07,734 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[Measures].[COSTOFGOODSSOLDUSD]
-2021-06-13 16:46:07,734 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[Measures] returning elementname=Measures
-2021-06-13 16:46:07,734 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=Measures, childname=[COSTOFGOODSSOLDUSD] returning elementname=COSTOFGOODSSOLDUSD
-2021-06-13 16:46:07,734 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=COSTOFGOODSSOLDUSD, child.class=mondrian.rolap.RolapBaseCubeMeasure
-2021-06-13 16:46:07,735 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[Measures].[NOOFSALESORDERS]
-2021-06-13 16:46:07,735 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[Measures] returning elementname=Measures
-2021-06-13 16:46:07,735 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=Measures, childname=[NOOFSALESORDERS] returning elementname=NOOFSALESORDERS
-2021-06-13 16:46:07,735 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=NOOFSALESORDERS, child.class=mondrian.rolap.RolapBaseCubeMeasure
-2021-06-13 16:46:07,735 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
-2021-06-13 16:46:07,735 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
-2021-06-13 16:46:07,735 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
-2021-06-13 16:46:07,736 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
-2021-06-13 16:46:07,736 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
-2021-06-13 16:46:07,738 DEBUG [mondrian.rolap.RolapConnection] with set [~ROWS_TIME_TIME] as '{[TIME].[YEAR].Members}'
-  set [~ROWS_PRODUCT_PRODUCT] as '{[PRODUCT].[DIVISION].Members}'
-  set [~ROWS_CUSTOMER_CUSTOMER.CUSTOMER_AS_IS_REPORTING] as '{[CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS].Members}'
-select NON EMPTY {[Measures].[SALESQUANTITY], [Measures].[REVENUEEUR], [Measures].[REVENUEUSD], [Measures].[DISCOUNTUSD], [Measures].[NETSALESUSD], [Measures].[COSTOFGOODSSOLDUSD], [Measures].[NOOFSALESORDERS]} ON COLUMNS,
-  NON EMPTY NonEmptyCrossJoin([~ROWS_TIME_TIME], NonEmptyCrossJoin([~ROWS_PRODUCT_PRODUCT], [~ROWS_CUSTOMER_CUSTOMER.CUSTOMER_AS_IS_REPORTING])) ON ROWS
-from [HyperCube@DirtBikes]
-
-2021-06-13 16:46:07,739 DEBUG [mondrian.mdx] 4079: with set [~ROWS_TIME_TIME] as '{[TIME].[YEAR].Members}'
-  set [~ROWS_PRODUCT_PRODUCT] as '{[PRODUCT].[DIVISION].Members}'
-  set [~ROWS_CUSTOMER_CUSTOMER.CUSTOMER_AS_IS_REPORTING] as '{[CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS].Members}'
-select NON EMPTY {[Measures].[SALESQUANTITY], [Measures].[REVENUEEUR], [Measures].[REVENUEUSD], [Measures].[DISCOUNTUSD], [Measures].[NETSALESUSD], [Measures].[COSTOFGOODSSOLDUSD], [Measures].[NOOFSALESORDERS]} ON COLUMNS,
-  NON EMPTY NonEmptyCrossJoin([~ROWS_TIME_TIME], NonEmptyCrossJoin([~ROWS_PRODUCT_PRODUCT], [~ROWS_CUSTOMER_CUSTOMER.CUSTOMER_AS_IS_REPORTING])) ON ROWS
-from [HyperCube@DirtBikes]
-
-2021-06-13 16:46:07,739 DEBUG [mondrian.rolap.RolapStar] RolapStar.clearCachedAggregations: schema=HyperSchema, star=WI2_ACU008_FACT_TABLE
-2021-06-13 16:46:07,739 DEBUG [mondrian.server.monitor] ExecutionStartEvent(4079)
-2021-06-13 16:46:07,739 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
-2021-06-13 16:46:07,739 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
-2021-06-13 16:46:07,739 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
-2021-06-13 16:46:07,740 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
-2021-06-13 16:46:07,740 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
-2021-06-13 16:46:07,740 DEBUG [mondrian.rolap.RolapNativeSet] using native crossjoin
-2021-06-13 16:46:07,741 DEBUG [mondrian.sql] 31: SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]]: executing sql [
-select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    "CUSTOMER_AS_IS"."C_LAND" as "c2"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION",
-    "CUSTOMER_AS_IS"."C_LAND"
-order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST,
-    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST]
-2021-06-13 16:46:07,741 DEBUG [mondrian.server.monitor] SqlStatementStartEvent(31)
-2021-06-13 16:46:07,789 DEBUG [mondrian.server.monitor] SqlStatementExecuteEvent(31)
-2021-06-13 16:46:07,789 DEBUG [mondrian.sql] 31: , exec 47 ms
-2021-06-13 16:46:07,789 DEBUG [mondrian.rolap.RolapUtil] SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]]: executing sql [select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    "CUSTOMER_AS_IS"."C_LAND" as "c2"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION",
-    "CUSTOMER_AS_IS"."C_LAND"
-order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST,
-    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST], exec 47 ms
-2021-06-13 16:46:07,894 DEBUG [mondrian.sql] 31: , exec+fetch 153 ms, 40 rows
-2021-06-13 16:46:07,894 DEBUG [mondrian.rolap.RolapUtil] SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]]: done executing sql [select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    "CUSTOMER_AS_IS"."C_LAND" as "c2"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION",
-    "CUSTOMER_AS_IS"."C_LAND"
-order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST,
-    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST], exec+fetch 153 ms, 40 rows, ex=32, close=32, open=[]
-2021-06-13 16:46:07,895 DEBUG [mondrian.server.monitor] SqlStatementInfo{sqlStatementId=31, sql=select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c1",
-    "CUSTOMER_AS_IS"."C_LAND" as "c2"
-from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
-where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
-group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION",
-    "CUSTOMER_AS_IS"."C_LAND"
-order by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" ASC NULLS LAST,
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" ASC NULLS LAST,
-    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST}
-2021-06-13 16:46:07,895 DEBUG [mondrian.server.monitor] SqlStatementEndEvent(31)
-2021-06-13 16:46:07,896 DEBUG [mondrian.profile] Axis (COLUMNS):
-SetListCalc(name=SetListCalc, class=class mondrian.olap.fun.SetFunDef$SetListCalc, type=SetType<MemberType<member=[Measures].[SALESQUANTITY]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=0, elementCount=14, elementSquaredCount=98)
+2021-06-15 17:46:40,099 DEBUG [mondrian.profile] Axis (COLUMNS):
+SetListCalc(name=SetListCalc, class=class mondrian.olap.fun.SetFunDef$SetListCalc, type=SetType<MemberType<member=[Measures].[SALESQUANTITY]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=0, elementCount=2, elementSquaredCount=2)
     2(name=2, class=class mondrian.olap.fun.SetFunDef$SetListCalc$2, type=MemberType<member=[Measures].[SALESQUANTITY]>, resultStyle=VALUE)
         Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=MemberType<member=[Measures].[SALESQUANTITY]>, resultStyle=VALUE_NOT_NULL, value=[Measures].[SALESQUANTITY], callCount=2, callMillis=0)
-    2(name=2, class=class mondrian.olap.fun.SetFunDef$SetListCalc$2, type=MemberType<member=[Measures].[REVENUEEUR]>, resultStyle=VALUE)
-        Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=MemberType<member=[Measures].[REVENUEEUR]>, resultStyle=VALUE_NOT_NULL, value=[Measures].[REVENUEEUR], callCount=2, callMillis=0)
-    2(name=2, class=class mondrian.olap.fun.SetFunDef$SetListCalc$2, type=MemberType<member=[Measures].[REVENUEUSD]>, resultStyle=VALUE)
-        Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=MemberType<member=[Measures].[REVENUEUSD]>, resultStyle=VALUE_NOT_NULL, value=[Measures].[REVENUEUSD], callCount=2, callMillis=0)
-    2(name=2, class=class mondrian.olap.fun.SetFunDef$SetListCalc$2, type=MemberType<member=[Measures].[DISCOUNTUSD]>, resultStyle=VALUE)
-        Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=MemberType<member=[Measures].[DISCOUNTUSD]>, resultStyle=VALUE_NOT_NULL, value=[Measures].[DISCOUNTUSD], callCount=2, callMillis=0)
-    2(name=2, class=class mondrian.olap.fun.SetFunDef$SetListCalc$2, type=MemberType<member=[Measures].[NETSALESUSD]>, resultStyle=VALUE)
-        Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=MemberType<member=[Measures].[NETSALESUSD]>, resultStyle=VALUE_NOT_NULL, value=[Measures].[NETSALESUSD], callCount=2, callMillis=0)
-    2(name=2, class=class mondrian.olap.fun.SetFunDef$SetListCalc$2, type=MemberType<member=[Measures].[COSTOFGOODSSOLDUSD]>, resultStyle=VALUE)
-        Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=MemberType<member=[Measures].[COSTOFGOODSSOLDUSD]>, resultStyle=VALUE_NOT_NULL, value=[Measures].[COSTOFGOODSSOLDUSD], callCount=2, callMillis=0)
-    2(name=2, class=class mondrian.olap.fun.SetFunDef$SetListCalc$2, type=MemberType<member=[Measures].[NOOFSALESORDERS]>, resultStyle=VALUE)
-        Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=MemberType<member=[Measures].[NOOFSALESORDERS]>, resultStyle=VALUE_NOT_NULL, value=[Measures].[NOOFSALESORDERS], callCount=2, callMillis=0)
 
 Query Timing (Cumulative):
-SqlStatement-SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]] invoked 1 times for total of 153ms.  (Avg. 153ms/invocation)
 
-2021-06-13 16:46:07,896 DEBUG [mondrian.rolap.RolapNativeSet] using native crossjoin
-2021-06-13 16:46:07,897 DEBUG [mondrian.profile] Axis (ROWS):
-NonEmptyCrossJoin(name=NonEmptyCrossJoin, class=class mondrian.olap.fun.NonEmptyCrossJoinFunDef$1, type=SetType<TupleType<MemberType<level=[TIME].[YEAR]>, MemberType<level=[PRODUCT].[DIVISION]>, MemberType<level=[CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]>>>, resultStyle=LIST, callCount=2, callMillis=155, elementCount=80, elementSquaredCount=3200)
-    IterableListCalc(name=IterableListCalc, class=class mondrian.calc.impl.IterableListCalc, type=SetType<MemberType<level=[TIME].[YEAR]>>, resultStyle=MUTABLE_LIST, callCount=0, callMillis=0, elementCount=0, elementSquaredCount=0)
-        ~ROWS_TIME_TIME(name=~ROWS_TIME_TIME, class=class mondrian.mdx.NamedSetExpr$1, type=SetType<MemberType<level=[TIME].[YEAR]>>, resultStyle=ITERABLE)
-    NonEmptyCrossJoin(name=NonEmptyCrossJoin, class=class mondrian.olap.fun.NonEmptyCrossJoinFunDef$1, type=SetType<TupleType<MemberType<level=[PRODUCT].[DIVISION]>, MemberType<level=[CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]>>>, resultStyle=LIST, callCount=0, callMillis=0, elementCount=0, elementSquaredCount=0)
-        IterableListCalc(name=IterableListCalc, class=class mondrian.calc.impl.IterableListCalc, type=SetType<MemberType<level=[PRODUCT].[DIVISION]>>, resultStyle=MUTABLE_LIST, callCount=0, callMillis=0, elementCount=0, elementSquaredCount=0)
-            ~ROWS_PRODUCT_PRODUCT(name=~ROWS_PRODUCT_PRODUCT, class=class mondrian.mdx.NamedSetExpr$1, type=SetType<MemberType<level=[PRODUCT].[DIVISION]>>, resultStyle=ITERABLE)
-        IterableListCalc(name=IterableListCalc, class=class mondrian.calc.impl.IterableListCalc, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]>>, resultStyle=MUTABLE_LIST, callCount=0, callMillis=0, elementCount=0, elementSquaredCount=0)
-            ~ROWS_CUSTOMER_CUSTOMER.CUSTOMER_AS_IS_REPORTING(name=~ROWS_CUSTOMER_CUSTOMER.CUSTOMER_AS_IS_REPORTING, class=class mondrian.mdx.NamedSetExpr$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]>>, resultStyle=ITERABLE)
+2021-06-15 17:46:40,099 DEBUG [mondrian.profile] Axis (ROWS):
+~ROWS(name=~ROWS, class=class mondrian.mdx.NamedSetExpr$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS]>>, resultStyle=ITERABLE, callCount=2, callMillis=4, elementCount=48, elementSquaredCount=1152)
 
 Query Timing (Cumulative):
-SqlStatement-SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]] invoked 1 times for total of 153ms.  (Avg. 153ms/invocation)
 
-2021-06-13 16:46:07,898 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
-2021-06-13 16:46:07,898 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
-2021-06-13 16:46:07,898 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
-2021-06-13 16:46:07,898 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
-2021-06-13 16:46:07,898 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
-2021-06-13 16:46:07,904 DEBUG [mondrian.server.monitor] ExecutionPhaseEvent(4079, 0)
-2021-06-13 16:46:07,906 DEBUG [mondrian.rolap.FastBatchingCellReader] FastBatchingCellReader: bitkey=0x0000000000000000000000000000000000000000000000000010000000001001
-  YEAR (0): EXTRACT(YEAR FROM ORDER_DATE)
+2021-06-15 17:46:40,100 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
+2021-06-15 17:46:40,100 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
+2021-06-15 17:46:40,100 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:40,100 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:40,100 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
+2021-06-15 17:46:40,100 DEBUG [mondrian.profile] QueryBody:
+
+Query Timing (Cumulative):
+
+2021-06-15 17:46:40,100 DEBUG [mondrian.olap.ResultBase] RolapResult<init>: FREE_MEMORY: 192190kb 50.25%
+2021-06-15 17:46:40,100 DEBUG [mondrian.rolap.RolapStar] RolapStar.clearCachedAggregations: schema=HyperSchema, star=WI2_ACU008_FACT_TABLE
+2021-06-15 17:46:40,100 DEBUG [mondrian.mdx] 1836: exec: 7 ms
+2021-06-15 17:46:40,101 DEBUG [mondrian.server.monitor] ExecutionInfo{executionId=1836, phaseCount=1, cellCacheRequestCount=24, cellCacheHitCount=24, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0, expCacheHitCount=0, expCacheMissCount=0}
+2021-06-15 17:46:40,101 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=1, connections=12
+2021-06-15 17:46:40,101 DEBUG [mondrian.server.monitor] ExecutionEndEvent(1836)
+2021-06-15 17:46:40,101 DEBUG [mondrian.server.monitor] StatementInfo{statementId=197, executeStartCount=1, executeEndCount=1, phaseCount=1, cellCacheRequestCount=24, cellCacheHitCount=24, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:40,101 DEBUG [mondrian.server.monitor] StatementEndEvent(197)
+2021-06-15 17:46:40,104 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=0, connections=12
+2021-06-15 17:46:40,104 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=0, connections=13
+2021-06-15 17:46:40,104 DEBUG [mondrian.server.monitor] ConnectionStartEvent(184)
+2021-06-15 17:46:40,104 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:40,104 DEBUG [mondrian.server.monitor] StatementStartEvent(202)
+2021-06-15 17:46:40,104 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=1, connections=13
+2021-06-15 17:46:40,105 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=0, connections=13
+2021-06-15 17:46:40,105 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
+2021-06-15 17:46:40,105 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
+2021-06-15 17:46:40,105 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:40,106 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
+2021-06-15 17:46:40,106 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:40,106 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:40,106 DEBUG [mondrian.server.monitor] StatementInfo{statementId=202, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:40,106 DEBUG [mondrian.server.monitor] StatementEndEvent(202)
+2021-06-15 17:46:40,107 DEBUG [mondrian.server.monitor] ConnectionStartEvent(184)
+2021-06-15 17:46:40,107 DEBUG [mondrian.server.monitor] ConnectionStartEvent(185)
+2021-06-15 17:46:40,107 DEBUG [mondrian.server.monitor] StatementStartEvent(203)
+2021-06-15 17:46:40,107 DEBUG [mondrian.server.monitor] StatementInfo{statementId=203, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:40,107 DEBUG [mondrian.server.monitor] StatementEndEvent(203)
+2021-06-15 17:46:40,107 DEBUG [mondrian.server.monitor] ConnectionStartEvent(185)
+2021-06-15 17:46:40,107 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
+2021-06-15 17:46:40,107 DEBUG [mondrian.server.monitor] ConnectionEndEvent(185)
+2021-06-15 17:46:42,769 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=0, connections=13
+2021-06-15 17:46:42,769 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=0, connections=14
+2021-06-15 17:46:42,769 DEBUG [mondrian.server.monitor] ConnectionStartEvent(186)
+2021-06-15 17:46:42,769 DEBUG [mondrian.server.monitor] StatementStartEvent(204)
+2021-06-15 17:46:42,769 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:42,770 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=1, connections=14
+2021-06-15 17:46:42,770 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=0, connections=14
+2021-06-15 17:46:42,770 DEBUG [mondrian.server.monitor] StatementInfo{statementId=204, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:42,770 DEBUG [mondrian.server.monitor] StatementEndEvent(204)
+2021-06-15 17:46:42,770 DEBUG [mondrian.server.monitor] ConnectionStartEvent(186)
+2021-06-15 17:46:42,770 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
+2021-06-15 17:46:42,770 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
+2021-06-15 17:46:42,770 DEBUG [mondrian.server.monitor] ConnectionStartEvent(187)
+2021-06-15 17:46:42,770 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:42,770 DEBUG [mondrian.server.monitor] StatementStartEvent(205)
+2021-06-15 17:46:42,771 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
+2021-06-15 17:46:42,771 DEBUG [mondrian.server.monitor] StatementInfo{statementId=205, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:42,771 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:42,771 DEBUG [mondrian.server.monitor] StatementEndEvent(205)
+2021-06-15 17:46:42,771 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:42,771 DEBUG [mondrian.server.monitor] ConnectionStartEvent(187)
+2021-06-15 17:46:42,771 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
+2021-06-15 17:46:42,771 DEBUG [mondrian.server.monitor] ConnectionEndEvent(187)
+2021-06-15 17:46:42,771 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=0, connections=14
+2021-06-15 17:46:42,771 DEBUG [mondrian.server.monitor] StatementStartEvent(206)
+2021-06-15 17:46:42,771 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=1, connections=14
+2021-06-15 17:46:42,771 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=1, connections=15
+2021-06-15 17:46:42,771 DEBUG [mondrian.server.monitor] ConnectionStartEvent(188)
+2021-06-15 17:46:42,771 DEBUG [mondrian.server.monitor] StatementStartEvent(207)
+2021-06-15 17:46:42,771 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:42,772 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=2, connections=15
+2021-06-15 17:46:42,772 DEBUG [mondrian.server.monitor] StatementInfo{statementId=207, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:42,772 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=1, connections=15
+2021-06-15 17:46:42,772 DEBUG [mondrian.server.monitor] StatementEndEvent(207)
+2021-06-15 17:46:42,772 DEBUG [mondrian.server.monitor] ConnectionStartEvent(188)
+2021-06-15 17:46:42,773 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
+2021-06-15 17:46:42,773 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
+2021-06-15 17:46:42,773 DEBUG [mondrian.server.monitor] ConnectionStartEvent(189)
+2021-06-15 17:46:42,773 DEBUG [mondrian.server.monitor] StatementStartEvent(208)
+2021-06-15 17:46:42,773 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:42,773 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
+2021-06-15 17:46:42,773 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:42,773 DEBUG [mondrian.server.monitor] StatementInfo{statementId=208, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:42,773 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:42,773 DEBUG [mondrian.server.monitor] StatementEndEvent(208)
+2021-06-15 17:46:42,773 DEBUG [mondrian.server.monitor] ConnectionStartEvent(189)
+2021-06-15 17:46:42,773 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
+2021-06-15 17:46:42,773 DEBUG [mondrian.server.monitor] ConnectionEndEvent(189)
+2021-06-15 17:46:42,774 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=1, connections=15
+2021-06-15 17:46:42,774 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=1, connections=16
+2021-06-15 17:46:42,774 DEBUG [mondrian.server.monitor] ConnectionStartEvent(190)
+2021-06-15 17:46:42,774 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:42,774 DEBUG [mondrian.server.monitor] StatementStartEvent(209)
+2021-06-15 17:46:42,774 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=2, connections=16
+2021-06-15 17:46:42,774 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=1, connections=16
+2021-06-15 17:46:42,774 DEBUG [mondrian.server.monitor] StatementInfo{statementId=209, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:42,774 DEBUG [mondrian.server.monitor] StatementEndEvent(209)
+2021-06-15 17:46:42,774 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
+2021-06-15 17:46:42,774 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
+2021-06-15 17:46:42,774 DEBUG [mondrian.server.monitor] ConnectionStartEvent(190)
+2021-06-15 17:46:42,775 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:42,775 DEBUG [mondrian.server.monitor] ConnectionStartEvent(191)
+2021-06-15 17:46:42,775 DEBUG [mondrian.server.monitor] StatementStartEvent(210)
+2021-06-15 17:46:42,775 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
+2021-06-15 17:46:42,775 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:42,775 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:42,775 DEBUG [mondrian.server.monitor] StatementInfo{statementId=210, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:42,775 DEBUG [mondrian.rolap.RolapConnection] 
+WITH
+SET [~ROWS] AS
+    Hierarchize({{[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS].Members}, {[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS].Members}})
+SELECT
+NON EMPTY {[Measures].[SALESQUANTITY]} ON COLUMNS,
+NON EMPTY [~ROWS] ON ROWS
+FROM [HyperCube@DirtBikes]
+2021-06-15 17:46:42,775 DEBUG [mondrian.server.monitor] StatementEndEvent(210)
+2021-06-15 17:46:42,775 DEBUG [mondrian.server.monitor] ConnectionStartEvent(191)
+2021-06-15 17:46:42,775 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
+2021-06-15 17:46:42,775 DEBUG [mondrian.server.monitor] ConnectionEndEvent(191)
+2021-06-15 17:46:42,775 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS]
+2021-06-15 17:46:42,776 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS], status=hierUsage == null returning elementname=CUSTOMER.CUSTOMER_HIERARCHY_AS_IS
+2021-06-15 17:46:42,776 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=CUSTOMER.CUSTOMER_HIERARCHY_AS_IS, child.class=mondrian.rolap.RolapCubeHierarchy
+2021-06-15 17:46:42,776 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]
+2021-06-15 17:46:42,776 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS], status=hierUsage == null returning elementname=CUSTOMER.CUSTOMER_HIERARCHY_AS_IS
+2021-06-15 17:46:42,776 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=CUSTOMER.CUSTOMER_HIERARCHY_AS_IS, childname=[COUNTRY_AS_IS] returning elementname=COUNTRY_AS_IS
+2021-06-15 17:46:42,776 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=COUNTRY_AS_IS, child.class=mondrian.rolap.RolapCubeLevel
+2021-06-15 17:46:42,776 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS]
+2021-06-15 17:46:42,776 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS], status=hierUsage == null returning elementname=CUSTOMER.CUSTOMER_HIERARCHY_AS_IS
+2021-06-15 17:46:42,776 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=CUSTOMER.CUSTOMER_HIERARCHY_AS_IS, childname=[CUSTOMER_AS_IS] returning elementname=CUSTOMER_AS_IS
+2021-06-15 17:46:42,776 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=CUSTOMER_AS_IS, child.class=mondrian.rolap.RolapCubeLevel
+2021-06-15 17:46:42,776 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[Measures].[SALESQUANTITY]
+2021-06-15 17:46:42,776 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[Measures] returning elementname=Measures
+2021-06-15 17:46:42,776 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=Measures, childname=[SALESQUANTITY] returning elementname=SALESQUANTITY
+2021-06-15 17:46:42,776 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=SALESQUANTITY, child.class=mondrian.rolap.RolapBaseCubeMeasure
+2021-06-15 17:46:42,776 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
+2021-06-15 17:46:42,776 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
+2021-06-15 17:46:42,776 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:42,777 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:42,777 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
+2021-06-15 17:46:42,778 DEBUG [mondrian.rolap.RolapConnection] with set [~ROWS] as 'Hierarchize({{[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS].Members}, {[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS].Members}})'
+select NON EMPTY {[Measures].[SALESQUANTITY]} ON COLUMNS,
+  NON EMPTY [~ROWS] ON ROWS
+from [HyperCube@DirtBikes]
+
+2021-06-15 17:46:42,778 DEBUG [mondrian.mdx] 2060: with set [~ROWS] as 'Hierarchize({{[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS].Members}, {[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS].Members}})'
+select NON EMPTY {[Measures].[SALESQUANTITY]} ON COLUMNS,
+  NON EMPTY [~ROWS] ON ROWS
+from [HyperCube@DirtBikes]
+
+2021-06-15 17:46:42,778 DEBUG [mondrian.rolap.RolapStar] RolapStar.clearCachedAggregations: schema=HyperSchema, star=WI2_ACU008_FACT_TABLE
+2021-06-15 17:46:42,778 DEBUG [mondrian.server.monitor] ExecutionStartEvent(2060)
+2021-06-15 17:46:42,778 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
+2021-06-15 17:46:42,778 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
+2021-06-15 17:46:42,778 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:42,778 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:42,778 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
+2021-06-15 17:46:42,779 DEBUG [mondrian.olap.ResultBase] Named set ~ROWS: starting evaluation
+2021-06-15 17:46:42,779 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
+2021-06-15 17:46:42,779 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
+2021-06-15 17:46:42,779 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:42,779 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:42,779 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
+2021-06-15 17:46:42,779 DEBUG [mondrian.sql] 56: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]]: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST]
+2021-06-15 17:46:42,779 DEBUG [mondrian.server.monitor] SqlStatementStartEvent(56)
+2021-06-15 17:46:42,811 DEBUG [mondrian.server.monitor] SqlStatementExecuteEvent(56)
+2021-06-15 17:46:42,811 DEBUG [mondrian.sql] 56: , exec 32 ms
+2021-06-15 17:46:42,811 DEBUG [mondrian.rolap.RolapUtil] SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]]: executing sql [select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST], exec 32 ms
+2021-06-15 17:46:42,812 DEBUG [mondrian.sql] 56: , exec+fetch 33 ms, 2 rows
+2021-06-15 17:46:42,812 DEBUG [mondrian.rolap.RolapUtil] SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]]: done executing sql [select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST], exec+fetch 33 ms, 2 rows, ex=57, close=57, open=[]
+2021-06-15 17:46:42,812 DEBUG [mondrian.server.monitor] SqlStatementInfo{sqlStatementId=56, sql=select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST}
+2021-06-15 17:46:42,812 DEBUG [mondrian.server.monitor] SqlStatementEndEvent(56)
+2021-06-15 17:46:42,812 DEBUG [mondrian.olap.ResultBase] mondrian.rolap.RolapNamedSetEvaluator@64012374: Named set ~ROWS evaluated to:
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Berlin].[Capital Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Bochum].[Fahrpott]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Greifswald].[Ostseemotorrad]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Hamburg].[Red Light Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Hannover].[Cruiser Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Leipzig].[LMotortours]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Magdeburg].[Motodrom]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Rostock].[Warnow Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DS00].[Frankfurt].[Airport Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DS00].[Heidelberg].[Neckarmotorrad]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DS00].[München].[Bavaria Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DS00].[Stuttgart].[Motorradland]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[Atlanta].[Peachtree Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[Boston].[Beantown Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[Chicago].[Windy City Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[Detroit].[Motown Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[Indianapolis].[Furniture City Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[New York].[Big Apple Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[Philadelphia].[Philly Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[Washington, D.C.].[DC Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UW00].[Denver City].[Rocky Mountain Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UW00].[Los Angeles].[SoCal Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UW00].[San Francisco].[Silicon Valley Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UW00].[Seattle].[Northwest Bikes]
+
+2021-06-15 17:46:42,813 DEBUG [mondrian.profile] NamedSet (~ROWS):
+Hierarchize(name=Hierarchize, class=class mondrian.olap.fun.HierarchizeFunDef$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=33, elementCount=52, elementSquaredCount=1352)
+    SetListCalc(name=SetListCalc, class=class mondrian.olap.fun.SetFunDef$SetListCalc, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=33, elementCount=52, elementSquaredCount=1352)
+        Sublist(name=Sublist, class=class mondrian.olap.fun.SetFunDef$SetListCalc$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]>>, resultStyle=VALUE)
+            Members(name=Members, class=class mondrian.olap.fun.LevelMembersFunDef$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=33, elementCount=4, elementSquaredCount=8)
+                Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=LevelType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]>, resultStyle=VALUE_NOT_NULL, value=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS], callCount=2, callMillis=0)
+        Sublist(name=Sublist, class=class mondrian.olap.fun.SetFunDef$SetListCalc$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS]>>, resultStyle=VALUE)
+            Members(name=Members, class=class mondrian.olap.fun.LevelMembersFunDef$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=0, elementCount=48, elementSquaredCount=1152)
+                Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=LevelType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS]>, resultStyle=VALUE_NOT_NULL, value=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS], callCount=2, callMillis=0)
+
+Query Timing (Cumulative):
+SqlStatement-SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]] invoked 1 times for total of 33ms.  (Avg. 33ms/invocation)
+
+2021-06-15 17:46:42,813 DEBUG [mondrian.profile] Axis (COLUMNS):
+SetListCalc(name=SetListCalc, class=class mondrian.olap.fun.SetFunDef$SetListCalc, type=SetType<MemberType<member=[Measures].[SALESQUANTITY]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=0, elementCount=2, elementSquaredCount=2)
+    2(name=2, class=class mondrian.olap.fun.SetFunDef$SetListCalc$2, type=MemberType<member=[Measures].[SALESQUANTITY]>, resultStyle=VALUE)
+        Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=MemberType<member=[Measures].[SALESQUANTITY]>, resultStyle=VALUE_NOT_NULL, value=[Measures].[SALESQUANTITY], callCount=2, callMillis=0)
+
+Query Timing (Cumulative):
+SqlStatement-SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]] invoked 1 times for total of 33ms.  (Avg. 33ms/invocation)
+
+2021-06-15 17:46:42,814 DEBUG [mondrian.profile] Axis (ROWS):
+~ROWS(name=~ROWS, class=class mondrian.mdx.NamedSetExpr$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]>>, resultStyle=ITERABLE, callCount=2, callMillis=35, elementCount=52, elementSquaredCount=1352)
+
+Query Timing (Cumulative):
+SqlStatement-SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]] invoked 1 times for total of 33ms.  (Avg. 33ms/invocation)
+
+2021-06-15 17:46:42,814 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
+2021-06-15 17:46:42,814 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
+2021-06-15 17:46:42,814 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:42,814 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:42,814 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
+2021-06-15 17:46:42,814 DEBUG [mondrian.server.monitor] ExecutionPhaseEvent(2060, 0)
+2021-06-15 17:46:42,814 DEBUG [mondrian.sql] 57: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:46:42,814 DEBUG [mondrian.server.monitor] ExecutionStartEvent(2061)
+2021-06-15 17:46:42,814 DEBUG [mondrian.server.monitor] SqlStatementStartEvent(57)
+2021-06-15 17:46:42,846 DEBUG [mondrian.server.monitor] SqlStatementExecuteEvent(57)
+2021-06-15 17:46:42,846 DEBUG [mondrian.sql] 57: , exec 31 ms
+2021-06-15 17:46:42,846 DEBUG [mondrian.rolap.RolapUtil] SqlStatisticsProvider.getQueryCardinality: executing sql [select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")], exec 31 ms
+2021-06-15 17:46:42,846 DEBUG [mondrian.sql] 57: , exec+fetch 32 ms, 1 rows
+2021-06-15 17:46:42,846 DEBUG [mondrian.rolap.RolapUtil] SqlStatisticsProvider.getQueryCardinality: done executing sql [select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")], exec+fetch 32 ms, 1 rows, ex=58, close=58, open=[]
+2021-06-15 17:46:42,847 DEBUG [mondrian.server.monitor] SqlStatementEndEvent(57)
+2021-06-15 17:46:42,847 DEBUG [mondrian.rolap.FastBatchingCellReader] FastBatchingCellReader: bitkey=0x0000000000000000000000000000000000000000000000000000000000001000
   COUNTRY_AS_IS (3): "CUSTOMER_AS_IS"."C_LAND"
-  DIVISION (13): "WI2_ACU008_PRODUCT"."P_DIVISION"
 
-2021-06-13 16:46:07,907 DEBUG [mondrian.rolap.cache.SegmentCacheIndexImpl] SegmentCacheIndexImpl(1727011176).add:
+2021-06-15 17:46:42,848 DEBUG [mondrian.rolap.cache.SegmentCacheIndexImpl] SegmentCacheIndexImpl(2141347619).add:
 *Segment Header
 Schema:[HyperSchema]
-Checksum:[911011f5a5d2b2e733399aa52ef4271d]
+Checksum:[aa6d9b306bc489ee3f0d31136b2e43c5]
 Cube:[HyperCube@DirtBikes]
-Measure:[NOOFSALESORDERS]
+Measure:[SALESQUANTITY]
 Axes:[
-    {CUSTOMER_AS_IS.C_LAND=(*)}
-    {EXTRACT(YEAR FROM ORDER_DATE)=(*)}
-    {WI2_ACU008_PRODUCT.P_DIVISION=(*)}]
+    {CUSTOMER_AS_IS.C_LAND=(*)}]
 Excluded Regions:[]
 Compound Predicates:[]
-ID:[158708a3c0f292650c35b7406b4560355c460139b0e2e0f691e26e45d4599d8f]
+ID:[acaa7d045f4ca75df8b0076ecf3effbc4b97a87f5c8ec1bba6e1404daa821fa2]
 
-2021-06-13 16:46:07,908 DEBUG [mondrian.rolap.BatchLoader$Batch] Batch.load (millis) 1
-2021-06-13 16:46:07,908 DEBUG [mondrian.rolap.FastBatchingCellReader] load (millis): 3
-2021-06-13 16:46:07,909 DEBUG [mondrian.rolap.agg.AggregationManager] MATCH: WI2_ACU008_FACT_TABLE
-   foreign=0x0000000000000000000000000000000000000000000000000010000000001001
-   measure=0x0000000000000000000000000000000000000001000000000000000000000000
+2021-06-15 17:46:42,848 DEBUG [mondrian.rolap.BatchLoader$Batch] Batch.load (millis) 0
+2021-06-15 17:46:42,848 DEBUG [mondrian.rolap.FastBatchingCellReader] load (millis): 1
+2021-06-15 17:46:42,849 DEBUG [mondrian.rolap.agg.AggregationManager] MATCH: WI2_ACU008_FACT_TABLE
+   foreign=0x0000000000000000000000000000000000000000000000000000000000001000
+   measure=0x0000000000000000000000000000000000000000100000000000000000000000
    aggstar=0x0000000000000000000000000000000000000001111111001010000010111011
 AggStar=AGG_2_WI2_ACU008_FACT_TABLE
    [NETSALESUSD] (21): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NETSALESUSD")
@@ -468,118 +325,908 @@ AggStar=AGG_2_WI2_ACU008_FACT_TABLE
    DIVISION (13): "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"
    PRODUCT_CATEGORY (15): "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_CATEGORY"
 
-2021-06-13 16:46:07,909 DEBUG [mondrian.rolap.agg.AggregationManager] generateSqlQuery: sql=select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NOOFSALESORDERS") as "m0"
+2021-06-15 17:46:42,849 DEBUG [mondrian.rolap.agg.AggregationManager] generateSqlQuery: sql=select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
 where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."C_ID"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"
-2021-06-13 16:46:07,910 DEBUG [mondrian.sql] 32: Segment.load: executing sql [
+    "CUSTOMER_AS_IS"."C_LAND"
+2021-06-15 17:46:42,849 DEBUG [mondrian.sql] 58: Segment.load: executing sql [
 select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NOOFSALESORDERS") as "m0"
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
 where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."C_ID"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"]
-2021-06-13 16:46:07,911 DEBUG [mondrian.server.monitor] SqlStatementStartEvent(32)
-2021-06-13 16:46:07,959 DEBUG [mondrian.server.monitor] SqlStatementExecuteEvent(32)
-2021-06-13 16:46:07,959 DEBUG [mondrian.sql] 32: , exec 48 ms
-2021-06-13 16:46:07,959 DEBUG [mondrian.rolap.RolapUtil] Segment.load: executing sql [select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NOOFSALESORDERS") as "m0"
+    "CUSTOMER_AS_IS"."C_LAND"]
+2021-06-15 17:46:42,850 DEBUG [mondrian.server.monitor] SqlStatementStartEvent(58)
+2021-06-15 17:46:42,894 DEBUG [mondrian.server.monitor] SqlStatementExecuteEvent(58)
+2021-06-15 17:46:42,894 DEBUG [mondrian.sql] 58: , exec 43 ms
+2021-06-15 17:46:42,902 DEBUG [mondrian.rolap.RolapUtil] Segment.load: executing sql [select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
 where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."C_ID"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"], exec 48 ms
-2021-06-13 16:46:08,076 DEBUG [mondrian.sql] 32: , exec+fetch 165 ms, 40 rows
-2021-06-13 16:46:08,076 DEBUG [mondrian.server.monitor] mondrian.rolap.agg.SegmentCacheManager$SegmentLoadSucceededEvent@26158521
-2021-06-13 16:46:08,076 DEBUG [mondrian.server.monitor] mondrian.server.monitor.CellCacheSegmentCreateEvent@3db83b62
-2021-06-13 16:46:08,076 DEBUG [mondrian.rolap.RolapUtil] Segment.load: done executing sql [select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NOOFSALESORDERS") as "m0"
+    "CUSTOMER_AS_IS"."C_LAND"], exec 43 ms
+2021-06-15 17:46:42,903 DEBUG [mondrian.server.monitor] mondrian.rolap.agg.SegmentCacheManager$SegmentLoadSucceededEvent@25acb052
+2021-06-15 17:46:42,903 DEBUG [mondrian.server.monitor] mondrian.server.monitor.CellCacheSegmentCreateEvent@3b3b0e0b
+2021-06-15 17:46:42,903 DEBUG [mondrian.sql] 58: , exec+fetch 54 ms, 2 rows
+2021-06-15 17:46:42,903 DEBUG [mondrian.rolap.RolapUtil] Segment.load: done executing sql [select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
 where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."C_ID"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"], exec+fetch 165 ms, 40 rows, ex=33, close=33, open=[]
-2021-06-13 16:46:08,077 DEBUG [mondrian.server.monitor] SqlStatementInfo{sqlStatementId=32, sql=select
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR" as "c0",
-    "CUSTOMER_AS_IS"."C_LAND" as "c1",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION" as "c2",
-    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NOOFSALESORDERS") as "m0"
+    "CUSTOMER_AS_IS"."C_LAND"], exec+fetch 54 ms, 2 rows, ex=59, close=59, open=[]
+2021-06-15 17:46:42,904 DEBUG [mondrian.server.monitor] SqlStatementInfo{sqlStatementId=58, sql=select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
 from
-    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE",
-    (SELECT C_DESC, C_CITY, C_SALESORG, C_LAND, TECH_C_ID FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
 where
-    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."TECH_C_ID"
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."C_ID"
 group by
-    "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR",
-    "CUSTOMER_AS_IS"."C_LAND",
-    "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"}
-2021-06-13 16:46:08,077 DEBUG [mondrian.server.monitor] SqlStatementEndEvent(32)
-2021-06-13 16:46:08,080 DEBUG [mondrian.profile] QueryBody:
+    "CUSTOMER_AS_IS"."C_LAND"}
+2021-06-15 17:46:42,904 DEBUG [mondrian.server.monitor] SqlStatementEndEvent(58)
+2021-06-15 17:46:42,904 DEBUG [mondrian.profile] QueryBody:
 
 Query Timing (Cumulative):
-SqlStatement-Segment.load invoked 1 times for total of 165ms.  (Avg. 165ms/invocation)
-SqlStatement-SqlTupleReader.readTuples [[TIME].[YEAR], [PRODUCT].[DIVISION], [CUSTOMER.CUSTOMER_AS_IS_REPORTING].[COUNTRY_AS_IS]] invoked 1 times for total of 153ms.  (Avg. 153ms/invocation)
+SqlStatement-Segment.load invoked 1 times for total of 54ms.  (Avg. 54ms/invocation)
+SqlStatement-SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]] invoked 1 times for total of 33ms.  (Avg. 33ms/invocation)
 
-2021-06-13 16:46:08,080 DEBUG [mondrian.olap.ResultBase] RolapResult<init>: FREE_MEMORY: 311566kb 79.13%
-2021-06-13 16:46:08,080 DEBUG [mondrian.rolap.RolapStar] RolapStar.clearCachedAggregations: schema=HyperSchema, star=WI2_ACU008_FACT_TABLE
-2021-06-13 16:46:08,081 DEBUG [mondrian.mdx] 4079: exec: 342 ms
-2021-06-13 16:46:08,081 DEBUG [mondrian.server.monitor] ExecutionInfo{executionId=4079, phaseCount=2, cellCacheRequestCount=560, cellCacheHitCount=520, cellCacheMissCount=40, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0, expCacheHitCount=0, expCacheMissCount=0}
-2021-06-13 16:46:08,081 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=3, statements=1, connections=14
-2021-06-13 16:46:08,081 DEBUG [mondrian.server.monitor] ExecutionEndEvent(4079)
-2021-06-13 16:46:08,081 DEBUG [mondrian.server.monitor] StatementInfo{statementId=120, executeStartCount=1, executeEndCount=1, phaseCount=2, cellCacheRequestCount=560, cellCacheHitCount=520, cellCacheMissCount=40, cellCachePendingCount=0, sqlStatementStartCount=2, sqlStatementExecuteCount=2, sqlStatementEndCount=2, sqlStatementRowFetchCount=80, sqlStatementExecuteNanos=95856600, cellRequestCount=40}
-2021-06-13 16:46:08,081 DEBUG [mondrian.server.monitor] StatementEndEvent(120)
-2021-06-13 16:46:08,087 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=3, statements=0, connections=14
-2021-06-13 16:46:08,087 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=3, statements=0, connections=15
-2021-06-13 16:46:08,087 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
-2021-06-13 16:46:08,088 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=3, statements=1, connections=15
-2021-06-13 16:46:08,088 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=3, statements=0, connections=15
-2021-06-13 16:46:08,088 DEBUG [mondrian.server.monitor] ConnectionStartEvent(112)
-2021-06-13 16:46:08,088 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
-2021-06-13 16:46:08,089 DEBUG [mondrian.server.monitor] StatementStartEvent(125)
-2021-06-13 16:46:08,089 DEBUG [mondrian.server.monitor] StatementInfo{statementId=125, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
-2021-06-13 16:46:08,089 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
-2021-06-13 16:46:08,089 DEBUG [mondrian.server.monitor] StatementEndEvent(125)
-2021-06-13 16:46:08,089 DEBUG [mondrian.server.monitor] ConnectionStartEvent(112)
-2021-06-13 16:46:08,089 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
-2021-06-13 16:46:08,089 DEBUG [mondrian.server.monitor] ConnectionStartEvent(113)
-2021-06-13 16:46:08,089 DEBUG [mondrian.server.monitor] StatementStartEvent(126)
-2021-06-13 16:46:08,090 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
-2021-06-13 16:46:08,090 DEBUG [mondrian.server.monitor] StatementInfo{statementId=126, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
-2021-06-13 16:46:08,090 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
-2021-06-13 16:46:08,090 DEBUG [mondrian.server.monitor] StatementEndEvent(126)
-2021-06-13 16:46:08,090 DEBUG [mondrian.server.monitor] ConnectionStartEvent(113)
-2021-06-13 16:46:08,090 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
-2021-06-13 16:46:08,091 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
-2021-06-13 16:46:08,091 DEBUG [mondrian.server.monitor] ConnectionEndEvent(113)
+2021-06-15 17:46:42,904 DEBUG [mondrian.olap.ResultBase] RolapResult<init>: FREE_MEMORY: 188740kb 49.34%
+2021-06-15 17:46:42,904 DEBUG [mondrian.rolap.RolapStar] RolapStar.clearCachedAggregations: schema=HyperSchema, star=WI2_ACU008_FACT_TABLE
+2021-06-15 17:46:42,905 DEBUG [mondrian.mdx] 2060: exec: 127 ms
+2021-06-15 17:46:42,905 DEBUG [mondrian.server.monitor] ExecutionInfo{executionId=2060, phaseCount=2, cellCacheRequestCount=52, cellCacheHitCount=26, cellCacheMissCount=26, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0, expCacheHitCount=0, expCacheMissCount=0}
+2021-06-15 17:46:42,905 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=1, connections=16
+2021-06-15 17:46:42,906 DEBUG [mondrian.server.monitor] ExecutionEndEvent(2060)
+2021-06-15 17:46:42,906 DEBUG [mondrian.server.monitor] StatementInfo{statementId=206, executeStartCount=1, executeEndCount=1, phaseCount=2, cellCacheRequestCount=52, cellCacheHitCount=26, cellCacheMissCount=26, cellCachePendingCount=0, sqlStatementStartCount=2, sqlStatementExecuteCount=2, sqlStatementEndCount=2, sqlStatementRowFetchCount=4, sqlStatementExecuteNanos=76397401, cellRequestCount=2}
+2021-06-15 17:46:42,906 DEBUG [mondrian.server.monitor] StatementEndEvent(206)
+2021-06-15 17:46:42,910 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=0, connections=16
+2021-06-15 17:46:42,910 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=0, connections=17
+2021-06-15 17:46:42,910 DEBUG [mondrian.server.monitor] ConnectionStartEvent(192)
+2021-06-15 17:46:42,910 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:42,910 DEBUG [mondrian.server.monitor] StatementStartEvent(211)
+2021-06-15 17:46:42,911 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=1, connections=17
+2021-06-15 17:46:42,911 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=0, connections=17
+2021-06-15 17:46:42,911 DEBUG [mondrian.server.monitor] StatementInfo{statementId=211, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:42,911 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
+2021-06-15 17:46:42,911 DEBUG [mondrian.server.monitor] StatementEndEvent(211)
+2021-06-15 17:46:42,911 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
+2021-06-15 17:46:42,911 DEBUG [mondrian.server.monitor] ConnectionStartEvent(192)
+2021-06-15 17:46:42,911 DEBUG [mondrian.server.monitor] ConnectionStartEvent(193)
+2021-06-15 17:46:42,911 DEBUG [mondrian.server.monitor] StatementStartEvent(212)
+2021-06-15 17:46:42,911 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:42,911 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
+2021-06-15 17:46:42,912 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:42,912 DEBUG [mondrian.server.monitor] StatementInfo{statementId=212, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:42,912 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:42,912 DEBUG [mondrian.server.monitor] StatementEndEvent(212)
+2021-06-15 17:46:42,912 DEBUG [mondrian.server.monitor] ConnectionStartEvent(193)
+2021-06-15 17:46:42,912 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
+2021-06-15 17:46:42,912 DEBUG [mondrian.server.monitor] ConnectionEndEvent(193)
+2021-06-15 17:46:43,610 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=0, connections=17
+2021-06-15 17:46:43,610 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=0, connections=18
+2021-06-15 17:46:43,610 DEBUG [mondrian.server.monitor] ConnectionStartEvent(194)
+2021-06-15 17:46:43,610 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:43,610 DEBUG [mondrian.server.monitor] StatementStartEvent(213)
+2021-06-15 17:46:43,610 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=1, connections=18
+2021-06-15 17:46:43,610 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=0, connections=18
+2021-06-15 17:46:43,610 DEBUG [mondrian.server.monitor] StatementInfo{statementId=213, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:43,610 DEBUG [mondrian.server.monitor] StatementEndEvent(213)
+2021-06-15 17:46:43,610 DEBUG [mondrian.server.monitor] ConnectionStartEvent(194)
+2021-06-15 17:46:43,610 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
+2021-06-15 17:46:43,610 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
+2021-06-15 17:46:43,610 DEBUG [mondrian.server.monitor] ConnectionStartEvent(195)
+2021-06-15 17:46:43,610 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:43,610 DEBUG [mondrian.server.monitor] StatementStartEvent(214)
+2021-06-15 17:46:43,611 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
+2021-06-15 17:46:43,611 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:43,611 DEBUG [mondrian.server.monitor] StatementInfo{statementId=214, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:43,611 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:43,611 DEBUG [mondrian.server.monitor] StatementEndEvent(214)
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=0, connections=18
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.monitor] ConnectionStartEvent(195)
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.monitor] ConnectionEndEvent(195)
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=1, connections=18
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.monitor] StatementStartEvent(215)
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=1, connections=19
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.monitor] ConnectionStartEvent(196)
+2021-06-15 17:46:43,613 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.monitor] StatementStartEvent(216)
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=2, connections=19
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=1, connections=19
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.monitor] StatementInfo{statementId=216, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.monitor] StatementEndEvent(216)
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
+2021-06-15 17:46:43,613 DEBUG [mondrian.server.monitor] ConnectionStartEvent(196)
+2021-06-15 17:46:43,614 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:43,614 DEBUG [mondrian.server.monitor] ConnectionStartEvent(197)
+2021-06-15 17:46:43,614 DEBUG [mondrian.server.monitor] StatementStartEvent(217)
+2021-06-15 17:46:43,614 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
+2021-06-15 17:46:43,614 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:43,614 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:43,614 DEBUG [mondrian.server.monitor] StatementInfo{statementId=217, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:43,614 DEBUG [mondrian.server.monitor] StatementEndEvent(217)
+2021-06-15 17:46:43,614 DEBUG [mondrian.server.monitor] ConnectionStartEvent(197)
+2021-06-15 17:46:43,614 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
+2021-06-15 17:46:43,614 DEBUG [mondrian.server.monitor] ConnectionEndEvent(197)
+2021-06-15 17:46:43,614 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=1, connections=19
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=1, connections=20
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.monitor] ConnectionStartEvent(198)
+2021-06-15 17:46:43,615 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.monitor] StatementStartEvent(218)
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=2, connections=20
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=1, connections=20
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.monitor] StatementInfo{statementId=218, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.monitor] StatementEndEvent(218)
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.monitor] ConnectionStartEvent(198)
+2021-06-15 17:46:43,615 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.monitor] ConnectionStartEvent(199)
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.monitor] StatementStartEvent(219)
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.monitor] StatementInfo{statementId=219, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.monitor] StatementEndEvent(219)
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.monitor] ConnectionStartEvent(199)
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
+2021-06-15 17:46:43,615 DEBUG [mondrian.server.monitor] ConnectionEndEvent(199)
+2021-06-15 17:46:43,615 DEBUG [mondrian.rolap.RolapConnection] 
+WITH
+SET [~ROWS] AS
+    Hierarchize({{[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS].Members}, {[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS].Members}, {[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS].Members}})
+SELECT
+NON EMPTY {[Measures].[SALESQUANTITY]} ON COLUMNS,
+NON EMPTY [~ROWS] ON ROWS
+FROM [HyperCube@DirtBikes]
+2021-06-15 17:46:43,616 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS]
+2021-06-15 17:46:43,616 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS], status=hierUsage == null returning elementname=CUSTOMER.CUSTOMER_HIERARCHY_AS_IS
+2021-06-15 17:46:43,616 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=CUSTOMER.CUSTOMER_HIERARCHY_AS_IS, child.class=mondrian.rolap.RolapCubeHierarchy
+2021-06-15 17:46:43,616 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]
+2021-06-15 17:46:43,616 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS], status=hierUsage == null returning elementname=CUSTOMER.CUSTOMER_HIERARCHY_AS_IS
+2021-06-15 17:46:43,616 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=CUSTOMER.CUSTOMER_HIERARCHY_AS_IS, childname=[COUNTRY_AS_IS] returning elementname=COUNTRY_AS_IS
+2021-06-15 17:46:43,616 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=COUNTRY_AS_IS, child.class=mondrian.rolap.RolapCubeLevel
+2021-06-15 17:46:43,616 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS]
+2021-06-15 17:46:43,616 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS], status=hierUsage == null returning elementname=CUSTOMER.CUSTOMER_HIERARCHY_AS_IS
+2021-06-15 17:46:43,616 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=CUSTOMER.CUSTOMER_HIERARCHY_AS_IS, childname=[SALESORG_AS_IS] returning elementname=SALESORG_AS_IS
+2021-06-15 17:46:43,616 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=SALESORG_AS_IS, child.class=mondrian.rolap.RolapCubeLevel
+2021-06-15 17:46:43,617 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS]
+2021-06-15 17:46:43,617 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS], status=hierUsage == null returning elementname=CUSTOMER.CUSTOMER_HIERARCHY_AS_IS
+2021-06-15 17:46:43,617 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=CUSTOMER.CUSTOMER_HIERARCHY_AS_IS, childname=[CUSTOMER_AS_IS] returning elementname=CUSTOMER_AS_IS
+2021-06-15 17:46:43,617 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=CUSTOMER_AS_IS, child.class=mondrian.rolap.RolapCubeLevel
+2021-06-15 17:46:43,617 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[Measures].[SALESQUANTITY]
+2021-06-15 17:46:43,617 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[Measures] returning elementname=Measures
+2021-06-15 17:46:43,617 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=Measures, childname=[SALESQUANTITY] returning elementname=SALESQUANTITY
+2021-06-15 17:46:43,617 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=SALESQUANTITY, child.class=mondrian.rolap.RolapBaseCubeMeasure
+2021-06-15 17:46:43,617 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
+2021-06-15 17:46:43,617 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
+2021-06-15 17:46:43,617 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:43,617 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:43,617 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
+2021-06-15 17:46:43,619 DEBUG [mondrian.rolap.RolapConnection] with set [~ROWS] as 'Hierarchize({{[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS].Members}, {[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS].Members}, {[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS].Members}})'
+select NON EMPTY {[Measures].[SALESQUANTITY]} ON COLUMNS,
+  NON EMPTY [~ROWS] ON ROWS
+from [HyperCube@DirtBikes]
+
+2021-06-15 17:46:43,619 DEBUG [mondrian.mdx] 2442: with set [~ROWS] as 'Hierarchize({{[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS].Members}, {[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS].Members}, {[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS].Members}})'
+select NON EMPTY {[Measures].[SALESQUANTITY]} ON COLUMNS,
+  NON EMPTY [~ROWS] ON ROWS
+from [HyperCube@DirtBikes]
+
+2021-06-15 17:46:43,619 DEBUG [mondrian.rolap.RolapStar] RolapStar.clearCachedAggregations: schema=HyperSchema, star=WI2_ACU008_FACT_TABLE
+2021-06-15 17:46:43,619 DEBUG [mondrian.server.monitor] ExecutionStartEvent(2442)
+2021-06-15 17:46:43,619 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
+2021-06-15 17:46:43,619 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
+2021-06-15 17:46:43,619 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:43,619 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:43,619 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
+2021-06-15 17:46:43,620 DEBUG [mondrian.olap.ResultBase] Named set ~ROWS: starting evaluation
+2021-06-15 17:46:43,620 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
+2021-06-15 17:46:43,620 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
+2021-06-15 17:46:43,620 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:43,620 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:43,620 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
+2021-06-15 17:46:43,621 DEBUG [mondrian.sql] 59: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS]]: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_SALESORG" ASC NULLS LAST]
+2021-06-15 17:46:43,621 DEBUG [mondrian.server.monitor] SqlStatementStartEvent(59)
+2021-06-15 17:46:43,660 DEBUG [mondrian.server.monitor] SqlStatementExecuteEvent(59)
+2021-06-15 17:46:43,660 DEBUG [mondrian.sql] 59: , exec 38 ms
+2021-06-15 17:46:43,660 DEBUG [mondrian.rolap.RolapUtil] SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS]]: executing sql [select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_SALESORG" ASC NULLS LAST], exec 38 ms
+2021-06-15 17:46:43,661 DEBUG [mondrian.sql] 59: , exec+fetch 40 ms, 4 rows
+2021-06-15 17:46:43,661 DEBUG [mondrian.rolap.RolapUtil] SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS]]: done executing sql [select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_SALESORG" ASC NULLS LAST], exec+fetch 40 ms, 4 rows, ex=60, close=60, open=[]
+2021-06-15 17:46:43,661 DEBUG [mondrian.server.monitor] SqlStatementInfo{sqlStatementId=59, sql=select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG"
+order by
+    "CUSTOMER_AS_IS"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_IS"."C_SALESORG" ASC NULLS LAST}
+2021-06-15 17:46:43,661 DEBUG [mondrian.server.monitor] SqlStatementEndEvent(59)
+2021-06-15 17:46:43,661 DEBUG [mondrian.olap.ResultBase] mondrian.rolap.RolapNamedSetEvaluator@63c8c678: Named set ~ROWS evaluated to:
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Berlin].[Capital Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Bochum].[Fahrpott]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Greifswald].[Ostseemotorrad]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Hamburg].[Red Light Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Hannover].[Cruiser Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Leipzig].[LMotortours]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Magdeburg].[Motodrom]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DN00].[Rostock].[Warnow Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DS00]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DS00].[Frankfurt].[Airport Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DS00].[Heidelberg].[Neckarmotorrad]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DS00].[München].[Bavaria Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[DE].[DS00].[Stuttgart].[Motorradland]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[Atlanta].[Peachtree Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[Boston].[Beantown Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[Chicago].[Windy City Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[Detroit].[Motown Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[Indianapolis].[Furniture City Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[New York].[Big Apple Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[Philadelphia].[Philly Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UE00].[Washington, D.C.].[DC Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UW00]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UW00].[Denver City].[Rocky Mountain Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UW00].[Los Angeles].[SoCal Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UW00].[San Francisco].[Silicon Valley Bikes]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[US].[UW00].[Seattle].[Northwest Bikes]
+
+2021-06-15 17:46:43,662 DEBUG [mondrian.profile] NamedSet (~ROWS):
+Hierarchize(name=Hierarchize, class=class mondrian.olap.fun.HierarchizeFunDef$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=41, elementCount=60, elementSquaredCount=1800)
+    SetListCalc(name=SetListCalc, class=class mondrian.olap.fun.SetFunDef$SetListCalc, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=41, elementCount=60, elementSquaredCount=1800)
+        Sublist(name=Sublist, class=class mondrian.olap.fun.SetFunDef$SetListCalc$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]>>, resultStyle=VALUE)
+            Members(name=Members, class=class mondrian.olap.fun.LevelMembersFunDef$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=0, elementCount=4, elementSquaredCount=8)
+                Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=LevelType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]>, resultStyle=VALUE_NOT_NULL, value=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS], callCount=2, callMillis=0)
+        Sublist(name=Sublist, class=class mondrian.olap.fun.SetFunDef$SetListCalc$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS]>>, resultStyle=VALUE)
+            Members(name=Members, class=class mondrian.olap.fun.LevelMembersFunDef$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=41, elementCount=8, elementSquaredCount=32)
+                Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=LevelType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS]>, resultStyle=VALUE_NOT_NULL, value=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS], callCount=2, callMillis=0)
+        Sublist(name=Sublist, class=class mondrian.olap.fun.SetFunDef$SetListCalc$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS]>>, resultStyle=VALUE)
+            Members(name=Members, class=class mondrian.olap.fun.LevelMembersFunDef$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=0, elementCount=48, elementSquaredCount=1152)
+                Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=LevelType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS]>, resultStyle=VALUE_NOT_NULL, value=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[CUSTOMER_AS_IS], callCount=2, callMillis=0)
+
+Query Timing (Cumulative):
+SqlStatement-SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS]] invoked 1 times for total of 40ms.  (Avg. 40ms/invocation)
+
+2021-06-15 17:46:43,663 DEBUG [mondrian.profile] Axis (COLUMNS):
+SetListCalc(name=SetListCalc, class=class mondrian.olap.fun.SetFunDef$SetListCalc, type=SetType<MemberType<member=[Measures].[SALESQUANTITY]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=0, elementCount=2, elementSquaredCount=2)
+    2(name=2, class=class mondrian.olap.fun.SetFunDef$SetListCalc$2, type=MemberType<member=[Measures].[SALESQUANTITY]>, resultStyle=VALUE)
+        Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=MemberType<member=[Measures].[SALESQUANTITY]>, resultStyle=VALUE_NOT_NULL, value=[Measures].[SALESQUANTITY], callCount=2, callMillis=0)
+
+Query Timing (Cumulative):
+SqlStatement-SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS]] invoked 1 times for total of 40ms.  (Avg. 40ms/invocation)
+
+2021-06-15 17:46:43,663 DEBUG [mondrian.profile] Axis (ROWS):
+~ROWS(name=~ROWS, class=class mondrian.mdx.NamedSetExpr$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[COUNTRY_AS_IS]>>, resultStyle=ITERABLE, callCount=2, callMillis=42, elementCount=60, elementSquaredCount=1800)
+
+Query Timing (Cumulative):
+SqlStatement-SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS]] invoked 1 times for total of 40ms.  (Avg. 40ms/invocation)
+
+2021-06-15 17:46:43,663 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
+2021-06-15 17:46:43,663 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
+2021-06-15 17:46:43,663 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:43,663 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:43,663 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
+2021-06-15 17:46:43,664 DEBUG [mondrian.server.monitor] ExecutionPhaseEvent(2442, 0)
+2021-06-15 17:46:43,664 DEBUG [mondrian.sql] 60: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")]
+2021-06-15 17:46:43,664 DEBUG [mondrian.server.monitor] ExecutionStartEvent(2443)
+2021-06-15 17:46:43,664 DEBUG [mondrian.server.monitor] SqlStatementStartEvent(60)
+2021-06-15 17:46:43,694 DEBUG [mondrian.server.monitor] SqlStatementExecuteEvent(60)
+2021-06-15 17:46:43,694 DEBUG [mondrian.sql] 60: , exec 30 ms
+2021-06-15 17:46:43,694 DEBUG [mondrian.rolap.RolapUtil] SqlStatisticsProvider.getQueryCardinality: executing sql [select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")], exec 30 ms
+2021-06-15 17:46:43,694 DEBUG [mondrian.sql] 60: , exec+fetch 30 ms, 1 rows
+2021-06-15 17:46:43,695 DEBUG [mondrian.rolap.RolapUtil] SqlStatisticsProvider.getQueryCardinality: done executing sql [select count(*) from (select distinct
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS")], exec+fetch 30 ms, 1 rows, ex=61, close=61, open=[]
+2021-06-15 17:46:43,695 DEBUG [mondrian.server.monitor] SqlStatementEndEvent(60)
+2021-06-15 17:46:43,695 DEBUG [mondrian.rolap.FastBatchingCellReader] FastBatchingCellReader: bitkey=0x0000000000000000000000000000000000000000000000000000000000011000
+  COUNTRY_AS_IS (3): "CUSTOMER_AS_IS"."C_LAND"
+  SALESORG_AS_IS (4): "CUSTOMER_AS_IS"."C_SALESORG"
+
+2021-06-15 17:46:43,697 DEBUG [mondrian.rolap.cache.SegmentCacheIndexImpl] SegmentCacheIndexImpl(2141347619).add:
+*Segment Header
+Schema:[HyperSchema]
+Checksum:[aa6d9b306bc489ee3f0d31136b2e43c5]
+Cube:[HyperCube@DirtBikes]
+Measure:[SALESQUANTITY]
+Axes:[
+    {CUSTOMER_AS_IS.C_LAND=(*)}
+    {CUSTOMER_AS_IS.C_SALESORG=(*)}]
+Excluded Regions:[]
+Compound Predicates:[]
+ID:[e92339a72bfaaa7548f0167175a176e1a05765df82f9e534c2862fe2c76ea28b]
+
+2021-06-15 17:46:43,697 DEBUG [mondrian.rolap.BatchLoader$Batch] Batch.load (millis) 1
+2021-06-15 17:46:43,697 DEBUG [mondrian.rolap.FastBatchingCellReader] load (millis): 2
+2021-06-15 17:46:43,698 DEBUG [mondrian.rolap.agg.AggregationManager] MATCH: WI2_ACU008_FACT_TABLE
+   foreign=0x0000000000000000000000000000000000000000000000000000000000011000
+   measure=0x0000000000000000000000000000000000000000100000000000000000000000
+   aggstar=0x0000000000000000000000000000000000000001111111001010000010111011
+AggStar=AGG_2_WI2_ACU008_FACT_TABLE
+   [NETSALESUSD] (21): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NETSALESUSD")
+   [DISCOUNTUSD] (20): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_DISCOUNTUSD")
+   [SALESQUANTITY] (23): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY")
+   [REVENUEEUR] (19): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEEUR")
+   [REVENUEUSD] (18): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEUSD")
+   [COSTOFGOODSSOLDUSD] (22): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_COGSUSD")
+   [NOOFSALESORDERS] (24): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NOOFSALESORDERS")
+   YEAR (0): "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR"
+   CUSTOMER_AS_IS (7): "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID"
+   MONTH (1): "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_MONTH"
+   DIVISION (13): "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"
+   PRODUCT_CATEGORY (15): "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_CATEGORY"
+
+2021-06-15 17:46:43,699 DEBUG [mondrian.rolap.agg.AggregationManager] generateSqlQuery: sql=select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
+where
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."C_ID"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG"
+2021-06-15 17:46:43,699 DEBUG [mondrian.sql] 61: Segment.load: executing sql [
+select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
+where
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."C_ID"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG"]
+2021-06-15 17:46:43,699 DEBUG [mondrian.server.monitor] SqlStatementStartEvent(61)
+2021-06-15 17:46:43,742 DEBUG [mondrian.server.monitor] SqlStatementExecuteEvent(61)
+2021-06-15 17:46:43,742 DEBUG [mondrian.sql] 61: , exec 42 ms
+2021-06-15 17:46:43,742 DEBUG [mondrian.rolap.RolapUtil] Segment.load: executing sql [select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
+where
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."C_ID"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG"], exec 42 ms
+2021-06-15 17:46:43,744 DEBUG [mondrian.server.monitor] mondrian.rolap.agg.SegmentCacheManager$SegmentLoadSucceededEvent@333eb669
+2021-06-15 17:46:43,744 DEBUG [mondrian.sql] 61: , exec+fetch 44 ms, 4 rows
+2021-06-15 17:46:43,744 DEBUG [mondrian.server.monitor] mondrian.server.monitor.CellCacheSegmentCreateEvent@4d7af5b
+2021-06-15 17:46:43,744 DEBUG [mondrian.rolap.RolapUtil] Segment.load: done executing sql [select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
+where
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."C_ID"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG"], exec+fetch 44 ms, 4 rows, ex=62, close=62, open=[]
+2021-06-15 17:46:43,744 DEBUG [mondrian.server.monitor] SqlStatementInfo{sqlStatementId=61, sql=select
+    "CUSTOMER_AS_IS"."C_LAND" as "c0",
+    "CUSTOMER_AS_IS"."C_SALESORG" as "c1",
+    sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE CURRENT_DATE BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_IS",
+    "AGG_2_WI2_ACU008_FACT_TABLE" "AGG_2_WI2_ACU008_FACT_TABLE"
+where
+    "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID" = "CUSTOMER_AS_IS"."C_ID"
+group by
+    "CUSTOMER_AS_IS"."C_LAND",
+    "CUSTOMER_AS_IS"."C_SALESORG"}
+2021-06-15 17:46:43,744 DEBUG [mondrian.server.monitor] SqlStatementEndEvent(61)
+2021-06-15 17:46:43,745 DEBUG [mondrian.profile] QueryBody:
+
+Query Timing (Cumulative):
+SqlStatement-SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_IS].[SALESORG_AS_IS]] invoked 1 times for total of 40ms.  (Avg. 40ms/invocation)
+SqlStatement-Segment.load invoked 1 times for total of 44ms.  (Avg. 44ms/invocation)
+
+2021-06-15 17:46:43,745 DEBUG [mondrian.olap.ResultBase] RolapResult<init>: FREE_MEMORY: 185281kb 48.44%
+2021-06-15 17:46:43,745 DEBUG [mondrian.rolap.RolapStar] RolapStar.clearCachedAggregations: schema=HyperSchema, star=WI2_ACU008_FACT_TABLE
+2021-06-15 17:46:43,745 DEBUG [mondrian.mdx] 2442: exec: 126 ms
+2021-06-15 17:46:43,745 DEBUG [mondrian.server.monitor] ExecutionInfo{executionId=2442, phaseCount=2, cellCacheRequestCount=60, cellCacheHitCount=32, cellCacheMissCount=28, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0, expCacheHitCount=0, expCacheMissCount=0}
+2021-06-15 17:46:43,746 DEBUG [mondrian.server.monitor] ExecutionEndEvent(2442)
+2021-06-15 17:46:43,746 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=1, connections=20
+2021-06-15 17:46:43,746 DEBUG [mondrian.server.monitor] StatementInfo{statementId=215, executeStartCount=1, executeEndCount=1, phaseCount=2, cellCacheRequestCount=60, cellCacheHitCount=32, cellCacheMissCount=28, cellCachePendingCount=0, sqlStatementStartCount=2, sqlStatementExecuteCount=2, sqlStatementEndCount=2, sqlStatementRowFetchCount=8, sqlStatementExecuteNanos=81085899, cellRequestCount=4}
+2021-06-15 17:46:43,746 DEBUG [mondrian.server.monitor] StatementEndEvent(215)
+2021-06-15 17:46:43,750 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=0, connections=20
+2021-06-15 17:46:43,750 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=0, connections=21
+2021-06-15 17:46:43,750 DEBUG [mondrian.server.monitor] ConnectionStartEvent(200)
+2021-06-15 17:46:43,750 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:43,751 DEBUG [mondrian.server.monitor] StatementStartEvent(220)
+2021-06-15 17:46:43,751 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=1, connections=21
+2021-06-15 17:46:43,751 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=0, connections=21
+2021-06-15 17:46:43,751 DEBUG [mondrian.server.monitor] StatementInfo{statementId=220, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:43,751 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
+2021-06-15 17:46:43,751 DEBUG [mondrian.server.monitor] StatementEndEvent(220)
+2021-06-15 17:46:43,751 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
+2021-06-15 17:46:43,751 DEBUG [mondrian.server.monitor] ConnectionStartEvent(200)
+2021-06-15 17:46:43,751 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:43,751 DEBUG [mondrian.server.monitor] ConnectionStartEvent(201)
+2021-06-15 17:46:43,751 DEBUG [mondrian.server.monitor] StatementStartEvent(221)
+2021-06-15 17:46:43,752 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
+2021-06-15 17:46:43,752 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:43,752 DEBUG [mondrian.server.monitor] StatementInfo{statementId=221, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:43,752 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:43,752 DEBUG [mondrian.server.monitor] StatementEndEvent(221)
+2021-06-15 17:46:43,752 DEBUG [mondrian.server.monitor] ConnectionStartEvent(201)
+2021-06-15 17:46:43,752 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
+2021-06-15 17:46:43,752 DEBUG [mondrian.server.monitor] ConnectionEndEvent(201)
+2021-06-15 17:46:56,333 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=0, connections=21
+2021-06-15 17:46:56,333 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=0, connections=22
+2021-06-15 17:46:56,333 DEBUG [mondrian.server.monitor] ConnectionStartEvent(202)
+2021-06-15 17:46:56,333 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:56,333 DEBUG [mondrian.server.monitor] StatementStartEvent(222)
+2021-06-15 17:46:56,333 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=1, connections=22
+2021-06-15 17:46:56,333 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=0, connections=22
+2021-06-15 17:46:56,333 DEBUG [mondrian.server.monitor] StatementInfo{statementId=222, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:56,334 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
+2021-06-15 17:46:56,334 DEBUG [mondrian.server.monitor] StatementEndEvent(222)
+2021-06-15 17:46:56,334 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
+2021-06-15 17:46:56,334 DEBUG [mondrian.server.monitor] ConnectionStartEvent(202)
+2021-06-15 17:46:56,334 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:56,334 DEBUG [mondrian.server.monitor] ConnectionStartEvent(203)
+2021-06-15 17:46:56,334 DEBUG [mondrian.server.monitor] StatementStartEvent(223)
+2021-06-15 17:46:56,334 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
+2021-06-15 17:46:56,334 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:56,334 DEBUG [mondrian.server.monitor] StatementInfo{statementId=223, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:56,334 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.monitor] StatementEndEvent(223)
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=0, connections=22
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.monitor] ConnectionStartEvent(203)
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.monitor] ConnectionEndEvent(203)
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.monitor] StatementStartEvent(224)
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=1, connections=22
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=1, connections=23
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.monitor] ConnectionStartEvent(204)
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.monitor] StatementStartEvent(225)
+2021-06-15 17:46:56,335 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=2, connections=23
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=1, connections=23
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.monitor] StatementInfo{statementId=225, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.monitor] StatementEndEvent(225)
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.monitor] ConnectionStartEvent(204)
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.monitor] ConnectionStartEvent(205)
+2021-06-15 17:46:56,335 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:56,335 DEBUG [mondrian.server.monitor] StatementStartEvent(226)
+2021-06-15 17:46:56,336 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
+2021-06-15 17:46:56,336 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:56,336 DEBUG [mondrian.server.monitor] StatementInfo{statementId=226, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:56,336 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:56,336 DEBUG [mondrian.server.monitor] StatementEndEvent(226)
+2021-06-15 17:46:56,336 DEBUG [mondrian.server.monitor] ConnectionStartEvent(205)
+2021-06-15 17:46:56,336 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
+2021-06-15 17:46:56,336 DEBUG [mondrian.server.monitor] ConnectionEndEvent(205)
+2021-06-15 17:46:56,336 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=1, connections=23
+2021-06-15 17:46:56,337 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=1, connections=24
+2021-06-15 17:46:56,337 DEBUG [mondrian.server.monitor] ConnectionStartEvent(206)
+2021-06-15 17:46:56,337 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:56,337 DEBUG [mondrian.server.monitor] StatementStartEvent(227)
+2021-06-15 17:46:56,337 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=2, connections=24
+2021-06-15 17:46:56,337 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=1, connections=24
+2021-06-15 17:46:56,337 DEBUG [mondrian.server.monitor] StatementInfo{statementId=227, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:56,337 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
+2021-06-15 17:46:56,337 DEBUG [mondrian.server.monitor] StatementEndEvent(227)
+2021-06-15 17:46:56,337 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
+2021-06-15 17:46:56,337 DEBUG [mondrian.server.monitor] ConnectionStartEvent(206)
+2021-06-15 17:46:56,338 DEBUG [mondrian.server.monitor] ConnectionStartEvent(207)
+2021-06-15 17:46:56,338 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:56,338 DEBUG [mondrian.server.monitor] StatementStartEvent(228)
+2021-06-15 17:46:56,338 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
+2021-06-15 17:46:56,338 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:56,338 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:56,338 DEBUG [mondrian.server.monitor] StatementInfo{statementId=228, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:56,338 DEBUG [mondrian.server.monitor] StatementEndEvent(228)
+2021-06-15 17:46:56,338 DEBUG [mondrian.rolap.RolapConnection] 
+WITH
+SET [~ROWS] AS
+    {[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF].Members}
+SELECT
+NON EMPTY {[Measures].[SALESQUANTITY]} ON COLUMNS,
+NON EMPTY [~ROWS] ON ROWS
+FROM [HyperCube@DirtBikes]
+2021-06-15 17:46:56,338 DEBUG [mondrian.server.monitor] ConnectionStartEvent(207)
+2021-06-15 17:46:56,338 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
+2021-06-15 17:46:56,338 DEBUG [mondrian.server.monitor] ConnectionEndEvent(207)
+2021-06-15 17:46:56,339 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF]
+2021-06-15 17:46:56,339 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF], status=hierUsage == null returning elementname=CUSTOMER.CUSTOMER_HIERARCHY_AS_OF
+2021-06-15 17:46:56,339 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=CUSTOMER.CUSTOMER_HIERARCHY_AS_OF, child.class=mondrian.rolap.RolapCubeHierarchy
+2021-06-15 17:46:56,339 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF]
+2021-06-15 17:46:56,339 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF], status=hierUsage == null returning elementname=CUSTOMER.CUSTOMER_HIERARCHY_AS_OF
+2021-06-15 17:46:56,339 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=CUSTOMER.CUSTOMER_HIERARCHY_AS_OF, childname=[SALESORG_AS_OF] returning elementname=SALESORG_AS_OF
+2021-06-15 17:46:56,339 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=SALESORG_AS_OF, child.class=mondrian.rolap.RolapCubeLevel
+2021-06-15 17:46:56,340 DEBUG [mondrian.olap.Util] Util.lookupCompound: parent.name=HyperCube@DirtBikes, category=unknown, names=[Measures].[SALESQUANTITY]
+2021-06-15 17:46:56,340 DEBUG [mondrian.rolap.RolapCube] RolapCube.lookupChild: name=HyperCube@DirtBikes, childname=[Measures] returning elementname=Measures
+2021-06-15 17:46:56,340 DEBUG [mondrian.rolap.RolapHierarchy] HierarchyBase.lookupChild: name=Measures, childname=[SALESQUANTITY] returning elementname=SALESQUANTITY
+2021-06-15 17:46:56,340 DEBUG [mondrian.olap.Util] Util.lookupCompound: found child.name=SALESQUANTITY, child.class=mondrian.rolap.RolapBaseCubeMeasure
+2021-06-15 17:46:56,340 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
+2021-06-15 17:46:56,340 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
+2021-06-15 17:46:56,340 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:56,340 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:56,340 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
+2021-06-15 17:46:56,342 DEBUG [mondrian.rolap.RolapConnection] with set [~ROWS] as '{[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF].Members}'
+select NON EMPTY {[Measures].[SALESQUANTITY]} ON COLUMNS,
+  NON EMPTY [~ROWS] ON ROWS
+from [HyperCube@DirtBikes]
+
+2021-06-15 17:46:56,342 DEBUG [mondrian.mdx] 2889: with set [~ROWS] as '{[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF].Members}'
+select NON EMPTY {[Measures].[SALESQUANTITY]} ON COLUMNS,
+  NON EMPTY [~ROWS] ON ROWS
+from [HyperCube@DirtBikes]
+
+2021-06-15 17:46:56,342 DEBUG [mondrian.rolap.RolapStar] RolapStar.clearCachedAggregations: schema=HyperSchema, star=WI2_ACU008_FACT_TABLE
+2021-06-15 17:46:56,342 DEBUG [mondrian.server.monitor] ExecutionStartEvent(2889)
+2021-06-15 17:46:56,342 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
+2021-06-15 17:46:56,342 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
+2021-06-15 17:46:56,342 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:56,342 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:56,342 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
+2021-06-15 17:46:56,342 DEBUG [mondrian.olap.ResultBase] Named set ~ROWS: starting evaluation
+2021-06-15 17:46:56,343 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
+2021-06-15 17:46:56,343 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
+2021-06-15 17:46:56,343 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:56,343 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:56,343 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
+2021-06-15 17:46:56,343 DEBUG [mondrian.sql] 62: SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF]]: executing sql [
+select
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c1"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF"
+group by
+    "CUSTOMER_AS_OF"."C_LAND",
+    "CUSTOMER_AS_OF"."C_SALESORG"
+order by
+    "CUSTOMER_AS_OF"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_OF"."C_SALESORG" ASC NULLS LAST]
+2021-06-15 17:46:56,344 DEBUG [mondrian.server.monitor] SqlStatementStartEvent(62)
+2021-06-15 17:46:56,377 DEBUG [mondrian.server.monitor] SqlStatementExecuteEvent(62)
+2021-06-15 17:46:56,377 DEBUG [mondrian.sql] 62: , exec 33 ms
+2021-06-15 17:46:56,377 DEBUG [mondrian.rolap.RolapUtil] SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF]]: executing sql [select
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c1"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF"
+group by
+    "CUSTOMER_AS_OF"."C_LAND",
+    "CUSTOMER_AS_OF"."C_SALESORG"
+order by
+    "CUSTOMER_AS_OF"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_OF"."C_SALESORG" ASC NULLS LAST], exec 33 ms
+2021-06-15 17:46:56,377 DEBUG [mondrian.sql] 62: , exec+fetch 34 ms, 3 rows
+2021-06-15 17:46:56,377 DEBUG [mondrian.rolap.RolapUtil] SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF]]: done executing sql [select
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c1"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF"
+group by
+    "CUSTOMER_AS_OF"."C_LAND",
+    "CUSTOMER_AS_OF"."C_SALESORG"
+order by
+    "CUSTOMER_AS_OF"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_OF"."C_SALESORG" ASC NULLS LAST], exec+fetch 34 ms, 3 rows, ex=63, close=63, open=[]
+2021-06-15 17:46:56,378 DEBUG [mondrian.server.monitor] SqlStatementInfo{sqlStatementId=62, sql=select
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c1"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF"
+group by
+    "CUSTOMER_AS_OF"."C_LAND",
+    "CUSTOMER_AS_OF"."C_SALESORG"
+order by
+    "CUSTOMER_AS_OF"."C_LAND" ASC NULLS LAST,
+    "CUSTOMER_AS_OF"."C_SALESORG" ASC NULLS LAST}
+2021-06-15 17:46:56,378 DEBUG [mondrian.olap.ResultBase] mondrian.rolap.RolapNamedSetEvaluator@2d1fcce: Named set ~ROWS evaluated to:
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[DE].[DE00]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[US].[UE00]
+[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[US].[UW00]
+
+2021-06-15 17:46:56,378 DEBUG [mondrian.server.monitor] SqlStatementEndEvent(62)
+2021-06-15 17:46:56,379 DEBUG [mondrian.profile] NamedSet (~ROWS):
+Members(name=Members, class=class mondrian.olap.fun.LevelMembersFunDef$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=35, elementCount=6, elementSquaredCount=18)
+    Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=LevelType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF]>, resultStyle=VALUE_NOT_NULL, value=[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF], callCount=2, callMillis=0)
+
+Query Timing (Cumulative):
+SqlStatement-SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF]] invoked 1 times for total of 34ms.  (Avg. 34ms/invocation)
+
+2021-06-15 17:46:56,379 DEBUG [mondrian.profile] Axis (COLUMNS):
+SetListCalc(name=SetListCalc, class=class mondrian.olap.fun.SetFunDef$SetListCalc, type=SetType<MemberType<member=[Measures].[SALESQUANTITY]>>, resultStyle=MUTABLE_LIST, callCount=2, callMillis=0, elementCount=2, elementSquaredCount=2)
+    2(name=2, class=class mondrian.olap.fun.SetFunDef$SetListCalc$2, type=MemberType<member=[Measures].[SALESQUANTITY]>, resultStyle=VALUE)
+        Literal(name=Literal, class=class mondrian.calc.impl.ConstantCalc, type=MemberType<member=[Measures].[SALESQUANTITY]>, resultStyle=VALUE_NOT_NULL, value=[Measures].[SALESQUANTITY], callCount=2, callMillis=0)
+
+Query Timing (Cumulative):
+SqlStatement-SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF]] invoked 1 times for total of 34ms.  (Avg. 34ms/invocation)
+
+2021-06-15 17:46:56,379 DEBUG [mondrian.profile] Axis (ROWS):
+~ROWS(name=~ROWS, class=class mondrian.mdx.NamedSetExpr$1, type=SetType<MemberType<level=[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF]>>, resultStyle=ITERABLE, callCount=2, callMillis=37, elementCount=6, elementSquaredCount=18)
+
+Query Timing (Cumulative):
+SqlStatement-SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF]] invoked 1 times for total of 34ms.  (Avg. 34ms/invocation)
+
+2021-06-15 17:46:56,379 DEBUG [mondrian.rolap.RolapCube] RolapCube.getUsages: name=Measures
+2021-06-15 17:46:56,379 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[TIME].[#null]
+2021-06-15 17:46:56,379 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:56,379 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[CUSTOMER].[#null]
+2021-06-15 17:46:56,379 DEBUG [mondrian.rolap.RolapMember] RolapMember.makeUniqueName: uniqueName=[PRODUCT].[#null]
+2021-06-15 17:46:56,379 DEBUG [mondrian.server.monitor] ExecutionPhaseEvent(2889, 0)
+2021-06-15 17:46:56,379 DEBUG [mondrian.sql] 63: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_OF"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF")]
+2021-06-15 17:46:56,380 DEBUG [mondrian.server.monitor] ExecutionStartEvent(2890)
+2021-06-15 17:46:56,380 DEBUG [mondrian.server.monitor] SqlStatementStartEvent(63)
+2021-06-15 17:46:56,412 DEBUG [mondrian.server.monitor] SqlStatementExecuteEvent(63)
+2021-06-15 17:46:56,412 DEBUG [mondrian.sql] 63: , exec 32 ms
+2021-06-15 17:46:56,413 DEBUG [mondrian.rolap.RolapUtil] SqlStatisticsProvider.getQueryCardinality: executing sql [select count(*) from (select distinct
+    "CUSTOMER_AS_OF"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF")], exec 32 ms
+2021-06-15 17:46:56,413 DEBUG [mondrian.sql] 63: , exec+fetch 33 ms, 1 rows
+2021-06-15 17:46:56,413 DEBUG [mondrian.rolap.RolapUtil] SqlStatisticsProvider.getQueryCardinality: done executing sql [select count(*) from (select distinct
+    "CUSTOMER_AS_OF"."C_LAND" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF")], exec+fetch 33 ms, 1 rows, ex=64, close=64, open=[]
+2021-06-15 17:46:56,413 DEBUG [mondrian.server.monitor] SqlStatementEndEvent(63)
+2021-06-15 17:46:56,413 DEBUG [mondrian.sql] 64: SqlStatisticsProvider.getQueryCardinality: executing sql [
+select count(*) from (select distinct
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF")]
+2021-06-15 17:46:56,414 DEBUG [mondrian.server.monitor] ExecutionStartEvent(2891)
+2021-06-15 17:46:56,414 DEBUG [mondrian.server.monitor] SqlStatementStartEvent(64)
+2021-06-15 17:46:56,448 DEBUG [mondrian.server.monitor] SqlStatementExecuteEvent(64)
+2021-06-15 17:46:56,448 DEBUG [mondrian.sql] 64: , exec 34 ms
+2021-06-15 17:46:56,449 DEBUG [mondrian.rolap.RolapUtil] SqlStatisticsProvider.getQueryCardinality: executing sql [select count(*) from (select distinct
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF")], exec 34 ms
+2021-06-15 17:46:56,449 DEBUG [mondrian.sql] 64: , exec+fetch 35 ms, 1 rows
+2021-06-15 17:46:56,449 DEBUG [mondrian.rolap.RolapUtil] SqlStatisticsProvider.getQueryCardinality: done executing sql [select count(*) from (select distinct
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF")], exec+fetch 35 ms, 1 rows, ex=65, close=65, open=[]
+2021-06-15 17:46:56,449 DEBUG [mondrian.server.monitor] SqlStatementEndEvent(64)
+2021-06-15 17:46:56,450 DEBUG [mondrian.rolap.FastBatchingCellReader] FastBatchingCellReader: bitkey=0x0000000000000000000000000000000000000000000000000000001100000000
+  COUNTRY_AS_OF (8): "CUSTOMER_AS_OF"."C_LAND"
+  SALESORG_AS_OF (9): "CUSTOMER_AS_OF"."C_SALESORG"
+
+2021-06-15 17:46:56,450 DEBUG [mondrian.rolap.cache.SegmentCacheIndexImpl] SegmentCacheIndexImpl(2141347619).add:
+*Segment Header
+Schema:[HyperSchema]
+Checksum:[aa6d9b306bc489ee3f0d31136b2e43c5]
+Cube:[HyperCube@DirtBikes]
+Measure:[SALESQUANTITY]
+Axes:[
+    {CUSTOMER_AS_OF.C_LAND=(*)}
+    {CUSTOMER_AS_OF.C_SALESORG=(*)}]
+Excluded Regions:[]
+Compound Predicates:[]
+ID:[caab5cc869e0a0cb55306328200345d5ac80bfb2f7a9e240197afd518ddc156b]
+
+2021-06-15 17:46:56,451 DEBUG [mondrian.rolap.BatchLoader$Batch] Batch.load (millis) 1
+2021-06-15 17:46:56,451 DEBUG [mondrian.rolap.FastBatchingCellReader] load (millis): 1
+2021-06-15 17:46:56,452 DEBUG [mondrian.rolap.agg.AggregationManager] NO MATCH : WI2_ACU008_FACT_TABLE
+Foreign columns bit key=0x0000000000000000000000000000000000000000000000000000001100000000
+Measure bit key=        0x0000000000000000000000000000000000000000100000000000000000000000
+Agg Stars=[
+AggStar:AGG_2_WI2_ACU008_FACT_TABLE
+   bk=0x0000000000000000000000000000000000000001111111001010000010111011
+  fbk=0x0000000000000000000000000000000000000000000000001010000010000011
+  mbk=0x0000000000000000000000000000000000000001111111000000000000000000
+  has foreign key=false
+    [NETSALESUSD] (21): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NETSALESUSD")
+    [DISCOUNTUSD] (20): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_DISCOUNTUSD")
+    [SALESQUANTITY] (23): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY")
+    [REVENUEEUR] (19): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEEUR")
+    [REVENUEUSD] (18): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEUSD")
+    [COSTOFGOODSSOLDUSD] (22): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_COGSUSD")
+    [NOOFSALESORDERS] (24): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NOOFSALESORDERS")
+    YEAR (0): "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR"
+    CUSTOMER_AS_IS (7): "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID"
+    MONTH (1): "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_MONTH"
+    DIVISION (13): "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"
+    PRODUCT_CATEGORY (15): "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_CATEGORY"
+  Table:
+    name=AGG_2_WI2_ACU008_FACT_TABLE
+    relation=AGG_2_WI2_ACU008_FACT_TABLE
+    numberofrows=12336
+    FactCount:
+      Fact Count (-1): "AGG_2_WI2_ACU008_FACT_TABLE"."FACT_COUNT"
+    Measures:
+      [NETSALESUSD] (21): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NETSALESUSD")
+      [DISCOUNTUSD] (20): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_DISCOUNTUSD")
+      [SALESQUANTITY] (23): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_SALESQUANTITY")
+      [REVENUEEUR] (19): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEEUR")
+      [REVENUEUSD] (18): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_REVENUEUSD")
+      [COSTOFGOODSSOLDUSD] (22): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_COGSUSD")
+      [NOOFSALESORDERS] (24): sum("AGG_2_WI2_ACU008_FACT_TABLE"."SUM_NOOFSALESORDERS")
+    Levels:
+      YEAR (0): "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_YEAR"
+      CUSTOMER_AS_IS (7): "AGG_2_WI2_ACU008_FACT_TABLE"."CUSTOMER_C_ID"
+      MONTH (1): "AGG_2_WI2_ACU008_FACT_TABLE"."TIME_MONTH"
+      DIVISION (13): "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_DIVISION"
+      PRODUCT_CATEGORY (15): "AGG_2_WI2_ACU008_FACT_TABLE"."PRODUCT_P_CATEGORY"
+
+]
+2021-06-15 17:46:56,452 DEBUG [mondrian.rolap.agg.AggregationManager] generateSqlQuery: sql=select
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c1",
+    sum("WI2_ACU008_FACT_TABLE"."SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF",
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
+where
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "CUSTOMER_AS_OF"."C_ID"
+group by
+    "CUSTOMER_AS_OF"."C_LAND",
+    "CUSTOMER_AS_OF"."C_SALESORG"
+2021-06-15 17:46:56,452 DEBUG [mondrian.sql] 65: Segment.load: executing sql [
+select
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c1",
+    sum("WI2_ACU008_FACT_TABLE"."SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF",
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
+where
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "CUSTOMER_AS_OF"."C_ID"
+group by
+    "CUSTOMER_AS_OF"."C_LAND",
+    "CUSTOMER_AS_OF"."C_SALESORG"]
+2021-06-15 17:46:56,453 DEBUG [mondrian.server.monitor] SqlStatementStartEvent(65)
+2021-06-15 17:46:56,529 DEBUG [mondrian.server.monitor] SqlStatementExecuteEvent(65)
+2021-06-15 17:46:56,529 DEBUG [mondrian.sql] 65: , exec 76 ms
+2021-06-15 17:46:56,530 DEBUG [mondrian.rolap.RolapUtil] Segment.load: executing sql [select
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c1",
+    sum("WI2_ACU008_FACT_TABLE"."SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF",
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
+where
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "CUSTOMER_AS_OF"."C_ID"
+group by
+    "CUSTOMER_AS_OF"."C_LAND",
+    "CUSTOMER_AS_OF"."C_SALESORG"], exec 76 ms
+2021-06-15 17:46:56,531 DEBUG [mondrian.server.monitor] mondrian.rolap.agg.SegmentCacheManager$SegmentLoadSucceededEvent@37d5cc96
+2021-06-15 17:46:56,531 DEBUG [mondrian.sql] 65: , exec+fetch 78 ms, 3 rows
+2021-06-15 17:46:56,531 DEBUG [mondrian.server.monitor] mondrian.server.monitor.CellCacheSegmentCreateEvent@3868f791
+2021-06-15 17:46:56,531 DEBUG [mondrian.rolap.RolapUtil] Segment.load: done executing sql [select
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c1",
+    sum("WI2_ACU008_FACT_TABLE"."SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF",
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
+where
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "CUSTOMER_AS_OF"."C_ID"
+group by
+    "CUSTOMER_AS_OF"."C_LAND",
+    "CUSTOMER_AS_OF"."C_SALESORG"], exec+fetch 78 ms, 3 rows, ex=66, close=66, open=[]
+2021-06-15 17:46:56,531 DEBUG [mondrian.server.monitor] SqlStatementInfo{sqlStatementId=65, sql=select
+    "CUSTOMER_AS_OF"."C_LAND" as "c0",
+    "CUSTOMER_AS_OF"."C_SALESORG" as "c1",
+    sum("WI2_ACU008_FACT_TABLE"."SALESQUANTITY") as "m0"
+from
+    (SELECT * FROM ACU008.WI2_ACU008_CUSTOMER WHERE to_date('2015-05-28','yyyy-MM-dd') BETWEEN VALIDFROM AND VALIDTO ORDER BY C_DESC) "CUSTOMER_AS_OF",
+    "WI2_ACU008_FACT_TABLE" "WI2_ACU008_FACT_TABLE"
+where
+    "WI2_ACU008_FACT_TABLE"."FACT_C_ID" = "CUSTOMER_AS_OF"."C_ID"
+group by
+    "CUSTOMER_AS_OF"."C_LAND",
+    "CUSTOMER_AS_OF"."C_SALESORG"}
+2021-06-15 17:46:56,531 DEBUG [mondrian.profile] QueryBody:
+
+Query Timing (Cumulative):
+SqlStatement-SqlTupleReader.readTuples [[CUSTOMER.CUSTOMER_HIERARCHY_AS_OF].[SALESORG_AS_OF]] invoked 1 times for total of 34ms.  (Avg. 34ms/invocation)
+SqlStatement-Segment.load invoked 1 times for total of 78ms.  (Avg. 78ms/invocation)
+
+2021-06-15 17:46:56,531 DEBUG [mondrian.server.monitor] SqlStatementEndEvent(65)
+2021-06-15 17:46:56,532 DEBUG [mondrian.olap.ResultBase] RolapResult<init>: FREE_MEMORY: 180431kb 47.17%
+2021-06-15 17:46:56,532 DEBUG [mondrian.rolap.RolapStar] RolapStar.clearCachedAggregations: schema=HyperSchema, star=WI2_ACU008_FACT_TABLE
+2021-06-15 17:46:56,532 DEBUG [mondrian.mdx] 2889: exec: 190 ms
+2021-06-15 17:46:56,532 DEBUG [mondrian.server.monitor] ExecutionInfo{executionId=2889, phaseCount=2, cellCacheRequestCount=6, cellCacheHitCount=3, cellCacheMissCount=3, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0, expCacheHitCount=0, expCacheMissCount=0}
+2021-06-15 17:46:56,532 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=1, connections=24
+2021-06-15 17:46:56,532 DEBUG [mondrian.server.monitor] ExecutionEndEvent(2889)
+2021-06-15 17:46:56,532 DEBUG [mondrian.server.monitor] StatementInfo{statementId=224, executeStartCount=1, executeEndCount=1, phaseCount=2, cellCacheRequestCount=6, cellCacheHitCount=3, cellCacheMissCount=3, cellCachePendingCount=0, sqlStatementStartCount=2, sqlStatementExecuteCount=2, sqlStatementEndCount=2, sqlStatementRowFetchCount=6, sqlStatementExecuteNanos=110460899, cellRequestCount=3}
+2021-06-15 17:46:56,532 DEBUG [mondrian.server.monitor] StatementEndEvent(224)
+2021-06-15 17:46:56,533 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=0, connections=24
+2021-06-15 17:46:56,533 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=7, statements=0, connections=25
+2021-06-15 17:46:56,533 DEBUG [mondrian.server.monitor] ConnectionStartEvent(208)
+2021-06-15 17:46:56,533 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:56,533 DEBUG [mondrian.server.monitor] StatementStartEvent(229)
+2021-06-15 17:46:56,534 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=7, statements=1, connections=25
+2021-06-15 17:46:56,534 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=7, statements=0, connections=25
+2021-06-15 17:46:56,534 DEBUG [mondrian.server.monitor] StatementInfo{statementId=229, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:56,534 DEBUG [mondrian.server.monitor] StatementEndEvent(229)
+2021-06-15 17:46:56,534 DEBUG [mondrian.server.monitor] ConnectionStartEvent(208)
+2021-06-15 17:46:56,534 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=0
+2021-06-15 17:46:56,534 DEBUG [mondrian.server.MondrianServerImpl] addStatement , id=1, statements=0, connections=1
+2021-06-15 17:46:56,534 DEBUG [mondrian.server.monitor] ConnectionStartEvent(209)
+2021-06-15 17:46:56,534 DEBUG [mondrian.rolap.RolapSchema] Pool.get: create schema "file:/mondrian-schema.xml" using dynamic processor
+2021-06-15 17:46:56,535 DEBUG [mondrian.server.monitor] StatementStartEvent(230)
+2021-06-15 17:46:56,535 DEBUG [mondrian.server.MondrianServerImpl] removeStatement , id=1, statements=1, connections=1
+2021-06-15 17:46:56,535 DEBUG [mondrian.server.MondrianServerImpl] addConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:56,535 DEBUG [mondrian.server.monitor] StatementInfo{statementId=230, executeStartCount=0, executeEndCount=0, phaseCount=0, cellCacheRequestCount=0, cellCacheHitCount=0, cellCacheMissCount=0, cellCachePendingCount=0, sqlStatementStartCount=0, sqlStatementExecuteCount=0, sqlStatementEndCount=0, sqlStatementRowFetchCount=0, sqlStatementExecuteNanos=0, cellRequestCount=0}
+2021-06-15 17:46:56,535 DEBUG [mondrian.server.MondrianServerImpl] removeConnection , id=1, statements=0, connections=1
+2021-06-15 17:46:56,535 DEBUG [mondrian.server.monitor] StatementEndEvent(230)
+2021-06-15 17:46:56,535 DEBUG [mondrian.server.monitor] ConnectionStartEvent(209)
+2021-06-15 17:46:56,536 DEBUG [mondrian.server.monitor] ConnectionInfo{cellCacheHitCount=0, cellCacheRequestCount=0, cellCacheMissCount=0, cellCachePendingCount=0, statementStartCount=0, statementEndCount=0, executeStartCount=0, executeEndCount=0}
+2021-06-15 17:46:56,536 DEBUG [mondrian.server.monitor] ConnectionEndEvent(209)
